@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9520" systemVersion="15D9c" minimumToolsVersion="Automatic">
+    <entity name="HWAssessment" representedClassName="HWAssessment" syncable="YES">
+        <attribute name="dateAssigned" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dateDue" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HWCourse" inverseName="assesments" inverseEntity="HWCourse" syncable="YES"/>
+    </entity>
+    <entity name="HWAssignment" representedClassName="HWAssignment" syncable="YES">
+        <attribute name="dateAssigned" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dateDue" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="isCompleted" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HWCourse" inverseName="assignments" inverseEntity="HWCourse" syncable="YES"/>
+    </entity>
+    <entity name="HWCourse" representedClassName="HWCourse" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="period" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="assesments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HWAssessment" inverseName="course" inverseEntity="HWAssessment" syncable="YES"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HWAssignment" inverseName="course" inverseEntity="HWAssignment" syncable="YES"/>
+        <relationship name="courseList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HWCourseList" inverseName="courses" inverseEntity="HWCourseList" syncable="YES"/>
+    </entity>
+    <entity name="HWCourseList" representedClassName="HWCourseList" syncable="YES">
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HWCourse" inverseName="courseList" inverseEntity="HWCourse" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="HWCourse" positionX="151" positionY="54" width="128" height="118"/>
+        <element name="HWAssignment" positionX="-101" positionY="135" width="128" height="133"/>
+        <element name="HWAssessment" positionX="-101" positionY="-3" width="128" height="118"/>
+        <element name="HWCourseList" positionX="403" positionY="54" width="128" height="58"/>
+    </elements>
 </model>

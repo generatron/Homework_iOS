@@ -16,6 +16,14 @@
 		F9FFE9E61C276C0A004A5CE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9FFE9E41C276C0A004A5CE3 /* LaunchScreen.storyboard */; };
 		F9FFE9F11C276C0A004A5CE3 /* HomeworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9F01C276C0A004A5CE3 /* HomeworkTests.m */; };
 		F9FFE9FC1C276C0A004A5CE3 /* HomeworkUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9FB1C276C0A004A5CE3 /* HomeworkUITests.m */; };
+		F9FFEA191C27718D004A5CE3 /* HWAssignment+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFEA0A1C27718D004A5CE3 /* HWAssignment+CoreDataProperties.m */; };
+		F9FFEA1A1C27718D004A5CE3 /* HWAssignment.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFEA0C1C27718D004A5CE3 /* HWAssignment.m */; };
+		F9FFEA1B1C27718D004A5CE3 /* HWAssessment+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFEA0E1C27718D004A5CE3 /* HWAssessment+CoreDataProperties.m */; };
+		F9FFEA1C1C27718D004A5CE3 /* HWAssessment.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFEA101C27718D004A5CE3 /* HWAssessment.m */; };
+		F9FFEA1D1C27718D004A5CE3 /* HWCourse+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFEA121C27718D004A5CE3 /* HWCourse+CoreDataProperties.m */; };
+		F9FFEA1E1C27718D004A5CE3 /* HWCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFEA141C27718D004A5CE3 /* HWCourse.m */; };
+		F9FFEA1F1C27718D004A5CE3 /* HWCourseList+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFEA161C27718D004A5CE3 /* HWCourseList+CoreDataProperties.m */; };
+		F9FFEA201C27718D004A5CE3 /* HWCourseList.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFEA181C27718D004A5CE3 /* HWCourseList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +61,22 @@
 		F9FFE9F71C276C0A004A5CE3 /* HomeworkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeworkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9FFE9FB1C276C0A004A5CE3 /* HomeworkUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeworkUITests.m; sourceTree = "<group>"; };
 		F9FFE9FD1C276C0A004A5CE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9FFEA091C27718D004A5CE3 /* HWAssignment+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HWAssignment+CoreDataProperties.h"; path = "Classes/HWAssignment+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F9FFEA0A1C27718D004A5CE3 /* HWAssignment+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HWAssignment+CoreDataProperties.m"; path = "Classes/HWAssignment+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F9FFEA0B1C27718D004A5CE3 /* HWAssignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HWAssignment.h; path = Classes/HWAssignment.h; sourceTree = "<group>"; };
+		F9FFEA0C1C27718D004A5CE3 /* HWAssignment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HWAssignment.m; path = Classes/HWAssignment.m; sourceTree = "<group>"; };
+		F9FFEA0D1C27718D004A5CE3 /* HWAssessment+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HWAssessment+CoreDataProperties.h"; path = "Classes/HWAssessment+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F9FFEA0E1C27718D004A5CE3 /* HWAssessment+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HWAssessment+CoreDataProperties.m"; path = "Classes/HWAssessment+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F9FFEA0F1C27718D004A5CE3 /* HWAssessment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HWAssessment.h; path = Classes/HWAssessment.h; sourceTree = "<group>"; };
+		F9FFEA101C27718D004A5CE3 /* HWAssessment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HWAssessment.m; path = Classes/HWAssessment.m; sourceTree = "<group>"; };
+		F9FFEA111C27718D004A5CE3 /* HWCourse+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HWCourse+CoreDataProperties.h"; path = "Classes/HWCourse+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F9FFEA121C27718D004A5CE3 /* HWCourse+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HWCourse+CoreDataProperties.m"; path = "Classes/HWCourse+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F9FFEA131C27718D004A5CE3 /* HWCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HWCourse.h; path = Classes/HWCourse.h; sourceTree = "<group>"; };
+		F9FFEA141C27718D004A5CE3 /* HWCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HWCourse.m; path = Classes/HWCourse.m; sourceTree = "<group>"; };
+		F9FFEA151C27718D004A5CE3 /* HWCourseList+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HWCourseList+CoreDataProperties.h"; path = "Classes/HWCourseList+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F9FFEA161C27718D004A5CE3 /* HWCourseList+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HWCourseList+CoreDataProperties.m"; path = "Classes/HWCourseList+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F9FFEA171C27718D004A5CE3 /* HWCourseList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HWCourseList.h; path = Classes/HWCourseList.h; sourceTree = "<group>"; };
+		F9FFEA181C27718D004A5CE3 /* HWCourseList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HWCourseList.m; path = Classes/HWCourseList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +127,7 @@
 		F9FFE9D21C276C0A004A5CE3 /* Homework */ = {
 			isa = PBXGroup;
 			children = (
+				F9FFEA211C277197004A5CE3 /* Classes */,
 				F9FFE9D61C276C0A004A5CE3 /* AppDelegate.h */,
 				F9FFE9D71C276C0A004A5CE3 /* AppDelegate.m */,
 				F9FFE9D91C276C0A004A5CE3 /* ViewController.h */,
@@ -141,6 +166,61 @@
 				F9FFE9FD1C276C0A004A5CE3 /* Info.plist */,
 			);
 			path = HomeworkUITests;
+			sourceTree = "<group>";
+		};
+		F9FFEA211C277197004A5CE3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F9FFEA221C2771BA004A5CE3 /* Course List */,
+				F9FFEA251C2771DB004A5CE3 /* Course */,
+				F9FFEA231C2771CB004A5CE3 /* Assignment */,
+				F9FFEA241C2771D3004A5CE3 /* Assessment */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		F9FFEA221C2771BA004A5CE3 /* Course List */ = {
+			isa = PBXGroup;
+			children = (
+				F9FFEA171C27718D004A5CE3 /* HWCourseList.h */,
+				F9FFEA181C27718D004A5CE3 /* HWCourseList.m */,
+				F9FFEA151C27718D004A5CE3 /* HWCourseList+CoreDataProperties.h */,
+				F9FFEA161C27718D004A5CE3 /* HWCourseList+CoreDataProperties.m */,
+			);
+			name = "Course List";
+			sourceTree = "<group>";
+		};
+		F9FFEA231C2771CB004A5CE3 /* Assignment */ = {
+			isa = PBXGroup;
+			children = (
+				F9FFEA0B1C27718D004A5CE3 /* HWAssignment.h */,
+				F9FFEA0C1C27718D004A5CE3 /* HWAssignment.m */,
+				F9FFEA091C27718D004A5CE3 /* HWAssignment+CoreDataProperties.h */,
+				F9FFEA0A1C27718D004A5CE3 /* HWAssignment+CoreDataProperties.m */,
+			);
+			name = Assignment;
+			sourceTree = "<group>";
+		};
+		F9FFEA241C2771D3004A5CE3 /* Assessment */ = {
+			isa = PBXGroup;
+			children = (
+				F9FFEA0F1C27718D004A5CE3 /* HWAssessment.h */,
+				F9FFEA101C27718D004A5CE3 /* HWAssessment.m */,
+				F9FFEA0D1C27718D004A5CE3 /* HWAssessment+CoreDataProperties.h */,
+				F9FFEA0E1C27718D004A5CE3 /* HWAssessment+CoreDataProperties.m */,
+			);
+			name = Assessment;
+			sourceTree = "<group>";
+		};
+		F9FFEA251C2771DB004A5CE3 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				F9FFEA131C27718D004A5CE3 /* HWCourse.h */,
+				F9FFEA141C27718D004A5CE3 /* HWCourse.m */,
+				F9FFEA111C27718D004A5CE3 /* HWCourse+CoreDataProperties.h */,
+				F9FFEA121C27718D004A5CE3 /* HWCourse+CoreDataProperties.m */,
+			);
+			name = Course;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,10 +354,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9FFEA191C27718D004A5CE3 /* HWAssignment+CoreDataProperties.m in Sources */,
+				F9FFEA201C27718D004A5CE3 /* HWCourseList.m in Sources */,
+				F9FFEA1D1C27718D004A5CE3 /* HWCourse+CoreDataProperties.m in Sources */,
+				F9FFEA1F1C27718D004A5CE3 /* HWCourseList+CoreDataProperties.m in Sources */,
 				F9FFE9DB1C276C0A004A5CE3 /* ViewController.m in Sources */,
 				F9FFE9E11C276C0A004A5CE3 /* Homework.xcdatamodeld in Sources */,
+				F9FFEA1B1C27718D004A5CE3 /* HWAssessment+CoreDataProperties.m in Sources */,
 				F9FFE9D81C276C0A004A5CE3 /* AppDelegate.m in Sources */,
 				F9FFE9D51C276C0A004A5CE3 /* main.m in Sources */,
+				F9FFEA1E1C27718D004A5CE3 /* HWCourse.m in Sources */,
+				F9FFEA1C1C27718D004A5CE3 /* HWAssessment.m in Sources */,
+				F9FFEA1A1C27718D004A5CE3 /* HWAssignment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
