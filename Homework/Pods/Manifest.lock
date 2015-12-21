@@ -1,0 +1,13 @@
+PODS:
+  - MGSwipeTableCell (1.5.3)
+  - ZFDragableModalTransition (0.5.1)
+
+DEPENDENCIES:
+  - MGSwipeTableCell
+  - ZFDragableModalTransition
+
+SPEC CHECKSUMS:
+  MGSwipeTableCell: 5ae3b9a15efda26b201adc8676b24040febe6ff6
+  ZFDragableModalTransition: 048189eda437f91944ce6d5151618b8bf770196d
+
+COCOAPODS: 0.39.0
