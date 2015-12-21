@@ -10,9 +10,10 @@
 //
 
 #import "HWAssignment.h"
-#import "HWCourse.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class HWCourse;
 
 @interface HWAssignment (CoreDataProperties)
 

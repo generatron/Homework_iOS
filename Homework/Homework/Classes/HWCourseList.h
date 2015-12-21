@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "HWCourse.h"
 
 @class HWCourse;
 
@@ -15,7 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HWCourseList : NSManagedObject
 
-// Insert code here to declare functionality of your managed object subclass
++ (HWCourseList *) fetchCurrentCourseList;
+
+- (void) save;
 
 @end
 

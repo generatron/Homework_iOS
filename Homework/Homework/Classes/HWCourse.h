@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "HWAssessment.h"
+#import "HWAssignment.h"
 
 @class HWAssessment, HWAssignment;
 

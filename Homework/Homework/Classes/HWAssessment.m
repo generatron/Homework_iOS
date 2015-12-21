@@ -7,6 +7,7 @@
 //
 
 #import "HWAssessment.h"
+#import "HWCourse.h"
 
 @implementation HWAssessment
 

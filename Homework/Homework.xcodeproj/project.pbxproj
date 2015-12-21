@@ -24,6 +24,7 @@
 		F9FFEA1E1C27718D004A5CE3 /* HWCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFEA141C27718D004A5CE3 /* HWCourse.m */; };
 		F9FFEA1F1C27718D004A5CE3 /* HWCourseList+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFEA161C27718D004A5CE3 /* HWCourseList+CoreDataProperties.m */; };
 		F9FFEA201C27718D004A5CE3 /* HWCourseList.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFEA181C27718D004A5CE3 /* HWCourseList.m */; };
+		F9FFEA281C278903004A5CE3 /* CourseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFEA271C278903004A5CE3 /* CourseListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,8 @@
 		F9FFEA161C27718D004A5CE3 /* HWCourseList+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HWCourseList+CoreDataProperties.m"; path = "Classes/HWCourseList+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F9FFEA171C27718D004A5CE3 /* HWCourseList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HWCourseList.h; path = Classes/HWCourseList.h; sourceTree = "<group>"; };
 		F9FFEA181C27718D004A5CE3 /* HWCourseList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HWCourseList.m; path = Classes/HWCourseList.m; sourceTree = "<group>"; };
+		F9FFEA261C278903004A5CE3 /* CourseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseListViewController.h; sourceTree = "<group>"; };
+		F9FFEA271C278903004A5CE3 /* CourseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +135,8 @@
 				F9FFE9D71C276C0A004A5CE3 /* AppDelegate.m */,
 				F9FFE9D91C276C0A004A5CE3 /* ViewController.h */,
 				F9FFE9DA1C276C0A004A5CE3 /* ViewController.m */,
+				F9FFEA261C278903004A5CE3 /* CourseListViewController.h */,
+				F9FFEA271C278903004A5CE3 /* CourseListViewController.m */,
 				F9FFE9DC1C276C0A004A5CE3 /* Main.storyboard */,
 				F9FFE9E21C276C0A004A5CE3 /* Assets.xcassets */,
 				F9FFE9E41C276C0A004A5CE3 /* LaunchScreen.storyboard */,
@@ -359,6 +364,7 @@
 				F9FFEA1D1C27718D004A5CE3 /* HWCourse+CoreDataProperties.m in Sources */,
 				F9FFEA1F1C27718D004A5CE3 /* HWCourseList+CoreDataProperties.m in Sources */,
 				F9FFE9DB1C276C0A004A5CE3 /* ViewController.m in Sources */,
+				F9FFEA281C278903004A5CE3 /* CourseListViewController.m in Sources */,
 				F9FFE9E11C276C0A004A5CE3 /* Homework.xcdatamodeld in Sources */,
 				F9FFEA1B1C27718D004A5CE3 /* HWAssessment+CoreDataProperties.m in Sources */,
 				F9FFE9D81C276C0A004A5CE3 /* AppDelegate.m in Sources */,
