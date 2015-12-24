@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MainViewController.h
 //  Homework
 //
 //  Created by Chappy Asel on 12/20/15.
@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewPagerController.h"
 #import "ZFModalTransitionAnimator.h"
+#import "DayViewController.h"
 
-@interface ViewController : UIViewController
+@interface MainViewController : ViewPagerController <ViewPagerDataSource, ViewPagerDelegate>
 
 
 @end

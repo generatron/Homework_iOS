@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Homework/DayViewController.h">
+   </FileRef>
+   <FileRef
+      location = "group:Homework/DayViewController.m">
+   </FileRef>
+   <FileRef
       location = "group:Homework.xcodeproj">
    </FileRef>
    <FileRef

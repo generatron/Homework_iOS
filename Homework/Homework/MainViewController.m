@@ -1,23 +1,23 @@
 //
-//  ViewController.m
+//  MainViewController.m
 //  Homework
 //
 //  Created by Chappy Asel on 12/20/15.
 //  Copyright © 2015 CD. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MainViewController.h"
 #import "HWCourseList.h"
 #import "CourseListViewController.h"
 
-@interface ViewController ()
+@interface MainViewController ()
 
 @property (nonatomic, strong) ZFModalTransitionAnimator *animator;
 @property HWCourseList *courseList;
 
 @end
 
-@implementation ViewController
+@implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,6 +27,8 @@
                                                                             target:self
                                                                             action:@selector(settingsButtonPressed:)];
     self.courseList = [HWCourseList fetchCurrentCourseList];
+    self.dataSource = self;
+    self.delegate = self;
 }
 
 - (IBAction)settingsButtonPressed:(id)sender {
@@ -48,9 +50,44 @@
     [self presentViewController:modalVC animated:YES completion:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - ViewPagerDataSource
+- (NSUInteger)numberOfTabsForViewPager:(ViewPagerController *)viewPager {
+    return 7;
+}
+
+- (UIView *)viewPager:(ViewPagerController *)viewPager viewForTabAtIndex:(NSUInteger)index {
+    UILabel *label = [UILabel new];
+    label.text = [NSString stringWithFormat:@"Today (#%d)", (int)index];
+    [label sizeToFit];
+    return label;
+}
+
+- (UIViewController *)viewPager:(ViewPagerController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index {
+    DayViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"dvc"];
+    return vc;
+}
+
+#pragma mark - ViewPagerDelegate
+- (void)viewPager:(ViewPagerController *)viewPager didChangeTabToIndex:(NSUInteger)index {
+    
+}
+
+- (CGFloat)viewPager:(ViewPagerController *)viewPager valueForOption:(ViewPagerOption)option withDefault:(CGFloat)value {
+    switch (option) {
+        case ViewPagerOptionStartFromSecondTab:
+            return 0.0;
+        case ViewPagerOptionCenterCurrentTab:
+            return 0.0;
+        case ViewPagerOptionTabLocation:
+            return 0.0;
+        default:
+            return value;
+    }
+}
+
+- (UIColor *)viewPager:(ViewPagerController *)viewPager colorForComponent:(ViewPagerComponent)component withDefault:(UIColor *)color {
+    if (component == ViewPagerIndicator) return [UIColor colorWithRed:70/255.0 green:235/255.0 blue:120/255.0 alpha:1];
+    else return color;
 }
 
 @end

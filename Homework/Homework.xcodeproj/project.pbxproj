@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		DBF39B26A56C3434D4FB9E00 /* libPods-Homework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E6047CD8D245421055E6DC6 /* libPods-Homework.a */; };
+		F97D82781C2C909D004C6212 /* DayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97D82771C2C909D004C6212 /* DayViewController.m */; };
 		F9FFE9D51C276C0A004A5CE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9D41C276C0A004A5CE3 /* main.m */; };
 		F9FFE9D81C276C0A004A5CE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9D71C276C0A004A5CE3 /* AppDelegate.m */; };
-		F9FFE9DB1C276C0A004A5CE3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9DA1C276C0A004A5CE3 /* ViewController.m */; };
+		F9FFE9DB1C276C0A004A5CE3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9DA1C276C0A004A5CE3 /* MainViewController.m */; };
 		F9FFE9DE1C276C0A004A5CE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9FFE9DC1C276C0A004A5CE3 /* Main.storyboard */; };
 		F9FFE9E11C276C0A004A5CE3 /* Homework.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9DF1C276C0A004A5CE3 /* Homework.xcdatamodeld */; };
 		F9FFE9E31C276C0A004A5CE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9FFE9E21C276C0A004A5CE3 /* Assets.xcassets */; };
@@ -49,12 +50,14 @@
 		7E6047CD8D245421055E6DC6 /* libPods-Homework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Homework.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F09A2FD11D7557F4909623B /* Pods-Homework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Homework.release.xcconfig"; path = "Pods/Target Support Files/Pods-Homework/Pods-Homework.release.xcconfig"; sourceTree = "<group>"; };
 		D87B1063DBDC9509B6E67ACA /* Pods-Homework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Homework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Homework/Pods-Homework.debug.xcconfig"; sourceTree = "<group>"; };
+		F97D82761C2C909D004C6212 /* DayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayViewController.h; sourceTree = "<group>"; };
+		F97D82771C2C909D004C6212 /* DayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayViewController.m; sourceTree = "<group>"; };
 		F9FFE9D01C276C0A004A5CE3 /* Homework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9FFE9D41C276C0A004A5CE3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F9FFE9D61C276C0A004A5CE3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F9FFE9D71C276C0A004A5CE3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F9FFE9D91C276C0A004A5CE3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F9FFE9DA1C276C0A004A5CE3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F9FFE9D91C276C0A004A5CE3 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		F9FFE9DA1C276C0A004A5CE3 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		F9FFE9DD1C276C0A004A5CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F9FFE9E01C276C0A004A5CE3 /* Homework.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Homework.xcdatamodel; sourceTree = "<group>"; };
 		F9FFE9E21C276C0A004A5CE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -157,8 +160,10 @@
 				F9FFEA211C277197004A5CE3 /* Classes */,
 				F9FFE9D61C276C0A004A5CE3 /* AppDelegate.h */,
 				F9FFE9D71C276C0A004A5CE3 /* AppDelegate.m */,
-				F9FFE9D91C276C0A004A5CE3 /* ViewController.h */,
-				F9FFE9DA1C276C0A004A5CE3 /* ViewController.m */,
+				F9FFE9D91C276C0A004A5CE3 /* MainViewController.h */,
+				F9FFE9DA1C276C0A004A5CE3 /* MainViewController.m */,
+				F97D82761C2C909D004C6212 /* DayViewController.h */,
+				F97D82771C2C909D004C6212 /* DayViewController.m */,
 				F9FFEA261C278903004A5CE3 /* CourseListViewController.h */,
 				F9FFEA271C278903004A5CE3 /* CourseListViewController.m */,
 				F9FFE9DC1C276C0A004A5CE3 /* Main.storyboard */,
@@ -438,11 +443,12 @@
 				F9FFEA201C27718D004A5CE3 /* HWCourseList.m in Sources */,
 				F9FFEA1D1C27718D004A5CE3 /* HWCourse+CoreDataProperties.m in Sources */,
 				F9FFEA1F1C27718D004A5CE3 /* HWCourseList+CoreDataProperties.m in Sources */,
-				F9FFE9DB1C276C0A004A5CE3 /* ViewController.m in Sources */,
+				F9FFE9DB1C276C0A004A5CE3 /* MainViewController.m in Sources */,
 				F9FFEA281C278903004A5CE3 /* CourseListViewController.m in Sources */,
 				F9FFE9E11C276C0A004A5CE3 /* Homework.xcdatamodeld in Sources */,
 				F9FFEA1B1C27718D004A5CE3 /* HWAssessment+CoreDataProperties.m in Sources */,
 				F9FFE9D81C276C0A004A5CE3 /* AppDelegate.m in Sources */,
+				F97D82781C2C909D004C6212 /* DayViewController.m in Sources */,
 				F9FFE9D51C276C0A004A5CE3 /* main.m in Sources */,
 				F9FFEA1E1C27718D004A5CE3 /* HWCourse.m in Sources */,
 				F9FFEA1C1C27718D004A5CE3 /* HWAssessment.m in Sources */,

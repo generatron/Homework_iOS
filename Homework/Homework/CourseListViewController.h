@@ -6,8 +6,8 @@
 //  Copyright © 2015 CD. All rights reserved.
 //
 
-#import "ViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface CourseListViewController : ViewController
+@interface CourseListViewController : UIViewController
 
 @end
