@@ -18,13 +18,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:
                                              [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"main"]];
-    //navController.navigationBar.barTintColor = [UIColor whiteColor];
-    navController.navigationBar.tintColor = [UIColor whiteColor];
+    navController.navigationBar.barTintColor = [UIColor whiteColor];
+    navController.navigationBar.tintColor = [UIColor blackColor];
     navController.navigationBar.translucent = YES;
     //navController.navigationBar.barStyle = UIBarStyleBlack;
     //[navController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.window.rootViewController = navController;
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor blackColor];
     return YES;
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFModalTransitionAnimator.h"
 
 @interface ViewController : UIViewController
 

@@ -8,9 +8,11 @@
 
 #import "ViewController.h"
 #import "HWCourseList.h"
+#import "CourseListViewController.h"
 
 @interface ViewController ()
 
+@property (nonatomic, strong) ZFModalTransitionAnimator *animator;
 @property HWCourseList *courseList;
 
 @end
@@ -28,11 +30,11 @@
 }
 
 - (IBAction)settingsButtonPressed:(id)sender {
-    LeagueSelectionViewController *modalVC = [[LeagueSelectionViewController alloc] init];
-    modalVC.delegate = self;
-    modalVC.managedObjectContext = self.managedObjectContext;
-    modalVC.leagueController = self.leagueController;
-    modalVC.selectedLeague = self.currentLeague;
+    CourseListViewController *modalVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cl"];
+    //modalVC.delegate = self;
+    //modalVC.managedObjectContext = self.managedObjectContext;
+    //modalVC.leagueController = self.leagueController;
+    //modalVC.selectedLeague = self.currentLeague;
     modalVC.modalPresentationStyle = UIModalPresentationCustom;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:modalVC];
     self.animator.dragable = YES;
@@ -41,7 +43,7 @@
     self.animator.behindViewScale = 0.95;
     self.animator.transitionDuration = 0.5;
     self.animator.direction = ZFModalTransitonDirectionBottom;
-    [self.animator setContentScrollView:modalVC.tableView];
+    //[self.animator setContentScrollView:modalVC.tableView];
     modalVC.transitioningDelegate = self.animator;
     [self presentViewController:modalVC animated:YES completion:nil];
 }
