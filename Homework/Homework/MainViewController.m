@@ -32,11 +32,16 @@
 }
 
 - (IBAction)settingsButtonPressed:(id)sender {
-    CourseListViewController *modalVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cl"];
-    //modalVC.delegate = self;
-    //modalVC.managedObjectContext = self.managedObjectContext;
-    //modalVC.leagueController = self.leagueController;
-    //modalVC.selectedLeague = self.currentLeague;
+    CourseListViewController *rootVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cl"];
+    rootVC.courseList = self.courseList;
+    //rootVC.delegate = self;
+    //rootVC.managedObjectContext = self.managedObjectContext;
+    UINavigationController *modalVC = [[UINavigationController alloc] initWithRootViewController: rootVC];
+    modalVC.navigationBar.barTintColor = [UIColor colorWithRed:70/255.0 green:235/255.0 blue:120/255.0 alpha:1];
+    [modalVC.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    modalVC.navigationBar.tintColor = [UIColor whiteColor];
+    modalVC.navigationBar.translucent = NO;
     modalVC.modalPresentationStyle = UIModalPresentationCustom;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:modalVC];
     self.animator.dragable = YES;
@@ -45,21 +50,31 @@
     self.animator.behindViewScale = 0.95;
     self.animator.transitionDuration = 0.5;
     self.animator.direction = ZFModalTransitonDirectionBottom;
-    //[self.animator setContentScrollView:modalVC.tableView];
+    [self.animator setContentScrollView:rootVC.tableView];
     modalVC.transitioningDelegate = self.animator;
     [self presentViewController:modalVC animated:YES completion:nil];
 }
 
 #pragma mark - ViewPagerDataSource
 - (NSUInteger)numberOfTabsForViewPager:(ViewPagerController *)viewPager {
-    return 7;
+    return 8;
 }
 
 - (UIView *)viewPager:(ViewPagerController *)viewPager viewForTabAtIndex:(NSUInteger)index {
-    UILabel *label = [UILabel new];
-    label.text = [NSString stringWithFormat:@"Today (#%d)", (int)index];
-    [label sizeToFit];
-    return label;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 120, 55)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, 120, 20)];
+    NSArray *labelText = @[@"All", @"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Weekend", @"More"];
+    label.text = labelText[index];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:17];
+    [view addSubview:label];
+    UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 28, 120, 15)];
+    detailLabel.text = [NSString stringWithFormat:@"%d/%d completed",0,0];
+    detailLabel.textAlignment = NSTextAlignmentCenter;
+    detailLabel.textColor = [UIColor lightGrayColor];
+    detailLabel.font = [UIFont systemFontOfSize:13];
+    [view addSubview:detailLabel];
+    return view;
 }
 
 - (UIViewController *)viewPager:(ViewPagerController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index {
@@ -69,19 +84,16 @@
 
 #pragma mark - ViewPagerDelegate
 - (void)viewPager:(ViewPagerController *)viewPager didChangeTabToIndex:(NSUInteger)index {
-    
+
 }
 
 - (CGFloat)viewPager:(ViewPagerController *)viewPager valueForOption:(ViewPagerOption)option withDefault:(CGFloat)value {
     switch (option) {
-        case ViewPagerOptionStartFromSecondTab:
-            return 0.0;
-        case ViewPagerOptionCenterCurrentTab:
-            return 0.0;
-        case ViewPagerOptionTabLocation:
-            return 0.0;
-        default:
-            return value;
+        case ViewPagerOptionTabHeight: return 55.0;
+        case ViewPagerOptionTabWidth: return 138.0;
+        case ViewPagerOptionTabLocation: return 0.0;
+        case ViewPagerOptionCenterCurrentTab: return 1.0;
+        default: return value;
     }
 }
 

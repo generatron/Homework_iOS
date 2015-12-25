@@ -16,12 +16,54 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"Edit Courses";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(doneButtonPressed:)];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)doneButtonPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+#pragma mark - Table View
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.courseList.courses.count+1;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.row != self.courseList.courses.count) {
+        
+    }
+    else {
+        UIButton *add = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, self.view.frame.size.width, 40)];
+        [add setTitle:@"Add New Course" forState:UIControlStateNormal];
+        [add setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [add addTarget:self action:@selector(addCourseButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [cell addSubview:add];
+    }
+    return cell;
+}
+
+- (void)deleteClassButonPressed:(UIButton *)sender {
+    int index = (int)sender.tag;
+    NSLog(@"Delete %d",index);
+}
+
+- (void)addCourseButtonPressed:(UIButton *)sender {
+    NSLog(@"Add");
 }
 
 /*

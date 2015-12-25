@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HWCourseList.h"
 
-@interface CourseListViewController : UIViewController
+@interface CourseListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property HWCourseList *courseList;
 
 @end
