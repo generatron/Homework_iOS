@@ -17,6 +17,8 @@
 @property NSManagedObjectContext *context;
 @property HWCourseList *courseList;
 
+@property int dayOfWeek;
+
 @end
 
 @implementation MainViewController
@@ -32,6 +34,19 @@
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.dataSource = self;
     self.delegate = self;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE"];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comps = [gregorian components:NSCalendarUnitWeekday fromDate:[NSDate date]];
+    self.dayOfWeek = ((int)[comps weekday])-1;
+    if (self.dayOfWeek == 0) self.dayOfWeek = 7;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.dayOfWeek > 5) [self selectTabAtIndex:6]; //weekend
+    else [self selectTabAtIndex:self.dayOfWeek+1];
 }
 
 - (IBAction)settingsButtonPressed:(id)sender {
@@ -70,6 +85,10 @@
     label.text = labelText[index];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:17];
+    if (index > 0 && index < 6) {
+        int localDayOfWeek = (int)index-1;
+        if (localDayOfWeek <= self.dayOfWeek) label.textColor = [UIColor lightGrayColor];
+    }
     [view addSubview:label];
     UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 28, 120, 15)];
     detailLabel.text = [NSString stringWithFormat:@"%d/%d completed",0,0];
@@ -82,6 +101,7 @@
 
 - (UIViewController *)viewPager:(ViewPagerController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index {
     DayViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"dvc"];
+    vc.tabIndex = index;
     return vc;
 }
 
