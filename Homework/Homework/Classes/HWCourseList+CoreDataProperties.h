@@ -15,16 +15,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HWCourseList (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSSet<HWCourse *> *courses;
+@property (nullable, nonatomic, retain) NSOrderedSet<HWCourse *> *courses;
 
 @end
 
 @interface HWCourseList (CoreDataGeneratedAccessors)
 
+- (void)insertObject:(HWCourse *)value inCoursesAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromCoursesAtIndex:(NSUInteger)idx;
+- (void)insertCourses:(NSArray<HWCourse *> *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeCoursesAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInCoursesAtIndex:(NSUInteger)idx withObject:(HWCourse *)value;
+- (void)replaceCoursesAtIndexes:(NSIndexSet *)indexes withCourses:(NSArray<HWCourse *> *)values;
 - (void)addCoursesObject:(HWCourse *)value;
 - (void)removeCoursesObject:(HWCourse *)value;
-- (void)addCourses:(NSSet<HWCourse *> *)values;
-- (void)removeCourses:(NSSet<HWCourse *> *)values;
+- (void)addCourses:(NSOrderedSet<HWCourse *> *)values;
+- (void)removeCourses:(NSOrderedSet<HWCourse *> *)values;
 
 @end
 

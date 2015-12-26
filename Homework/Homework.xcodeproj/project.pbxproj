@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DBF39B26A56C3434D4FB9E00 /* libPods-Homework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E6047CD8D245421055E6DC6 /* libPods-Homework.a */; };
+		F9163A441C2F22490071EFF6 /* AddCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9163A431C2F22490071EFF6 /* AddCourseViewController.m */; };
 		F97D82781C2C909D004C6212 /* DayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97D82771C2C909D004C6212 /* DayViewController.m */; };
 		F9FFE9D51C276C0A004A5CE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9D41C276C0A004A5CE3 /* main.m */; };
 		F9FFE9D81C276C0A004A5CE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9D71C276C0A004A5CE3 /* AppDelegate.m */; };
@@ -50,6 +51,8 @@
 		7E6047CD8D245421055E6DC6 /* libPods-Homework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Homework.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F09A2FD11D7557F4909623B /* Pods-Homework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Homework.release.xcconfig"; path = "Pods/Target Support Files/Pods-Homework/Pods-Homework.release.xcconfig"; sourceTree = "<group>"; };
 		D87B1063DBDC9509B6E67ACA /* Pods-Homework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Homework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Homework/Pods-Homework.debug.xcconfig"; sourceTree = "<group>"; };
+		F9163A421C2F22490071EFF6 /* AddCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCourseViewController.h; sourceTree = "<group>"; };
+		F9163A431C2F22490071EFF6 /* AddCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCourseViewController.m; sourceTree = "<group>"; };
 		F97D82761C2C909D004C6212 /* DayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayViewController.h; sourceTree = "<group>"; };
 		F97D82771C2C909D004C6212 /* DayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayViewController.m; sourceTree = "<group>"; };
 		F9FFE9D01C276C0A004A5CE3 /* Homework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homework.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +169,8 @@
 				F97D82771C2C909D004C6212 /* DayViewController.m */,
 				F9FFEA261C278903004A5CE3 /* CourseListViewController.h */,
 				F9FFEA271C278903004A5CE3 /* CourseListViewController.m */,
+				F9163A421C2F22490071EFF6 /* AddCourseViewController.h */,
+				F9163A431C2F22490071EFF6 /* AddCourseViewController.m */,
 				F9FFE9DC1C276C0A004A5CE3 /* Main.storyboard */,
 				F9FFE9E21C276C0A004A5CE3 /* Assets.xcassets */,
 				F9FFE9E41C276C0A004A5CE3 /* LaunchScreen.storyboard */,
@@ -446,6 +451,7 @@
 				F9FFE9DB1C276C0A004A5CE3 /* MainViewController.m in Sources */,
 				F9FFEA281C278903004A5CE3 /* CourseListViewController.m in Sources */,
 				F9FFE9E11C276C0A004A5CE3 /* Homework.xcdatamodeld in Sources */,
+				F9163A441C2F22490071EFF6 /* AddCourseViewController.m in Sources */,
 				F9FFEA1B1C27718D004A5CE3 /* HWAssessment+CoreDataProperties.m in Sources */,
 				F9FFE9D81C276C0A004A5CE3 /* AppDelegate.m in Sources */,
 				F97D82781C2C909D004C6212 /* DayViewController.m in Sources */,

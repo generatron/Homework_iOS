@@ -18,17 +18,17 @@
     <entity name="HWCourse" representedClassName="HWCourse" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="period" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="assesments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HWAssessment" inverseName="course" inverseEntity="HWAssessment" syncable="YES"/>
-        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HWAssignment" inverseName="course" inverseEntity="HWAssignment" syncable="YES"/>
+        <relationship name="assesments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HWAssessment" inverseName="course" inverseEntity="HWAssessment" syncable="YES"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HWAssignment" inverseName="course" inverseEntity="HWAssignment" syncable="YES"/>
         <relationship name="courseList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HWCourseList" inverseName="courses" inverseEntity="HWCourseList" syncable="YES"/>
     </entity>
     <entity name="HWCourseList" representedClassName="HWCourseList" syncable="YES">
-        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HWCourse" inverseName="courseList" inverseEntity="HWCourse" syncable="YES"/>
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HWCourse" inverseName="courseList" inverseEntity="HWCourse" syncable="YES"/>
     </entity>
     <elements>
-        <element name="HWCourse" positionX="151" positionY="54" width="128" height="118"/>
-        <element name="HWAssignment" positionX="-101" positionY="135" width="128" height="133"/>
         <element name="HWAssessment" positionX="-101" positionY="-3" width="128" height="118"/>
+        <element name="HWAssignment" positionX="-101" positionY="135" width="128" height="133"/>
+        <element name="HWCourse" positionX="151" positionY="54" width="128" height="118"/>
         <element name="HWCourseList" positionX="403" positionY="54" width="128" height="58"/>
     </elements>
 </model>

@@ -9,10 +9,12 @@
 #import "MainViewController.h"
 #import "HWCourseList.h"
 #import "CourseListViewController.h"
+#import "AppDelegate.h"
 
 @interface MainViewController ()
 
 @property (nonatomic, strong) ZFModalTransitionAnimator *animator;
+@property NSManagedObjectContext *context;
 @property HWCourseList *courseList;
 
 @end
@@ -27,6 +29,7 @@
                                                                             target:self
                                                                             action:@selector(settingsButtonPressed:)];
     self.courseList = [HWCourseList fetchCurrentCourseList];
+    self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.dataSource = self;
     self.delegate = self;
 }
@@ -34,8 +37,8 @@
 - (IBAction)settingsButtonPressed:(id)sender {
     CourseListViewController *rootVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cl"];
     rootVC.courseList = self.courseList;
+    rootVC.context = self.context;
     //rootVC.delegate = self;
-    //rootVC.managedObjectContext = self.managedObjectContext;
     UINavigationController *modalVC = [[UINavigationController alloc] initWithRootViewController: rootVC];
     modalVC.navigationBar.barTintColor = [UIColor colorWithRed:70/255.0 green:235/255.0 blue:120/255.0 alpha:1];
     [modalVC.navigationBar setTitleTextAttributes:

@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "HWCourseList.h"
+#import "ZFModalTransitionAnimator.h"
+#import "AddCourseViewController.h"
 
-@interface CourseListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface CourseListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AddCourseViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property NSManagedObjectContext *context;
 @property HWCourseList *courseList;
 
 @end
