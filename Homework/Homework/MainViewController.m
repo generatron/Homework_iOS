@@ -107,8 +107,8 @@
     CGRect frame = [self frameForBarButtonItem:sender];
     [KxMenu showMenuInView:self.navigationController.view
                   fromRect:frame
-                 menuItems:@[[KxMenuItem menuItem:@"New Assignment" image:nil target:self action:@selector(menuItemAction:)],
-                             [KxMenuItem menuItem:@"New Assessment" image:nil target:self action:@selector(menuItemAction:)]]];
+                 menuItems:@[[KxMenuItem menuItem:@"Add Assignment" image:nil target:self action:@selector(menuItemAction:)],
+                             [KxMenuItem menuItem:@"Add Assessment" image:nil target:self action:@selector(menuItemAction:)]]];
 }
 
 - (CGRect)frameForBarButtonItem:(UIBarButtonItem *)buttonItem {
