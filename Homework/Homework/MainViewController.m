@@ -10,6 +10,7 @@
 #import "HWCourseList.h"
 #import "CourseListViewController.h"
 #import "AppDelegate.h"
+#import "KxMenu.h"
 
 @interface MainViewController ()
 
@@ -28,19 +29,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.title = @"Homework";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings"
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Courses"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(settingsButtonPressed:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                           target:self
+                                                                                           action:@selector(addButtonPressed:)];
     self.courseList = [HWCourseList fetchCurrentCourseList];
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.dataSource = self;
     self.delegate = self;
     
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(85, 27, self.view.frame.size.width-170, 30)];
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-85, 27, 170, 30)];
+    //titleView.backgroundColor = [UIColor redColor];
     titleView.clipsToBounds = YES;
-    
-    
     
     CAGradientLayer *l = [CAGradientLayer layer];
     l.frame = titleView.bounds;
@@ -51,12 +54,10 @@
     l.endPoint = CGPointMake(1.0, 0.5);
     titleView.layer.mask = l;
     
-    
-    
     [self.navigationController.view addSubview:titleView];
-    self.titleViews = @[[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-170, 30)],
-                        [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-170, 30)],
-                        [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-170, 30)]];
+    self.titleViews = @[[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 170, 30)],
+                        [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 170, 30)],
+                        [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 170, 30)]];
     for (UILabel *l in self.titleViews) {
         l.textColor = [UIColor whiteColor];
         l.textAlignment = NSTextAlignmentCenter;
@@ -102,6 +103,19 @@
     [self presentViewController:modalVC animated:YES completion:nil];
 }
 
+- (IBAction)addButtonPressed:(UIBarButtonItem *)sender {
+    CGRect frame = [self frameForBarButtonItem:sender];
+    [KxMenu showMenuInView:self.navigationController.view
+                  fromRect:frame
+                 menuItems:@[[KxMenuItem menuItem:@"New Assignment" image:nil target:self action:@selector(menuItemAction:)],
+                             [KxMenuItem menuItem:@"New Assessment" image:nil target:self action:@selector(menuItemAction:)]]];
+}
+
+- (CGRect)frameForBarButtonItem:(UIBarButtonItem *)buttonItem {
+    UIView *view = [buttonItem valueForKey:@"view"];
+    return  view ? view.frame : CGRectZero;
+}
+
 #pragma mark - ViewPagerDataSource
 - (NSUInteger)numberOfTabsForViewPager:(ViewPagerController *)viewPager {
     return 8;
@@ -136,7 +150,7 @@
 
 #pragma mark - ViewPagerDelegate
 - (void)viewPager:(ViewPagerController *)viewPager didChangeTabToIndex:(NSUInteger)index {
-    NSArray *labelText = @[@"All Dates", @"Monday's Agenda", @"Tuesday's Agenda", @"Wednesday's Agenda", @"Thursday's Agenda", @"Friday's Agenda", @"This Weekend's Agenda", @"Next Week's Dates"];
+    NSArray *labelText = @[@"All Dates", @"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"This Weekend", @"Next Week"];
     if (index == 0) self.titleArray = @[@"", labelText[index], labelText[index+1]];
     else if (index == 7) self.titleArray = @[labelText[index-1], labelText[index], @""];
     else self.titleArray = @[labelText[index-1],labelText[index],labelText[index+1]];
@@ -144,28 +158,28 @@
 
 - (void)viewPager:(ViewPagerController *)viewPager willScrollToXPos: (float)currPos {
     float width = self.view.frame.size.width;
-    float titleViewCenter = (width-170)/2;
+    float titleViewCenter = 170/2;
     float dist = currPos/width;
     for (int i = 0; i < self.titleViews.count; i++) {
         UILabel *label = self.titleViews[i];
         label.text = self.titleArray[i];
         if (i == 0) {
             if (currPos <= width) label.alpha = 1-dist;
-            label.frame = CGRectMake(-titleViewCenter+titleViewCenter*(1-dist), 0, width-170, 30);
+            label.frame = CGRectMake(-titleViewCenter+titleViewCenter*(1-dist), 0, 170, 30);
         }
         if (i == 1) {
             if (dist <=1) {
                 label.alpha = dist;
-                label.frame = CGRectMake(titleViewCenter*(1-dist), 0, width-170, 30);
+                label.frame = CGRectMake(titleViewCenter*(1-dist), 0, 170, 30);
             }
             else {
                 label.alpha = 2-dist;
-                label.frame = CGRectMake(-titleViewCenter*(dist-1), 0, width-170, 30);
+                label.frame = CGRectMake(-titleViewCenter*(dist-1), 0, 170, 30);
             }
         }
         if (i == 2) {
             if (currPos >= width) label.alpha = dist-1;
-            label.frame = CGRectMake(titleViewCenter-titleViewCenter*(dist-1), 0, width-170, 30);
+            label.frame = CGRectMake(titleViewCenter-titleViewCenter*(dist-1), 0, 170, 30);
         }
     }
 }

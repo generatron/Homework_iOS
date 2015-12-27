@@ -11,6 +11,7 @@
 		F9163A441C2F22490071EFF6 /* AddCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9163A431C2F22490071EFF6 /* AddCourseViewController.m */; };
 		F9163A531C2FA7890071EFF6 /* UIColor+HWColors.m in Sources */ = {isa = PBXBuildFile; fileRef = F9163A521C2FA7890071EFF6 /* UIColor+HWColors.m */; };
 		F97D82781C2C909D004C6212 /* DayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97D82771C2C909D004C6212 /* DayViewController.m */; };
+		F98573531C3098CA00E8FE87 /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F98573521C3098CA00E8FE87 /* KxMenu.m */; };
 		F9FFE9D51C276C0A004A5CE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9D41C276C0A004A5CE3 /* main.m */; };
 		F9FFE9D81C276C0A004A5CE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9D71C276C0A004A5CE3 /* AppDelegate.m */; };
 		F9FFE9DB1C276C0A004A5CE3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9DA1C276C0A004A5CE3 /* MainViewController.m */; };
@@ -59,6 +60,8 @@
 		F9163A551C2FA8330071EFF6 /* HomeworkPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeworkPrefixHeader.pch; sourceTree = "<group>"; };
 		F97D82761C2C909D004C6212 /* DayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayViewController.h; sourceTree = "<group>"; };
 		F97D82771C2C909D004C6212 /* DayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayViewController.m; sourceTree = "<group>"; };
+		F98573511C3098CA00E8FE87 /* KxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxMenu.h; path = "Third Party/KxMenu/KxMenu.h"; sourceTree = "<group>"; };
+		F98573521C3098CA00E8FE87 /* KxMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KxMenu.m; path = "Third Party/KxMenu/KxMenu.m"; sourceTree = "<group>"; };
 		F9FFE9D01C276C0A004A5CE3 /* Homework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9FFE9D41C276C0A004A5CE3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F9FFE9D61C276C0A004A5CE3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -166,6 +169,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F98573541C3098D000E8FE87 /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+				F98573511C3098CA00E8FE87 /* KxMenu.h */,
+				F98573521C3098CA00E8FE87 /* KxMenu.m */,
+			);
+			name = "Third Party";
+			sourceTree = "<group>";
+		};
 		F9FFE9C71C276C0A004A5CE3 = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +209,7 @@
 				F9FFE9E41C276C0A004A5CE3 /* LaunchScreen.storyboard */,
 				F9FFE9DF1C276C0A004A5CE3 /* Homework.xcdatamodeld */,
 				F9FFE9D31C276C0A004A5CE3 /* Supporting Files */,
+				F98573541C3098D000E8FE87 /* Third Party */,
 			);
 			path = Homework;
 			sourceTree = "<group>";
@@ -481,6 +494,7 @@
 				F97D82781C2C909D004C6212 /* DayViewController.m in Sources */,
 				F9FFE9D51C276C0A004A5CE3 /* main.m in Sources */,
 				F9FFEA1E1C27718D004A5CE3 /* HWCourse.m in Sources */,
+				F98573531C3098CA00E8FE87 /* KxMenu.m in Sources */,
 				F9FFEA1C1C27718D004A5CE3 /* HWAssessment.m in Sources */,
 				F9FFEA1A1C27718D004A5CE3 /* HWAssignment.m in Sources */,
 			);
