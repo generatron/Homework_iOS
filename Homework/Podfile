@@ -7,7 +7,6 @@ target 'Homework' do
 	pod 'MGSwipeTableCell'
 	pod 'ZFDragableModalTransition'
 	pod 'ICViewPager'
-	pod 'SLPagingView'
 end
 
 target 'HomeworkTests' do

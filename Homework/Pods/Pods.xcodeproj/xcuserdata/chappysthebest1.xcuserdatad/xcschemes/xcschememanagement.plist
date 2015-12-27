@@ -19,11 +19,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SLPagingView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>ZFDragableModalTransition.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,17 +27,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>12E1526C23E16F90DD71AA765C6EDABD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>3B932B37AA7C96A0F7D5FEE9596C5FA2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>812A0D13644A474E27C73B2349FD58B8</key>
+		<key>7FD97254795B08D2729161DC3531C6F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,7 +42,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A297EEB22EF1C53AC9072D906F983F21</key>
+		<key>DA76BC24C90C65954612B403196203D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
