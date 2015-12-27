@@ -21,7 +21,7 @@
                                              [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"main"]];
     navController.navigationBar.barTintColor = [UIColor HWMediumColor];
     [navController.navigationBar setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+     @{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:18 weight:UIFontWeightSemibold]}];
     navController.navigationBar.tintColor = [UIColor whiteColor];
     navController.navigationBar.translucent = NO;
     //navController.navigationBar.barStyle = UIBarStyleBlack;

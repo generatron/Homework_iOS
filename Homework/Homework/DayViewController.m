@@ -19,6 +19,7 @@
     NSArray *labelText = @[@"All Assignments & Assessments", @"Monday's Agenda", @"Tuesday's Agenda", @"Wednesday's Agenda", @"Thursday's Agenda", @"Friday's Agenda", @"This Weekend's Agenda", @"Later Assignments & Assessments"];
     int index = (int)self.tabIndex;
     self.weekdayLabel.text = labelText[index];
+    self.view.backgroundColor = [UIColor HWMediumColor];
 }
 
 /*

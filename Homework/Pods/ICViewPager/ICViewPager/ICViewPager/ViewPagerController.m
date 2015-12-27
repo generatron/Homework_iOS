@@ -760,6 +760,7 @@
     self.animatingToTab = NO;
     self.defaultSetupDone = NO;
 }
+
 - (void)defaultSetup {
     
     // Empty tabs and contents
@@ -960,11 +961,12 @@
 
 #pragma mark - UIScrollViewDelegate, Responding to Scrolling and Dragging
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.delegate viewPager:self willScrollToXPos:scrollView.contentOffset.x];
     
     if ([self.actualDelegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
         [self.actualDelegate scrollViewDidScroll:scrollView];
     }
-    
+
     if (![self isAnimatingToTab]) {
         UIView *tabView = [self tabViewAtIndex:self.activeTabIndex];
         

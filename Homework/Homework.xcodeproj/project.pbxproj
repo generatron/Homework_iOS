@@ -139,6 +139,24 @@
 			name = "User Interface";
 			sourceTree = "<group>";
 		};
+		F9163A561C2FB08C0071EFF6 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F9FFE9D91C276C0A004A5CE3 /* MainViewController.h */,
+				F9FFE9DA1C276C0A004A5CE3 /* MainViewController.m */,
+				F97D82761C2C909D004C6212 /* DayViewController.h */,
+				F97D82771C2C909D004C6212 /* DayViewController.m */,
+				F9FFEA261C278903004A5CE3 /* CourseListViewController.h */,
+				F9FFEA271C278903004A5CE3 /* CourseListViewController.m */,
+				F9163A421C2F22490071EFF6 /* AddCourseViewController.h */,
+				F9163A431C2F22490071EFF6 /* AddCourseViewController.m */,
+				F9FFE9DC1C276C0A004A5CE3 /* Main.storyboard */,
+				F9FFE9D61C276C0A004A5CE3 /* AppDelegate.h */,
+				F9FFE9D71C276C0A004A5CE3 /* AppDelegate.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		F984CAFE9C1F6FEED3E373D7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,17 +193,7 @@
 			children = (
 				F9FFEA211C277197004A5CE3 /* Models */,
 				F9163A541C2FA7940071EFF6 /* User Interface */,
-				F9FFE9D91C276C0A004A5CE3 /* MainViewController.h */,
-				F9FFE9DA1C276C0A004A5CE3 /* MainViewController.m */,
-				F97D82761C2C909D004C6212 /* DayViewController.h */,
-				F97D82771C2C909D004C6212 /* DayViewController.m */,
-				F9FFEA261C278903004A5CE3 /* CourseListViewController.h */,
-				F9FFEA271C278903004A5CE3 /* CourseListViewController.m */,
-				F9163A421C2F22490071EFF6 /* AddCourseViewController.h */,
-				F9163A431C2F22490071EFF6 /* AddCourseViewController.m */,
-				F9FFE9DC1C276C0A004A5CE3 /* Main.storyboard */,
-				F9FFE9D61C276C0A004A5CE3 /* AppDelegate.h */,
-				F9FFE9D71C276C0A004A5CE3 /* AppDelegate.m */,
+				F9163A561C2FB08C0071EFF6 /* View Controllers */,
 				F9FFE9E41C276C0A004A5CE3 /* LaunchScreen.storyboard */,
 				F9FFE9DF1C276C0A004A5CE3 /* Homework.xcdatamodeld */,
 				F9FFE9D31C276C0A004A5CE3 /* Supporting Files */,

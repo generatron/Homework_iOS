@@ -38,22 +38,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Ic-KT-0gq">
-                                <rect key="frame" x="0.0" y="50" width="414" height="686"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ts-Dr-c4m">
-                                <rect key="frame" x="107" y="10" width="200" height="30"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9Ts-Dr-c4m" firstAttribute="centerX" secondItem="FHL-1h-UX7" secondAttribute="centerX" id="HiF-e1-Sfb"/>
-                            <constraint firstItem="9Ts-Dr-c4m" firstAttribute="top" secondItem="pR9-PV-bwl" secondAttribute="bottom" constant="10" id="d2f-Nf-40Z"/>
                             <constraint firstItem="0Ic-KT-0gq" firstAttribute="centerX" secondItem="FHL-1h-UX7" secondAttribute="centerX" id="dS4-wp-Zgm"/>
                             <constraint firstItem="02e-W6-ZfX" firstAttribute="top" secondItem="0Ic-KT-0gq" secondAttribute="bottom" id="vMA-6U-wId"/>
-                            <constraint firstItem="0Ic-KT-0gq" firstAttribute="top" secondItem="pR9-PV-bwl" secondAttribute="bottom" constant="50" id="x0u-jP-wGG"/>
+                            <constraint firstItem="0Ic-KT-0gq" firstAttribute="top" secondItem="pR9-PV-bwl" secondAttribute="bottom" id="x0u-jP-wGG"/>
                             <constraint firstItem="0Ic-KT-0gq" firstAttribute="width" secondItem="FHL-1h-UX7" secondAttribute="width" id="xH4-TH-kOo"/>
                         </constraints>
                     </view>
@@ -61,7 +54,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="tableView" destination="0Ic-KT-0gq" id="6P1-c3-mhz"/>
-                        <outlet property="weekdayLabel" destination="9Ts-Dr-c4m" id="03u-3C-9K4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Vn-q9-1x8" userLabel="First Responder" sceneMemberID="firstResponder"/>

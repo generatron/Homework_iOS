@@ -198,4 +198,6 @@ typedef NS_ENUM(NSUInteger, ViewPagerComponent) {
  */
 - (UIColor *)viewPager:(ViewPagerController *)viewPager colorForComponent:(ViewPagerComponent)component withDefault:(UIColor *)color;
 
+- (void)viewPager:(ViewPagerController *)viewPager willScrollToXPos: (float)currPos;
+
 @end

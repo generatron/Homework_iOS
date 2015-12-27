@@ -17,6 +17,8 @@
 @property NSManagedObjectContext *context;
 @property HWCourseList *courseList;
 
+@property NSArray <UILabel *> *titleViews;
+@property NSArray *titleArray;
 @property int dayOfWeek;
 
 @end
@@ -25,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Homework";
+    //self.title = @"Homework";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
@@ -34,6 +36,33 @@
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.dataSource = self;
     self.delegate = self;
+    
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(85, 27, self.view.frame.size.width-170, 30)];
+    titleView.clipsToBounds = YES;
+    
+    
+    
+    CAGradientLayer *l = [CAGradientLayer layer];
+    l.frame = titleView.bounds;
+    l.locations = @[@0.0, @0.08, @0.92, @1.0];
+    l.colors = @[(id)[UIColor clearColor].CGColor, (id)[UIColor whiteColor].CGColor,
+                 (id)[UIColor whiteColor].CGColor, (id)[UIColor clearColor].CGColor];
+    l.startPoint = CGPointMake(0.0, 0.5);
+    l.endPoint = CGPointMake(1.0, 0.5);
+    titleView.layer.mask = l;
+    
+    
+    
+    [self.navigationController.view addSubview:titleView];
+    self.titleViews = @[[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-170, 30)],
+                        [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-170, 30)],
+                        [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-170, 30)]];
+    for (UILabel *l in self.titleViews) {
+        l.textColor = [UIColor whiteColor];
+        l.textAlignment = NSTextAlignmentCenter;
+        l.font = [UIFont systemFontOfSize:18 weight:UIFontWeightSemibold];
+        [titleView addSubview:l];
+    }
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE"];
@@ -107,7 +136,38 @@
 
 #pragma mark - ViewPagerDelegate
 - (void)viewPager:(ViewPagerController *)viewPager didChangeTabToIndex:(NSUInteger)index {
+    NSArray *labelText = @[@"All Dates", @"Monday's Agenda", @"Tuesday's Agenda", @"Wednesday's Agenda", @"Thursday's Agenda", @"Friday's Agenda", @"This Weekend's Agenda", @"Next Week's Dates"];
+    if (index == 0) self.titleArray = @[@"", labelText[index], labelText[index+1]];
+    else if (index == 7) self.titleArray = @[labelText[index-1], labelText[index], @""];
+    else self.titleArray = @[labelText[index-1],labelText[index],labelText[index+1]];
+}
 
+- (void)viewPager:(ViewPagerController *)viewPager willScrollToXPos: (float)currPos {
+    float width = self.view.frame.size.width;
+    float titleViewCenter = (width-170)/2;
+    float dist = currPos/width;
+    for (int i = 0; i < self.titleViews.count; i++) {
+        UILabel *label = self.titleViews[i];
+        label.text = self.titleArray[i];
+        if (i == 0) {
+            if (currPos <= width) label.alpha = 1-dist;
+            label.frame = CGRectMake(-titleViewCenter+titleViewCenter*(1-dist), 0, width-170, 30);
+        }
+        if (i == 1) {
+            if (dist <=1) {
+                label.alpha = dist;
+                label.frame = CGRectMake(titleViewCenter*(1-dist), 0, width-170, 30);
+            }
+            else {
+                label.alpha = 2-dist;
+                label.frame = CGRectMake(-titleViewCenter*(dist-1), 0, width-170, 30);
+            }
+        }
+        if (i == 2) {
+            if (currPos >= width) label.alpha = dist-1;
+            label.frame = CGRectMake(titleViewCenter-titleViewCenter*(dist-1), 0, width-170, 30);
+        }
+    }
 }
 
 - (CGFloat)viewPager:(ViewPagerController *)viewPager valueForOption:(ViewPagerOption)option withDefault:(CGFloat)value {
