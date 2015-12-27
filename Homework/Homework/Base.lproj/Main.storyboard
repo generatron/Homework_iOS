@@ -8,13 +8,13 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="main" id="BYZ-38-t0r" customClass="MainViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main" extendedLayoutIncludesOpaqueBars="YES" id="BYZ-38-t0r" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -71,17 +71,17 @@
         <!--Course List View Controller-->
         <scene sceneID="SXN-Ar-YQ6">
             <objects>
-                <viewController storyboardIdentifier="cl" id="Hay-bh-FFM" customClass="CourseListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cl" extendedLayoutIncludesOpaqueBars="YES" id="Hay-bh-FFM" customClass="CourseListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x94-WM-8yv"/>
                         <viewControllerLayoutGuide type="bottom" id="H42-Kn-DAP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mUO-GI-i9q">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h8r-n7-fdM">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="-1" width="414" height="737"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -116,36 +116,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIH-Zs-hXk">
-                                <rect key="frame" x="0.0" y="136" width="414" height="170"/>
+                                <rect key="frame" x="21" y="136" width="372" height="170"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Physics" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bde-nT-rjV">
-                                        <rect key="frame" x="130" y="20" width="269" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Eg. Physics" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bde-nT-rjV">
+                                        <rect key="frame" x="130" y="20" width="224" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes"/>
                                         <connections>
                                             <action selector="courseNameEditingEnded:" destination="XnB-gL-aNZ" eventType="editingDidEnd" id="vdD-s9-zrp"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0Y-IP-1NJ">
-                                        <rect key="frame" x="15" y="20" width="105" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="1" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="Gdg-Sj-N51">
-                                        <rect key="frame" x="130" y="69" width="269" height="31"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="1" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="Gdg-Sj-N51">
+                                        <rect key="frame" x="130" y="69" width="224" height="31"/>
                                         <connections>
                                             <action selector="periodSliderValueChanged:" destination="XnB-gL-aNZ" eventType="valueChanged" id="1bo-kv-B6Y"/>
                                         </connections>
                                     </slider>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Period (2)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HI9-xu-SOK">
-                                        <rect key="frame" x="15" y="69" width="105" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Course Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0Y-IP-1NJ">
+                                        <rect key="frame" x="15" y="20" width="105" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0S-De-CgT">
-                                        <rect key="frame" x="157" y="119" width="100" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Period (2)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HI9-xu-SOK">
+                                        <rect key="frame" x="15" y="69" width="105" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0S-De-CgT">
+                                        <rect key="frame" x="136" y="119" width="100" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="Done"/>
                                         <connections>
                                             <action selector="doneButtonPressed:" destination="XnB-gL-aNZ" eventType="touchUpInside" id="Ocv-Jx-tZ8"/>
@@ -154,20 +155,33 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="N0Y-IP-1NJ" firstAttribute="centerY" secondItem="bde-nT-rjV" secondAttribute="centerY" id="15E-tD-w5k"/>
+                                    <constraint firstAttribute="bottom" secondItem="N0S-De-CgT" secondAttribute="bottom" constant="21" id="3n3-Ho-xM9"/>
+                                    <constraint firstItem="N0Y-IP-1NJ" firstAttribute="leading" secondItem="EIH-Zs-hXk" secondAttribute="leading" constant="15" id="Bbs-Tg-D5T"/>
+                                    <constraint firstItem="Gdg-Sj-N51" firstAttribute="leading" secondItem="EIH-Zs-hXk" secondAttribute="leading" constant="132" id="Oqv-9Y-bBr"/>
+                                    <constraint firstItem="HI9-xu-SOK" firstAttribute="centerY" secondItem="Gdg-Sj-N51" secondAttribute="centerY" id="QZZ-jT-s2p"/>
+                                    <constraint firstItem="bde-nT-rjV" firstAttribute="leading" secondItem="EIH-Zs-hXk" secondAttribute="leading" constant="130" id="QmM-zx-A7w"/>
+                                    <constraint firstItem="HI9-xu-SOK" firstAttribute="leading" secondItem="EIH-Zs-hXk" secondAttribute="leading" constant="15" id="ZYD-qg-Gjx"/>
+                                    <constraint firstAttribute="trailing" secondItem="bde-nT-rjV" secondAttribute="trailing" constant="18" id="ewk-kS-YPt"/>
+                                    <constraint firstItem="bde-nT-rjV" firstAttribute="top" secondItem="EIH-Zs-hXk" secondAttribute="top" constant="20" id="lNt-MW-q3Y"/>
+                                    <constraint firstItem="Gdg-Sj-N51" firstAttribute="top" secondItem="EIH-Zs-hXk" secondAttribute="top" constant="69" id="pMU-gY-zti"/>
+                                    <constraint firstItem="N0S-De-CgT" firstAttribute="centerX" secondItem="EIH-Zs-hXk" secondAttribute="centerX" id="rj9-U4-sFV"/>
                                     <constraint firstAttribute="height" constant="170" id="shK-P0-nhj"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gdg-Sj-N51" secondAttribute="trailing" constant="20" id="y8D-Uo-TYH"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.27450980390000002" green="0.92156862750000001" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="EIH-Zs-hXk" firstAttribute="width" secondItem="t7c-Ze-C3F" secondAttribute="width" id="Oml-Vl-rG9"/>
+                            <constraint firstItem="EIH-Zs-hXk" firstAttribute="width" secondItem="t7c-Ze-C3F" secondAttribute="width" multiplier="0.9" id="Oml-Vl-rG9"/>
                             <constraint firstItem="EIH-Zs-hXk" firstAttribute="centerX" secondItem="t7c-Ze-C3F" secondAttribute="centerX" id="hnJ-px-wP8"/>
                             <constraint firstItem="EIH-Zs-hXk" firstAttribute="centerY" secondItem="t7c-Ze-C3F" secondAttribute="centerY" multiplier="0.6" id="l0w-8e-Cdj"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="containerView" destination="EIH-Zs-hXk" id="5dX-ES-9X9"/>
                         <outlet property="courseNameInput" destination="bde-nT-rjV" id="9ep-0E-R7d"/>
                         <outlet property="doneButton" destination="N0S-De-CgT" id="XFE-jL-cKe"/>
                         <outlet property="periodLabel" destination="HI9-xu-SOK" id="gXG-pg-WA1"/>

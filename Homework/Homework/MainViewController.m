@@ -55,7 +55,7 @@
     rootVC.context = self.context;
     //rootVC.delegate = self;
     UINavigationController *modalVC = [[UINavigationController alloc] initWithRootViewController: rootVC];
-    modalVC.navigationBar.barTintColor = [UIColor colorWithRed:70/255.0 green:235/255.0 blue:120/255.0 alpha:1];
+    modalVC.navigationBar.barTintColor = [UIColor HWMediumColor];
     [modalVC.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     modalVC.navigationBar.tintColor = [UIColor whiteColor];
@@ -64,7 +64,7 @@
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:modalVC];
     self.animator.dragable = YES;
     self.animator.bounces = YES;
-    self.animator.behindViewAlpha = 0.6;
+    self.animator.behindViewAlpha = 0.0;
     self.animator.behindViewScale = 0.95;
     self.animator.transitionDuration = 0.5;
     self.animator.direction = ZFModalTransitonDirectionBottom;
@@ -121,7 +121,7 @@
 }
 
 - (UIColor *)viewPager:(ViewPagerController *)viewPager colorForComponent:(ViewPagerComponent)component withDefault:(UIColor *)color {
-    if (component == ViewPagerIndicator) return [UIColor colorWithRed:70/255.0 green:235/255.0 blue:120/255.0 alpha:1];
+    if (component == ViewPagerIndicator) return [UIColor HWMediumColor];
     else return color;
 }
 

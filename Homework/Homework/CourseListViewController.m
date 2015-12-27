@@ -25,6 +25,7 @@
                                                                              action:@selector(doneButtonPressed:)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.view.tintColor = [UIColor HWDarkColor];
 }
 
 - (void)doneButtonPressed:(id)sender {
@@ -59,14 +60,14 @@
         UIButton *del = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-110, 5, 100, 40)];
         del.tag = indexPath.row;
         [del setTitle:@"Delete" forState:UIControlStateNormal];
-        [del setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [del setTitleColor:self.view.tintColor forState:UIControlStateNormal];
         [del addTarget:self action:@selector(deleteCourseButonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:del];
     }
     else {
         UIButton *add = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, self.view.frame.size.width, 40)];
         [add setTitle:@"Add New Course" forState:UIControlStateNormal];
-        [add setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [add setTitleColor:self.view.tintColor forState:UIControlStateNormal];
         [add addTarget:self action:@selector(addCourseButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:add];
     }
@@ -87,8 +88,8 @@
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:rootVC];
     self.animator.dragable = NO;
     self.animator.bounces = YES;
-    self.animator.behindViewAlpha = 0.6;
-    self.animator.behindViewScale = 0.95;
+    self.animator.behindViewAlpha = 0.5;
+    self.animator.behindViewScale = 1.0;
     self.animator.transitionDuration = 0.5;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     rootVC.transitioningDelegate = self.animator;

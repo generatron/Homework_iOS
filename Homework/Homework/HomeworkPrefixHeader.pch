@@ -1,0 +1,14 @@
+//
+//  HomeworkPrefixHeader.pch
+//  Homework
+//
+//  Created by Chappy Asel on 12/27/15.
+//  Copyright © 2015 CD. All rights reserved.
+//
+
+#ifndef HomeworkPrefixHeader_pch
+#define HomeworkPrefixHeader_pch
+
+#import "UIColor+HWColors.h"
+
+#endif /* HomeworkPrefixHeader_pch */

@@ -14,11 +14,13 @@
 - (void) addCourseViewControllerWillDismissWithResultCourse: (HWCourse *) course;
 @end
 
-@interface AddCourseViewController : UIViewController
+@interface AddCourseViewController : UIViewController <UITextFieldDelegate>
 
 @property id <AddCourseViewControllerDelegate> delegate;
 
 @property NSManagedObjectContext *context;
+
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 
 @property (weak, nonatomic) IBOutlet UITextField *courseNameInput;
 @property (weak, nonatomic) IBOutlet UISlider *periodSlider;

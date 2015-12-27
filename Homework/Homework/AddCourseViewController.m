@@ -16,7 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.containerView.layer.cornerRadius = 8;
+    self.view.tintColor = [UIColor HWDarkColor];
+    self.courseNameInput.delegate = self;
 }
 
 - (IBAction)courseNameEditingEnded:(UITextField *)sender {
@@ -36,6 +38,11 @@
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 /*

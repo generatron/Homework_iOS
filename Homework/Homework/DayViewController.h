@@ -13,6 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *weekdayLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic) NSInteger *tabIndex;
+@property (nonatomic) NSUInteger *tabIndex;
 
 @end
