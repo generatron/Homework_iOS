@@ -10,7 +10,15 @@
 #import "HWCourseList.h"
 #import "XLForm.h"
 
+@protocol AddDateViewControllerDelegate <NSObject>
+@required
+- (void) addDateViewControllerWillDismissWithResultAssignment: (HWAssignment *) assignment;
+- (void) addDateViewControllerWillDismissWithResultAssessment: (HWAssessment *) assessment;
+@end
+
 @interface AddDateViewController : XLFormViewController
+
+@property id <AddDateViewControllerDelegate> delegate;
 
 @property int dateType;
 

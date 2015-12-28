@@ -9,7 +9,6 @@
 #import "MainViewController.h"
 #import "HWCourseList.h"
 #import "CourseListViewController.h"
-#import "AddDateViewController.h"
 #import "AppDelegate.h"
 #import "KxMenu.h"
 
@@ -117,7 +116,7 @@
     rootVC.dateType = 1;
     rootVC.courseList = self.courseList;
     rootVC.context = self.context;
-    //rootVC.delegate = self;
+    rootVC.delegate = self;
     UINavigationController *modalVC = [[UINavigationController alloc] initWithRootViewController: rootVC];
     modalVC.navigationBar.barTintColor = [UIColor HWMediumColor];
     [modalVC.navigationBar setTitleTextAttributes:
@@ -142,7 +141,7 @@
     rootVC.dateType = 2;
     rootVC.courseList = self.courseList;
     rootVC.context = self.context;
-    //rootVC.delegate = self;
+    rootVC.delegate = self;
     UINavigationController *modalVC = [[UINavigationController alloc] initWithRootViewController: rootVC];
     modalVC.navigationBar.barTintColor = [UIColor HWMediumColor];
     [modalVC.navigationBar setTitleTextAttributes:
@@ -195,7 +194,8 @@
 
 - (UIViewController *)viewPager:(ViewPagerController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index {
     DayViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"dvc"];
-    vc.tabIndex = index;
+    vc.type = index;
+    vc.context = self.context;
     return vc;
 }
 
@@ -248,6 +248,23 @@
 - (UIColor *)viewPager:(ViewPagerController *)viewPager colorForComponent:(ViewPagerComponent)component withDefault:(UIColor *)color {
     if (component == ViewPagerIndicator) return [UIColor HWMediumColor];
     else return color;
+}
+
+- (void)save {
+    NSError *error;
+    [self.context save:&error];
+    if (error) NSLog(@"%@",error);
+    [self reloadData];
+}
+
+#pragma mark - addDateVC delegate
+
+- (void)addDateViewControllerWillDismissWithResultAssignment:(HWAssignment *)assignment {
+    [self save];
+}
+
+- (void)addDateViewControllerWillDismissWithResultAssessment:(HWAssessment *)assessment {
+    [self save];
 }
 
 @end

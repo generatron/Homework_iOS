@@ -54,7 +54,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="tableView" destination="0Ic-KT-0gq" id="6P1-c3-mhz"/>
+                        <outlet property="tableView" destination="0Ic-KT-0gq" id="80a-qr-0Tb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Vn-q9-1x8" userLabel="First Responder" sceneMemberID="firstResponder"/>

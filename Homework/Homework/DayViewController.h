@@ -7,12 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import "HWCourse.h"
 
-@interface DayViewController : UIViewController
+typedef NS_ENUM(NSInteger, DayViewControllerType) {
+    DayViewControllerTypeAll = 0,
+    DayViewControllerTypeMonday = 1,
+    DayViewControllerTypeTuesday = 2,
+    DayViewControllerTypeWednesday = 3,
+    DayViewControllerTypeThurday = 4,
+    DayViewControllerTypeFriday = 5,
+    DayViewControllerTypeWeekend = 6,
+    DayViewControllerTypeMore = 7,
+};
 
-@property (weak, nonatomic) IBOutlet UILabel *weekdayLabel;
+@interface DayViewController : UIViewController <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@property NSManagedObjectContext *context;
+@property (nonatomic) DayViewControllerType type;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-@property (nonatomic) NSUInteger *tabIndex;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 @end

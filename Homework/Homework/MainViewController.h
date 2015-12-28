@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "ViewPagerController.h"
 #import "ZFModalTransitionAnimator.h"
+#import "AddDateViewController.h"
 #import "DayViewController.h"
 
-@interface MainViewController : ViewPagerController <ViewPagerDataSource, ViewPagerDelegate>
+@interface MainViewController : ViewPagerController <ViewPagerDataSource, ViewPagerDelegate, AddDateViewControllerDelegate>
 
 
 @end

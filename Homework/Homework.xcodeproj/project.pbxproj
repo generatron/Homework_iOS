@@ -14,6 +14,8 @@
 		F98573531C3098CA00E8FE87 /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F98573521C3098CA00E8FE87 /* KxMenu.m */; };
 		F98573571C30B2A900E8FE87 /* AddDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98573561C30B2A900E8FE87 /* AddDateViewController.m */; };
 		F985735A1C30B4A900E8FE87 /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98573591C30B4A900E8FE87 /* ViewPagerController.m */; };
+		F985735F1C30E0A700E8FE87 /* AssignmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F985735E1C30E0A700E8FE87 /* AssignmentTableViewCell.m */; };
+		F98573611C30E0CB00E8FE87 /* AssignmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F98573601C30E0CB00E8FE87 /* AssignmentTableViewCell.xib */; };
 		F9FFE9D51C276C0A004A5CE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9D41C276C0A004A5CE3 /* main.m */; };
 		F9FFE9D81C276C0A004A5CE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9D71C276C0A004A5CE3 /* AppDelegate.m */; };
 		F9FFE9DB1C276C0A004A5CE3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9DA1C276C0A004A5CE3 /* MainViewController.m */; };
@@ -68,6 +70,9 @@
 		F98573561C30B2A900E8FE87 /* AddDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDateViewController.m; sourceTree = "<group>"; };
 		F98573581C30B4A900E8FE87 /* ViewPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewPagerController.h; path = "Third Party/ICViewPager/ICViewPager/ICViewPager/ViewPagerController.h"; sourceTree = "<group>"; };
 		F98573591C30B4A900E8FE87 /* ViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewPagerController.m; path = "Third Party/ICViewPager/ICViewPager/ICViewPager/ViewPagerController.m"; sourceTree = "<group>"; };
+		F985735D1C30E0A700E8FE87 /* AssignmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssignmentTableViewCell.h; path = "Classes/User Interface/AssignmentTableViewCell.h"; sourceTree = "<group>"; };
+		F985735E1C30E0A700E8FE87 /* AssignmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssignmentTableViewCell.m; path = "Classes/User Interface/AssignmentTableViewCell.m"; sourceTree = "<group>"; };
+		F98573601C30E0CB00E8FE87 /* AssignmentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AssignmentTableViewCell.xib; path = "Classes/User Interface/AssignmentTableViewCell.xib"; sourceTree = "<group>"; };
 		F9FFE9D01C276C0A004A5CE3 /* Homework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9FFE9D41C276C0A004A5CE3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F9FFE9D61C276C0A004A5CE3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -144,6 +149,9 @@
 			children = (
 				F9163A511C2FA7890071EFF6 /* UIColor+HWColors.h */,
 				F9163A521C2FA7890071EFF6 /* UIColor+HWColors.m */,
+				F985735D1C30E0A700E8FE87 /* AssignmentTableViewCell.h */,
+				F985735E1C30E0A700E8FE87 /* AssignmentTableViewCell.m */,
+				F98573601C30E0CB00E8FE87 /* AssignmentTableViewCell.xib */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -431,6 +439,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F98573611C30E0CB00E8FE87 /* AssignmentTableViewCell.xib in Resources */,
 				F9FFE9E61C276C0A004A5CE3 /* LaunchScreen.storyboard in Resources */,
 				F9FFE9E31C276C0A004A5CE3 /* Assets.xcassets in Resources */,
 				F9FFE9DE1C276C0A004A5CE3 /* Main.storyboard in Resources */,
@@ -522,6 +531,7 @@
 				F9FFEA1E1C27718D004A5CE3 /* HWCourse.m in Sources */,
 				F98573531C3098CA00E8FE87 /* KxMenu.m in Sources */,
 				F9FFEA1C1C27718D004A5CE3 /* HWAssessment.m in Sources */,
+				F985735F1C30E0A700E8FE87 /* AssignmentTableViewCell.m in Sources */,
 				F98573571C30B2A900E8FE87 /* AddDateViewController.m in Sources */,
 				F985735A1C30B4A900E8FE87 /* ViewPagerController.m in Sources */,
 				F9FFEA1A1C27718D004A5CE3 /* HWAssignment.m in Sources */,

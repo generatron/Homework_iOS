@@ -16,10 +16,94 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSArray *labelText = @[@"All Assignments & Assessments", @"Monday's Agenda", @"Tuesday's Agenda", @"Wednesday's Agenda", @"Thursday's Agenda", @"Friday's Agenda", @"This Weekend's Agenda", @"Later Assignments & Assessments"];
-    int index = (int)self.tabIndex;
-    self.weekdayLabel.text = labelText[index];
-    self.view.backgroundColor = [UIColor HWMediumColor];
+    NSError *error;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        // Update to handle the error appropriately.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+}
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (_fetchedResultsController != nil) return _fetchedResultsController;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"HWAssignment" inManagedObjectContext:self.context];
+    [fetchRequest setEntity:entity];
+    /*
+     NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"eve_date >= %@ ", dateFrom];
+     [subpredicates addObject:subPredTo];
+     
+     NSPredicate *subPredTo = [NSPredicate predicateWithFormat:@"eve_date < %@", dateTo];
+     [subpredicates addObject:subPredFrom];
+    */
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"course.period" ascending:NO];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    [fetchRequest setFetchBatchSize:20];
+    NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
+                                                               initWithFetchRequest:fetchRequest
+                                                               managedObjectContext:self.context
+                                                                 sectionNameKeyPath:nil
+                                                                          cacheName:nil];
+    self.fetchedResultsController = theFetchedResultsController;
+    _fetchedResultsController.delegate = self;
+    return _fetchedResultsController;
+}
+
+#pragma mark - tableView delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    id sectionInfo = [[_fetchedResultsController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    HWAssignment *assignment = [_fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = assignment.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, Due %@",assignment.type, assignment.dateDue];
+    return cell;
+}
+
+#pragma mark - fetchedResults delegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    switch (type) {
+        case NSFetchedResultsChangeInsert: {
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        }
+        case NSFetchedResultsChangeDelete: {
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        }
+        case NSFetchedResultsChangeUpdate: {
+            //[self configureCell:(TSPToDoCell *)[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+        }
+        case NSFetchedResultsChangeMove: {
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        }
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
 }
 
 /*
