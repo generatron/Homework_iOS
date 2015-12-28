@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "HWCourseList.h"
 #import "CourseListViewController.h"
+#import "AddDateViewController.h"
 #import "AppDelegate.h"
 #import "KxMenu.h"
 
@@ -107,8 +108,58 @@
     CGRect frame = [self frameForBarButtonItem:sender];
     [KxMenu showMenuInView:self.navigationController.view
                   fromRect:frame
-                 menuItems:@[[KxMenuItem menuItem:@"Add Assignment" image:nil target:self action:@selector(menuItemAction:)],
-                             [KxMenuItem menuItem:@"Add Assessment" image:nil target:self action:@selector(menuItemAction:)]]];
+                 menuItems:@[[KxMenuItem menuItem:@"Add Assignment" image:nil target:self action:@selector(addAssignment:)],
+                             [KxMenuItem menuItem:@"Add Assessment" image:nil target:self action:@selector(addAssesment:)]]];
+}
+
+- (void)addAssignment:(UIButton *)sender {
+    AddDateViewController *rootVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ad"];
+    rootVC.dateType = 1;
+    rootVC.courseList = self.courseList;
+    rootVC.context = self.context;
+    //rootVC.delegate = self;
+    UINavigationController *modalVC = [[UINavigationController alloc] initWithRootViewController: rootVC];
+    modalVC.navigationBar.barTintColor = [UIColor HWMediumColor];
+    [modalVC.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    modalVC.navigationBar.tintColor = [UIColor whiteColor];
+    modalVC.navigationBar.translucent = NO;
+    modalVC.modalPresentationStyle = UIModalPresentationCustom;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:modalVC];
+    self.animator.dragable = YES;
+    self.animator.bounces = YES;
+    self.animator.behindViewAlpha = 0.0;
+    self.animator.behindViewScale = 0.95;
+    self.animator.transitionDuration = 0.5;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    //[self.animator setContentScrollView:rootVC.tableView];
+    modalVC.transitioningDelegate = self.animator;
+    [self presentViewController:modalVC animated:YES completion:nil];
+}
+
+- (void)addAssesment:(UIButton *)sender {
+    AddDateViewController *rootVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ad"];
+    rootVC.dateType = 2;
+    rootVC.courseList = self.courseList;
+    rootVC.context = self.context;
+    //rootVC.delegate = self;
+    UINavigationController *modalVC = [[UINavigationController alloc] initWithRootViewController: rootVC];
+    modalVC.navigationBar.barTintColor = [UIColor HWMediumColor];
+    [modalVC.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    modalVC.navigationBar.tintColor = [UIColor whiteColor];
+    modalVC.navigationBar.translucent = NO;
+    modalVC.modalPresentationStyle = UIModalPresentationCustom;
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:modalVC];
+    self.animator.dragable = YES;
+    self.animator.bounces = YES;
+    self.animator.behindViewAlpha = 0.0;
+    self.animator.behindViewScale = 0.95;
+    self.animator.transitionDuration = 0.5;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    //[self.animator setContentScrollView:rootVC.tableView];
+    modalVC.transitioningDelegate = self.animator;
+    [self presentViewController:modalVC animated:YES completion:nil];
 }
 
 - (CGRect)frameForBarButtonItem:(UIBarButtonItem *)buttonItem {

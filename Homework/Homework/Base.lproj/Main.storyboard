@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9527.1" systemVersion="15D9c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9525.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -58,7 +59,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Vn-q9-1x8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="960" y="390"/>
+            <point key="canvasLocation" x="480" y="1252"/>
+        </scene>
+        <!--Add Date View Controller-->
+        <scene sceneID="26P-2I-oLA">
+            <objects>
+                <viewController storyboardIdentifier="ad" id="b4Z-lF-1GI" customClass="AddDateViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BLS-hS-9S3"/>
+                        <viewControllerLayoutGuide type="bottom" id="kFE-c4-1GD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="noM-ek-yWb">
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4UX-OH-7EQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1014" y="390"/>
         </scene>
         <!--Course List View Controller-->
         <scene sceneID="SXN-Ar-YQ6">
@@ -93,7 +114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c1d-kf-iLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1436" y="390"/>
+            <point key="canvasLocation" x="-50" y="390"/>
         </scene>
         <!--Add Course View Controller-->
         <scene sceneID="Q5U-ie-T5g">
@@ -182,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8SG-A0-iRp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1917" y="390"/>
+            <point key="canvasLocation" x="-50" y="1252"/>
         </scene>
     </scenes>
 </document>

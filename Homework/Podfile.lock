@@ -1,16 +1,16 @@
 PODS:
-  - ICViewPager (1.5.1)
   - MGSwipeTableCell (1.5.3)
+  - XLForm (3.1.0)
   - ZFDragableModalTransition (0.5.1)
 
 DEPENDENCIES:
-  - ICViewPager
   - MGSwipeTableCell
+  - XLForm
   - ZFDragableModalTransition
 
 SPEC CHECKSUMS:
-  ICViewPager: 032dc71a50fe898e185fae6112ded4bed0e0523c
   MGSwipeTableCell: 5ae3b9a15efda26b201adc8676b24040febe6ff6
+  XLForm: 754b061f9f4b249a7ab7548efb22f1b586e26740
   ZFDragableModalTransition: 048189eda437f91944ce6d5151618b8bf770196d
 
 COCOAPODS: 0.39.0
