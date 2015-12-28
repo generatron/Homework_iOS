@@ -1,12 +1,18 @@
 PODS:
+  - BFPaperCheckbox (1.2.7):
+    - UIColor+BFPaperColors
+  - UIColor+BFPaperColors (1.7.2)
   - XLForm (3.1.0)
   - ZFDragableModalTransition (0.5.1)
 
 DEPENDENCIES:
+  - BFPaperCheckbox
   - XLForm
   - ZFDragableModalTransition
 
 SPEC CHECKSUMS:
+  BFPaperCheckbox: 55670e5d8dc1e060972b0d1db6380771339451d8
+  UIColor+BFPaperColors: 03101fe6c10ed00c6daae7c26553f1de41500853
   XLForm: 754b061f9f4b249a7ab7548efb22f1b586e26740
   ZFDragableModalTransition: 048189eda437f91944ce6d5151618b8bf770196d
 

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '0A14A37DCAC2BD1D280621FB'
-               BlueprintName = 'ZFDragableModalTransition'
+               BlueprintIdentifier = 'CBC025BB2A24A394D468A877'
+               BlueprintName = 'UIColor+BFPaperColors'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libZFDragableModalTransition.a'>
+               BuildableName = 'libUIColor+BFPaperColors.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

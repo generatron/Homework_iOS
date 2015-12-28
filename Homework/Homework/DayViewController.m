@@ -66,6 +66,7 @@
     AssignmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Identifier"];
     if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"AssignmentTableViewCell" owner:self options:nil].firstObject;
     HWAssignment *assignment = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 80);
     [cell loadAssignment:assignment];
     return cell;
 }

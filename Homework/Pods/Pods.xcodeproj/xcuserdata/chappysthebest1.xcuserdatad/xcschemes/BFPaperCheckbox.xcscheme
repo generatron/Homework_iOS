@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '0A14A37DCAC2BD1D280621FB'
-               BlueprintName = 'ZFDragableModalTransition'
+               BlueprintIdentifier = '2CB6E6572D8D057A90913BF7'
+               BlueprintName = 'BFPaperCheckbox'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libZFDragableModalTransition.a'>
+               BuildableName = 'libBFPaperCheckbox.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

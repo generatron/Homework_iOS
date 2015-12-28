@@ -6,6 +6,7 @@
 target 'Homework' do
 	pod 'ZFDragableModalTransition'
 	pod 'XLForm'
+	pod 'BFPaperCheckbox'
 end
 
 target 'HomeworkTests' do
