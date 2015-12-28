@@ -12,13 +12,16 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kag-RQ-Evd">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="P" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InW-2n-deM">
                     <rect key="frame" x="10" y="10" width="60" height="60"/>
                     <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="Kag-RQ-Evd" secondAttribute="height" multiplier="1:1" id="V2H-tk-Svx"/>
+                        <constraint firstAttribute="width" secondItem="InW-2n-deM" secondAttribute="height" multiplier="1:1" id="Txr-ku-OIs"/>
                     </constraints>
-                </view>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="55"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Physics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULo-uP-Gbq">
                     <rect key="frame" x="80" y="50" width="200" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -50,12 +53,19 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Kag-RQ-Evd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="L6c-Ez-rHM"/>
-                <constraint firstItem="Kag-RQ-Evd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="rSB-Rc-gWk"/>
-                <constraint firstAttribute="bottom" secondItem="Kag-RQ-Evd" secondAttribute="bottom" constant="10" id="syT-d4-sGW"/>
+                <constraint firstAttribute="bottom" secondItem="InW-2n-deM" secondAttribute="bottom" constant="10" id="Mf1-fj-vy7"/>
+                <constraint firstItem="InW-2n-deM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="oWW-ZV-lRl"/>
+                <constraint firstItem="InW-2n-deM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="vHa-Hp-ODR"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="colorLabel" destination="InW-2n-deM" id="GKi-39-ike"/>
+                <outlet property="courseLabel" destination="ULo-uP-Gbq" id="zoZ-jo-lko"/>
+                <outlet property="dateAssignedLabel" destination="Ed1-2a-ugV" id="umM-k8-xgH"/>
+                <outlet property="nameLabel" destination="aWc-sy-Jpk" id="Elf-PB-ZzE"/>
+                <outlet property="typeLabel" destination="nxr-Wp-4h6" id="PSO-j6-goy"/>
+            </connections>
         </view>
     </objects>
 </document>

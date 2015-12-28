@@ -11,13 +11,23 @@
 @implementation AssignmentTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.colorLabel.clipsToBounds = YES;
+    self.colorLabel.layer.cornerRadius = self.colorLabel.frame.size.width/2.0;
+}
+
+- (void)loadAssignment: (HWAssignment *) assignment {
+    self.assignment = assignment;
+    //self.colorLabel.backgroundColor = ;
+    self.colorLabel.text = [assignment.course.name substringToIndex:1];
+    self.nameLabel.text = assignment.name;
+    self.courseLabel.text = assignment.course.name;
+    NSArray *types = @[@"Homework", @"Project", @"Other"];
+    self.typeLabel.text = types[assignment.type.intValue];
+    self.dateAssignedLabel.text = assignment.dateAssigned.description;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    //[super setSelected:selected animated:animated];
 }
 
 @end

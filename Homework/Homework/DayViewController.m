@@ -63,14 +63,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    HWAssignment *assignment = [_fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = assignment.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, Due %@",assignment.type, assignment.dateDue];
+    AssignmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Identifier"];
+    if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"AssignmentTableViewCell" owner:self options:nil].firstObject;
+    HWAssignment *assignment = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [cell loadAssignment:assignment];
     return cell;
 }
 

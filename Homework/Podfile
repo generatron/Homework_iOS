@@ -4,7 +4,6 @@
 # use_frameworks!
 
 target 'Homework' do
-	pod 'MGSwipeTableCell'
 	pod 'ZFDragableModalTransition'
 	pod 'XLForm'
 end

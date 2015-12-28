@@ -1,15 +1,12 @@
 PODS:
-  - MGSwipeTableCell (1.5.3)
   - XLForm (3.1.0)
   - ZFDragableModalTransition (0.5.1)
 
 DEPENDENCIES:
-  - MGSwipeTableCell
   - XLForm
   - ZFDragableModalTransition
 
 SPEC CHECKSUMS:
-  MGSwipeTableCell: 5ae3b9a15efda26b201adc8676b24040febe6ff6
   XLForm: 754b061f9f4b249a7ab7548efb22f1b586e26740
   ZFDragableModalTransition: 048189eda437f91944ce6d5151618b8bf770196d
 

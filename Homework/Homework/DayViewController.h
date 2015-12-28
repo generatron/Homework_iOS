@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "HWCourse.h"
 
+#import "AssignmentTableViewCell.h"
+
 typedef NS_ENUM(NSInteger, DayViewControllerType) {
     DayViewControllerTypeAll = 0,
     DayViewControllerTypeMonday = 1,
