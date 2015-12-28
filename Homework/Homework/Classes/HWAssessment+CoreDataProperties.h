@@ -15,6 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class HWCourse;
 
+typedef enum {
+    HWAssessmentTypeTest = 0,
+    HWAssessmentTypeQuiz = 1,
+    HWAssessmentTypePresentation = 2,
+    HWAssessmentTypeOther = 3
+} HWAssessmentType;
+
 @interface HWAssessment (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSNumber *type;

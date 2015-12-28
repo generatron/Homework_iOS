@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "HWCourseList.h"
+#import "XLForm.h"
 
-@interface AddDateViewController : UIViewController
+@interface AddDateViewController : XLFormViewController
 
 @property int dateType;
 

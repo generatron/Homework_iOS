@@ -126,7 +126,7 @@
     modalVC.navigationBar.translucent = NO;
     modalVC.modalPresentationStyle = UIModalPresentationCustom;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:modalVC];
-    self.animator.dragable = YES;
+    self.animator.dragable = NO;
     self.animator.bounces = YES;
     self.animator.behindViewAlpha = 0.0;
     self.animator.behindViewScale = 0.95;
@@ -151,7 +151,7 @@
     modalVC.navigationBar.translucent = NO;
     modalVC.modalPresentationStyle = UIModalPresentationCustom;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:modalVC];
-    self.animator.dragable = YES;
+    self.animator.dragable = NO;
     self.animator.bounces = YES;
     self.animator.behindViewAlpha = 0.0;
     self.animator.behindViewScale = 0.95;

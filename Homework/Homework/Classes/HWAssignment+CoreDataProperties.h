@@ -15,6 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class HWCourse;
 
+typedef enum {
+    HWAssignmentTypeHomework = 0,
+    HWAssignmentTypeProject = 1,
+    HWAssignmentTypeOther = 2
+} HWAssignmentType;
+
 @interface HWAssignment (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSDate *dateAssigned;
