@@ -12,7 +12,7 @@
 #import "AddDateViewController.h"
 #import "DayViewController.h"
 
-@interface MainViewController : ViewPagerController <ViewPagerDataSource, ViewPagerDelegate, AddDateViewControllerDelegate>
+@interface MainViewController : ViewPagerController <ViewPagerDataSource, ViewPagerDelegate, AddDateViewControllerDelegate, DayViewControllerDelegate>
 
 
 @end

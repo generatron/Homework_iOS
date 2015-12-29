@@ -10,12 +10,19 @@
 
 @interface DayViewController ()
 
+@property NSDate *referenceDate;
+
 @end
 
 @implementation DayViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    int timeInterval = 60*60*24*((int)self.type-self.currentDayOfTheWeek);
+    NSCalendar *calendar = NSCalendar.currentCalendar;
+    NSCalendarUnit preservedComponents = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
+    NSDateComponents *components = [calendar components:preservedComponents fromDate:[NSDate dateWithTimeIntervalSinceNow:timeInterval]];
+    self.referenceDate = [calendar dateFromComponents:components];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
         // Update to handle the error appropriately.
@@ -30,17 +37,38 @@
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"HWAssignment" inManagedObjectContext:self.context];
+    NSMutableArray *predicates = [[NSMutableArray alloc] init];
     [fetchRequest setEntity:entity];
-    /*
-     NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"eve_date >= %@ ", dateFrom];
-     [subpredicates addObject:subPredTo];
-     
-     NSPredicate *subPredTo = [NSPredicate predicateWithFormat:@"eve_date < %@", dateTo];
-     [subpredicates addObject:subPredFrom];
-    */
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"course.period" ascending:NO];
+    if (self.type == DayViewControllerTypeAll) {
+        NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"dateDue >= %@ ", [NSDate dateWithTimeIntervalSince1970:0]];
+        [predicates addObject:subPredFrom];
+        NSPredicate *subPredTo = [NSPredicate predicateWithFormat:@"dateDue < %@", [NSDate dateWithTimeIntervalSinceNow:60*60*24*365]];
+        [predicates addObject:subPredTo];
+        NSPredicate *subPred = [NSPredicate predicateWithFormat:@"isCompleted == NO"];
+        [predicates addObject:subPred];
+    }
+    else if (self.type == DayViewControllerTypeMore) {
+        NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"dateDue >= %@ ", [self.referenceDate dateByAddingTimeInterval:60*60*24]];
+        [predicates addObject:subPredFrom];
+        NSPredicate *subPredTo = [NSPredicate predicateWithFormat:@"dateDue < %@", [self.referenceDate dateByAddingTimeInterval:60*60*24*365]];
+        [predicates addObject:subPredTo];
+    }
+    else  if (self.type == DayViewControllerTypeWeekend) {
+        NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"dateDue >= %@ ", self.referenceDate];
+        [predicates addObject:subPredFrom];
+        NSPredicate *subPredTo = [NSPredicate predicateWithFormat:@"dateDue < %@", [self.referenceDate dateByAddingTimeInterval:60*60*24*2]];
+        [predicates addObject:subPredTo];
+    }
+    else {
+        NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"dateDue >= %@ ", self.referenceDate];
+        [predicates addObject:subPredFrom];
+        NSPredicate *subPredTo = [NSPredicate predicateWithFormat:@"dateDue < %@", [self.referenceDate dateByAddingTimeInterval:60*60*24]];
+        [predicates addObject:subPredTo];
+    }
+    [fetchRequest setPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicates]];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"course.period" ascending:YES];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
-    [fetchRequest setFetchBatchSize:20];
+    //[fetchRequest setFetchBatchSize:20];
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
                                                                initWithFetchRequest:fetchRequest
                                                                managedObjectContext:self.context
@@ -59,16 +87,48 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id sectionInfo = [[_fetchedResultsController sections] objectAtIndex:section];
+    long count = [sectionInfo numberOfObjects];
+    if (count == 0) {
+        UILabel *overlayView = [[UILabel alloc] initWithFrame:self.tableView.frame];
+        overlayView.backgroundColor = [UIColor whiteColor];
+        overlayView.textAlignment = NSTextAlignmentCenter;
+        overlayView.textColor = [UIColor lightGrayColor];
+        overlayView.font = [UIFont systemFontOfSize:21 weight:UIFontWeightSemibold];
+        overlayView.text = @"No Dates";
+        [self.view addSubview:overlayView];
+    }
+    if (self.type == DayViewControllerTypeAll) return [sectionInfo numberOfObjects]+1;
     return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AssignmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Identifier"];
     if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"AssignmentTableViewCell" owner:self options:nil].firstObject;
-    HWAssignment *assignment = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 80);
-    [cell loadAssignment:assignment];
+    if (indexPath.row == [[[_fetchedResultsController sections] objectAtIndex:0] numberOfObjects]) {
+        UIButton *more = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-100, 15, 200, 50)];
+        [more setTitle:@"Show Completed Dates" forState:UIControlStateNormal];
+        [more setTitleColor:[UIColor HWDarkColor] forState:UIControlStateNormal];
+        [more addTarget:self action:@selector(moreButtonToggle:) forControlEvents:UIControlEventTouchUpInside];
+        [cell addSubview:more];
+    }
+    else {
+        HWAssignment *assignment = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        cell.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 80);
+        cell.delegate = self;
+        [cell loadAssignment:assignment];
+    }
     return cell;
+}
+
+- (void)moreButtonToggle:(UIButton *)sender {
+    NSLog(@"More");
+}
+
+- (void)save {
+    NSError *error;
+    [self.context save:&error];
+    if (error) NSLog(@"%@",error);
+    //[self.tableView reloadData];
 }
 
 #pragma mark - fetchedResults delegate
@@ -101,6 +161,14 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
+}
+
+#pragma mark - AssignmentTVCell delegate
+
+- (void)assignmentTableViewCellCompletedValueToggledForAssignment:(HWAssignment *)assignment {
+    assignment.isCompleted = [NSNumber numberWithBool:!assignment.isCompleted.boolValue];
+    [self.delegate tabUpdateRequestByDayViewController:self];
+    [self save];
 }
 
 /*

@@ -18,6 +18,7 @@
 @property NSManagedObjectContext *context;
 @property HWCourseList *courseList;
 
+@property NSMutableArray <UILabel *> *tabSublabels;
 @property NSArray <UILabel *> *titleViews;
 @property NSArray *titleArray;
 @property int dayOfWeek;
@@ -36,6 +37,14 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                            target:self
                                                                                            action:@selector(addButtonPressed:)];
+    self.tabSublabels = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 8; i++) {
+        UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 28, 120, 15)];
+        detailLabel.textAlignment = NSTextAlignmentCenter;
+        detailLabel.textColor = [UIColor lightGrayColor];
+        detailLabel.font = [UIFont systemFontOfSize:13];
+        [self.tabSublabels addObject:detailLabel];
+    }
     self.courseList = [HWCourseList fetchCurrentCourseList];
     self.context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.dataSource = self;
@@ -76,7 +85,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (self.dayOfWeek > 5) [self selectTabAtIndex:6]; //weekend
-    else [self selectTabAtIndex:self.dayOfWeek+1];
+    else [self selectTabAtIndex:self.dayOfWeek];
 }
 
 - (IBAction)settingsButtonPressed:(id)sender {
@@ -86,8 +95,7 @@
     //rootVC.delegate = self;
     UINavigationController *modalVC = [[UINavigationController alloc] initWithRootViewController: rootVC];
     modalVC.navigationBar.barTintColor = [UIColor HWMediumColor];
-    [modalVC.navigationBar setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [modalVC.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     modalVC.navigationBar.tintColor = [UIColor whiteColor];
     modalVC.navigationBar.translucent = NO;
     modalVC.modalPresentationStyle = UIModalPresentationCustom;
@@ -179,22 +187,56 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:17];
     if (index > 0 && index < 6) {
-        int localDayOfWeek = (int)index-1;
-        if (localDayOfWeek <= self.dayOfWeek) label.textColor = [UIColor lightGrayColor];
+        int localDayOfWeek = (int)index;
+        if (localDayOfWeek < self.dayOfWeek) label.textColor = [UIColor lightGrayColor];
     }
     [view addSubview:label];
-    UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 28, 120, 15)];
-    detailLabel.text = [NSString stringWithFormat:@"%d/%d completed",0,0];
-    detailLabel.textAlignment = NSTextAlignmentCenter;
-    detailLabel.textColor = [UIColor lightGrayColor];
-    detailLabel.font = [UIFont systemFontOfSize:13];
-    [view addSubview:detailLabel];
+    [self updateSublabelTextAtIndex:index];
+    [view addSubview:self.tabSublabels[index]];
     return view;
+}
+
+- (void)updateSublabelTextAtIndex:(NSUInteger)index{
+    self.tabSublabels[index].text = [self textForTabAtIndex:index];
+}
+
+- (NSString *)textForTabAtIndex:(NSUInteger)index{
+    if (index == 0) //all
+        return [NSString stringWithFormat:@"%d Incomplete",(int)[self arrayOfAssignmentsBetweenBeginDate:[NSDate dateWithTimeIntervalSince1970:0]
+                                                                                              andEndDate:[NSDate dateWithTimeIntervalSinceNow:60*60*24*365]
+                                                                                         predicateString:@"isCompleted == NO"].count];
+    else {
+        int timeInterval = 60*60*24*((int)index-self.dayOfWeek);
+        NSCalendar *calendar = NSCalendar.currentCalendar;
+        NSCalendarUnit preservedComponents = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
+        NSDateComponents *components = [calendar components:preservedComponents fromDate:[NSDate dateWithTimeIntervalSinceNow:timeInterval]];
+        NSDate *normalizedDate = [calendar dateFromComponents:components];
+        int total = (int)[self arrayOfAssignmentsBetweenBeginDate:normalizedDate andEndDate:[normalizedDate dateByAddingTimeInterval:60*60*24] predicateString:nil].count;
+        int complete = (int)[self arrayOfAssignmentsBetweenBeginDate:normalizedDate andEndDate:[normalizedDate dateByAddingTimeInterval:60*60*24] predicateString:@"isCompleted == YES"].count;
+        return [NSString stringWithFormat:@"%d/%d Complete",complete,total];
+    }
+}
+
+- (NSArray *)arrayOfAssignmentsBetweenBeginDate:(NSDate *)d1 andEndDate:(NSDate *)d2 predicateString:(NSString *)predicateString {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"HWAssignment" inManagedObjectContext:self.context];
+    [fetchRequest setEntity:entity];
+    NSMutableArray *predicates = [[NSMutableArray alloc] init];
+    NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"dateDue >= %@ ", d1];
+    [predicates addObject:subPredFrom];
+    NSPredicate *subPredTo = [NSPredicate predicateWithFormat:@"dateDue < %@", d2];
+    [predicates addObject:subPredTo];
+    if (predicateString != nil) [predicates addObject:[NSPredicate predicateWithFormat:predicateString]];
+    [fetchRequest setPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicates]];
+    NSError *error;
+    return [self.context executeFetchRequest:fetchRequest error:&error];
 }
 
 - (UIViewController *)viewPager:(ViewPagerController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index {
     DayViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"dvc"];
+    vc.delegate = self;
     vc.type = index;
+    vc.currentDayOfTheWeek = self.dayOfWeek;
     vc.context = self.context;
     return vc;
 }
@@ -265,6 +307,13 @@
 
 - (void)addDateViewControllerWillDismissWithResultAssessment:(HWAssessment *)assessment {
     [self save];
+}
+
+#pragma mark - dayVC delegate
+
+- (void)tabUpdateRequestByDayViewController:(DayViewController *)dayVC {
+    [self updateSublabelTextAtIndex:dayVC.type];
+    [self updateSublabelTextAtIndex:0];
 }
 
 @end

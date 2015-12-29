@@ -8,16 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "HWCourse.h"
-#import "BFPaperCheckbox.h"
+#import "BEMCheckBox.h"
 
-@interface AssignmentTableViewCell : UITableViewCell <BFPaperCheckboxDelegate>
+@protocol AssignmentTableViewCellDelegate <NSObject>
+@required
+- (void)assignmentTableViewCellCompletedValueToggledForAssignment:(HWAssignment *)assignment;
+@end
+
+@interface AssignmentTableViewCell : UITableViewCell <BEMCheckBoxDelegate>
+
+@property id <AssignmentTableViewCellDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UILabel *colorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *courseLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateAssignedLabel;
-@property (strong, nonatomic) BFPaperCheckbox *checkbox;
+@property (strong, nonatomic) BEMCheckBox *checkbox;
 
 @property HWAssignment *assignment;
 

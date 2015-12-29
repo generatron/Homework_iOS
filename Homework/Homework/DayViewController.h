@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "HWCourse.h"
-
 #import "AssignmentTableViewCell.h"
 
 typedef NS_ENUM(NSInteger, DayViewControllerType) {
@@ -23,9 +22,19 @@ typedef NS_ENUM(NSInteger, DayViewControllerType) {
     DayViewControllerTypeMore = 7,
 };
 
-@interface DayViewController : UIViewController <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@class DayViewController;
+
+@protocol DayViewControllerDelegate <NSObject>
+@required
+- (void)tabUpdateRequestByDayViewController:(DayViewController *)dayVC;
+@end
+
+@interface DayViewController : UIViewController <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate, AssignmentTableViewCellDelegate>
+
+@property id<DayViewControllerDelegate> delegate;
 
 @property NSManagedObjectContext *context;
+@property int currentDayOfTheWeek;
 @property (nonatomic) DayViewControllerType type;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
