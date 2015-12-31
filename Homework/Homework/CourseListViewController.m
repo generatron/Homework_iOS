@@ -41,23 +41,32 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return 60;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row != self.courseList.courses.count) {
         HWCourse *course = self.courseList.courses[indexPath.row];
-        UILabel *courseName = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.view.frame.size.width-130, 30)];
+        UILabel *courseColor = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
+        courseColor.text = [course.name substringToIndex:1];
+        courseColor.textColor = [UIColor whiteColor];
+        courseColor.textAlignment = NSTextAlignmentCenter;
+        courseColor.backgroundColor = course.color;
+        courseColor.font = [UIFont systemFontOfSize:40 weight:UIFontWeightLight];
+        courseColor.layer.cornerRadius = 20;
+        courseColor.clipsToBounds = YES;
+        [cell addSubview:courseColor];
+        UILabel *courseName = [[UILabel alloc] initWithFrame:CGRectMake(60, 5, self.view.frame.size.width-190, 30)];
         courseName.text = course.name;
         [cell addSubview:courseName];
-        UILabel *coursePeriod = [[UILabel alloc] initWithFrame:CGRectMake(12, 30, self.view.frame.size.width-130, 15)];
+        UILabel *coursePeriod = [[UILabel alloc] initWithFrame:CGRectMake(65, 30, self.view.frame.size.width-190, 20)];
         coursePeriod.text = [NSString stringWithFormat:@"Period %d",course.period.intValue];
         coursePeriod.textColor = [UIColor lightGrayColor];
         coursePeriod.font = [UIFont systemFontOfSize:13];
         [cell addSubview:coursePeriod];
-        UIButton *del = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-110, 5, 100, 40)];
+        UIButton *del = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-110, 10, 100, 40)];
         del.tag = indexPath.row;
         [del setTitle:@"Delete" forState:UIControlStateNormal];
         [del setTitleColor:self.view.tintColor forState:UIControlStateNormal];
@@ -65,7 +74,7 @@
         [cell addSubview:del];
     }
     else {
-        UIButton *add = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, self.view.frame.size.width, 40)];
+        UIButton *add = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, 40)];
         [add setTitle:@"Add New Course" forState:UIControlStateNormal];
         [add setTitleColor:self.view.tintColor forState:UIControlStateNormal];
         [add addTarget:self action:@selector(addCourseButtonPressed:) forControlEvents:UIControlEventTouchUpInside];

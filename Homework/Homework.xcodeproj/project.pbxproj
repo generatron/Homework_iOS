@@ -16,6 +16,7 @@
 		F985735A1C30B4A900E8FE87 /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98573591C30B4A900E8FE87 /* ViewPagerController.m */; };
 		F985735F1C30E0A700E8FE87 /* AssignmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F985735E1C30E0A700E8FE87 /* AssignmentTableViewCell.m */; };
 		F98573611C30E0CB00E8FE87 /* AssignmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F98573601C30E0CB00E8FE87 /* AssignmentTableViewCell.xib */; };
+		F9E6C2B61C35F123007DB66C /* CourseSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E6C2B51C35F123007DB66C /* CourseSelectionViewController.m */; };
 		F9FFE9D51C276C0A004A5CE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9D41C276C0A004A5CE3 /* main.m */; };
 		F9FFE9D81C276C0A004A5CE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9D71C276C0A004A5CE3 /* AppDelegate.m */; };
 		F9FFE9DB1C276C0A004A5CE3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FFE9DA1C276C0A004A5CE3 /* MainViewController.m */; };
@@ -73,6 +74,8 @@
 		F985735D1C30E0A700E8FE87 /* AssignmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssignmentTableViewCell.h; path = "Classes/User Interface/AssignmentTableViewCell.h"; sourceTree = "<group>"; };
 		F985735E1C30E0A700E8FE87 /* AssignmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssignmentTableViewCell.m; path = "Classes/User Interface/AssignmentTableViewCell.m"; sourceTree = "<group>"; };
 		F98573601C30E0CB00E8FE87 /* AssignmentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AssignmentTableViewCell.xib; path = "Classes/User Interface/AssignmentTableViewCell.xib"; sourceTree = "<group>"; };
+		F9E6C2B41C35F123007DB66C /* CourseSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseSelectionViewController.h; sourceTree = "<group>"; };
+		F9E6C2B51C35F123007DB66C /* CourseSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseSelectionViewController.m; sourceTree = "<group>"; };
 		F9FFE9D01C276C0A004A5CE3 /* Homework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9FFE9D41C276C0A004A5CE3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F9FFE9D61C276C0A004A5CE3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 				F9163A431C2F22490071EFF6 /* AddCourseViewController.m */,
 				F98573551C30B2A900E8FE87 /* AddDateViewController.h */,
 				F98573561C30B2A900E8FE87 /* AddDateViewController.m */,
+				F9E6C2B41C35F123007DB66C /* CourseSelectionViewController.h */,
+				F9E6C2B51C35F123007DB66C /* CourseSelectionViewController.m */,
 				F9FFE9DC1C276C0A004A5CE3 /* Main.storyboard */,
 				F9FFE9D61C276C0A004A5CE3 /* AppDelegate.h */,
 				F9FFE9D71C276C0A004A5CE3 /* AppDelegate.m */,
@@ -524,6 +529,7 @@
 				F9163A531C2FA7890071EFF6 /* UIColor+HWColors.m in Sources */,
 				F9FFE9E11C276C0A004A5CE3 /* Homework.xcdatamodeld in Sources */,
 				F9163A441C2F22490071EFF6 /* AddCourseViewController.m in Sources */,
+				F9E6C2B61C35F123007DB66C /* CourseSelectionViewController.m in Sources */,
 				F9FFEA1B1C27718D004A5CE3 /* HWAssessment+CoreDataProperties.m in Sources */,
 				F9FFE9D81C276C0A004A5CE3 /* AppDelegate.m in Sources */,
 				F97D82781C2C909D004C6212 /* DayViewController.m in Sources */,

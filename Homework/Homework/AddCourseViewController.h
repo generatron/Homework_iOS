@@ -21,6 +21,7 @@
 @property NSManagedObjectContext *context;
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet UIView *colorContainerView;
 
 @property (weak, nonatomic) IBOutlet UITextField *courseNameInput;
 @property (weak, nonatomic) IBOutlet UISlider *periodSlider;
