@@ -7,11 +7,12 @@
 //
 
 #import "DayViewController.h"
+#import "AddDateViewController.h"
 
 @interface DayViewController ()
-
+@property (nonatomic, strong) ZFModalTransitionAnimator *animator;
 @property NSDate *referenceDate;
-
+@property AssignmentTableViewCell *selectedCell;
 @end
 
 @implementation DayViewController
@@ -168,6 +169,68 @@
 - (void)assignmentTableViewCellCompletedValueToggledForAssignment:(HWAssignment *)assignment {
     assignment.isCompleted = [NSNumber numberWithBool:!assignment.isCompleted.boolValue];
     [self.delegate tabUpdateRequestByDayViewController:self];
+    [self save];
+}
+
+- (void)assignmentTableViewCellNeedsMenuPopup:(AssignmentTableViewCell *)cell atLocation:(CGPoint)location {
+    self.selectedCell = cell;
+    RNGridMenu *gridMenu = [[RNGridMenu alloc] initWithTitles:@[@"Edit Assignment",@"Delete Assignment",@"Complete Assignment"]];
+    gridMenu.delegate = self;
+    gridMenu.itemSize = CGSizeMake(200, 40);
+    gridMenu.backgroundColor = [UIColor colorWithWhite:247.0/255.0 alpha:1];
+    gridMenu.highlightColor = [UIColor colorWithWhite:230.0/255.0 alpha:1];
+    gridMenu.itemTextColor = [UIColor blackColor];
+    gridMenu.itemFont = [UIFont systemFontOfSize:15.0 weight:UIFontWeightMedium];
+    gridMenu.blurLevel = 0.2;
+    [gridMenu showInViewController:self center:location];
+}
+
+#pragma mark - RNGridMenuDelegate
+
+- (void)gridMenu:(RNGridMenu *)gridMenu willDismissWithSelectedItem:(RNGridMenuItem *)item atIndex:(NSInteger)itemIndex {
+    if (itemIndex == 0) { //edit
+        AddDateViewController *rootVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ad"];
+        rootVC.dateType = 1;
+        rootVC.assignment = self.selectedCell.assignment;
+        rootVC.courseList = [HWCourseList fetchCurrentCourseList];
+        rootVC.context = self.context;
+        rootVC.delegate = self;
+        UINavigationController *modalVC = [[UINavigationController alloc] initWithRootViewController: rootVC];
+        modalVC.navigationBar.barTintColor = [UIColor HWMediumColor];
+        [modalVC.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+        modalVC.navigationBar.tintColor = [UIColor whiteColor];
+        modalVC.navigationBar.translucent = NO;
+        modalVC.modalPresentationStyle = UIModalPresentationCustom;
+        self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:modalVC];
+        self.animator.dragable = NO;
+        self.animator.bounces = YES;
+        self.animator.behindViewAlpha = 0.0;
+        self.animator.behindViewScale = 0.95;
+        self.animator.transitionDuration = 0.5;
+        self.animator.direction = ZFModalTransitonDirectionBottom;
+        //[self.animator setContentScrollView:rootVC.tableView];
+        modalVC.transitioningDelegate = self.animator;
+        [self presentViewController:modalVC animated:YES completion:nil];
+    }
+    if (itemIndex == 1) { //delete
+        [self.context deleteObject:self.selectedCell.assignment];
+        [self save];
+    }
+    if (itemIndex == 2) { //complete
+        self.selectedCell.assignment.isCompleted = [NSNumber numberWithBool:!self.selectedCell.assignment.isCompleted.boolValue];
+        [self.selectedCell.checkbox setOn:self.selectedCell.assignment.isCompleted.boolValue animated:YES];
+        [self save];
+    }
+}
+
+#pragma mark - addDateVC delegate
+
+- (void)addDateViewControllerWillDismissWithResultAssignment:(HWAssignment *)assignment {
+    [self.context deleteObject:self.selectedCell.assignment]; //delete as it will be replaced
+    [self save];
+}
+
+- (void)addDateViewControllerWillDismissWithResultAssessment:(HWAssessment *)assessment {
     [self save];
 }
 

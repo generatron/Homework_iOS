@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "HWAssessment.h"
 #import "HWAssignment.h"
+#import "HWCourseList.h"
 
 @class HWAssessment, HWAssignment;
 

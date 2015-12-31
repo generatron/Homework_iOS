@@ -15,6 +15,7 @@
 
 @dynamic name;
 @dynamic period;
+@dynamic color;
 @dynamic assignments;
 @dynamic assesments;
 @dynamic courseList;

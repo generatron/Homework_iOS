@@ -48,6 +48,7 @@
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="InW-2n-deM" secondAttribute="bottom" constant="10" id="Mf1-fj-vy7"/>
                 <constraint firstAttribute="trailing" secondItem="Ed1-2a-ugV" secondAttribute="trailing" constant="10" id="i7h-Ne-SsU"/>
@@ -62,7 +63,13 @@
                 <outlet property="dateAssignedLabel" destination="Ed1-2a-ugV" id="umM-k8-xgH"/>
                 <outlet property="nameLabel" destination="aWc-sy-Jpk" id="Elf-PB-ZzE"/>
                 <outlet property="typeLabel" destination="nxr-Wp-4h6" id="PSO-j6-goy"/>
+                <outletCollection property="gestureRecognizers" destination="bWV-Vs-rca" appends="YES" id="niM-9n-hRl"/>
             </connections>
         </view>
+        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="bWV-Vs-rca">
+            <connections>
+                <action selector="longPressedCell:" destination="iN0-l3-epB" id="BAU-O0-78e"/>
+            </connections>
+        </pongPressGestureRecognizer>
     </objects>
 </document>

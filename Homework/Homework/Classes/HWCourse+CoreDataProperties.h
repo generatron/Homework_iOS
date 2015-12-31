@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSNumber *period;
+@property (nullable, nonatomic, retain) UIColor *color;
 @property (nullable, nonatomic, retain) NSOrderedSet<HWAssignment *> *assignments;
 @property (nullable, nonatomic, retain) NSOrderedSet<HWAssessment *> *assesments;
 @property (nullable, nonatomic, retain) NSManagedObject *courseList;

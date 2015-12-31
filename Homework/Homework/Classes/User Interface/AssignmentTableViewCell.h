@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "HWCourse.h"
 #import "BEMCheckBox.h"
+#import "Canvas.h"
+
+@class AssignmentTableViewCell;
 
 @protocol AssignmentTableViewCellDelegate <NSObject>
 @required
 - (void)assignmentTableViewCellCompletedValueToggledForAssignment:(HWAssignment *)assignment;
+- (void)assignmentTableViewCellNeedsMenuPopup:(AssignmentTableViewCell *)cell atLocation: (CGPoint)location;
 @end
 
 @interface AssignmentTableViewCell : UITableViewCell <BEMCheckBoxDelegate>

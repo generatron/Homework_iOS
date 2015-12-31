@@ -82,8 +82,7 @@
     if (self.dayOfWeek == 0) self.dayOfWeek = 7;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidLayoutSubviews {
     if (self.dayOfWeek > 5) [self selectTabAtIndex:6]; //weekend
     else [self selectTabAtIndex:self.dayOfWeek];
 }

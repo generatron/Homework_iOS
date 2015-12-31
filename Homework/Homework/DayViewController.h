@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "ZFModalTransitionAnimator.h"
 #import "HWCourse.h"
 #import "AssignmentTableViewCell.h"
+#import "RNGridMenu.h"
+#import "AddDateViewController.h"
 
 typedef NS_ENUM(NSInteger, DayViewControllerType) {
     DayViewControllerTypeAll = 0,
@@ -29,7 +32,7 @@ typedef NS_ENUM(NSInteger, DayViewControllerType) {
 - (void)tabUpdateRequestByDayViewController:(DayViewController *)dayVC;
 @end
 
-@interface DayViewController : UIViewController <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate, AssignmentTableViewCellDelegate>
+@interface DayViewController : UIViewController <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate, AssignmentTableViewCellDelegate, RNGridMenuDelegate, AddDateViewControllerDelegate>
 
 @property id<DayViewControllerDelegate> delegate;
 
