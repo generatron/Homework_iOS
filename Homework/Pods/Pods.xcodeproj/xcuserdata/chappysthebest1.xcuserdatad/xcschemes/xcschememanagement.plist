@@ -9,7 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Canvas.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Homework.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RNGridMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,7 +37,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4ECCAECA3A9B5947CD26B08E47C19161</key>
+		<key>589F55D4624C4417BF134E80B21806AF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>80B0F51155BF94DF3FE25374C349A7DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -37,12 +52,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>972EA3DB364D01177F6FE730E1192A60</key>
+		<key>951BAA5FA8501628A76E1461A7BA9AA9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DA422373D6B630D01465F7547379D275</key>
+		<key>BF03BB21685E179833325DB98F3BEC43</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8FD62BE1D2D50B2F3059DF2C15C4064</key>
 		<dict>
 			<key>primary</key>
 			<true/>
