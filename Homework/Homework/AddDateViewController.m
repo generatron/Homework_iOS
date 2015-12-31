@@ -93,7 +93,7 @@
     XLFormRowDescriptor *dueRow = [XLFormRowDescriptor formRowDescriptorWithTag:@"isDueNextClass" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Due Next Class"];
     [section addFormRow:dueRow];
     // Due Date
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"dueDate" rowType:XLFormRowDescriptorTypeDateInline title:@"Due Date"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"dateDue" rowType:XLFormRowDescriptorTypeDateInline title:@"Due Date"];
     row.value = [NSDate dateWithTimeIntervalSinceNow:60*60*24*2];
     row.hidden = [NSString stringWithFormat:@"$%@ == YES",dueRow];
     [row.cellConfigAtConfigure setObject:[NSDate dateWithTimeIntervalSinceNow:0] forKey:@"minimumDate"];
@@ -120,14 +120,16 @@
                 [result setObject:(row.value ?: [NSNull null]) forKey:row.tag];
         }
     }
+    bool isAssignedToday = ![result[@"isAssignedToday"] isKindOfClass:[NSNull class]];
+    bool isDueNextClass = ![result[@"isDueNextClass"] isKindOfClass:[NSNull class]];
     if (self.dateType == 1) {
         HWAssignment *assignment = [NSEntityDescription insertNewObjectForEntityForName:@"HWAssignment" inManagedObjectContext:self.context];
         if ([result[@"name"] isKindOfClass:[NSNull class]]) assignment.name = @"Untitled";
         else assignment.name = result[@"name"];
         assignment.course = ((XLFormOptionsObject *)result[@"course"]).formValue;
         assignment.type = ((XLFormOptionsObject *)result[@"type"]).formValue;
-        assignment.dateAssigned = result[@"isAssignedToday"] ? [NSDate date] : result[@"dateAssigned"];
-        assignment.dateDue = result[@"isDueNextClass"] ? [NSDate dateWithTimeIntervalSinceNow:60*60*24*2] : result[@"dateDue"];
+        assignment.dateAssigned = isAssignedToday ? [self normalizedDateForDate:[NSDate date]] : result[@"dateAssigned"];
+        assignment.dateDue = isDueNextClass ? [self normalizedDateForDate:[NSDate dateWithTimeIntervalSinceNow:60*60*24*2]] : result[@"dateDue"];
         assignment.isCompleted = [NSNumber numberWithBool:NO];
         [self.delegate addDateViewControllerWillDismissWithResultAssignment:assignment];
     }
@@ -137,13 +139,20 @@
         else assessment.name = result[@"name"];
         assessment.course = ((XLFormOptionsObject *)result[@"course"]).formValue;
         assessment.type = ((XLFormOptionsObject *)result[@"type"]).formValue;
-        assessment.dateAssigned = result[@"isAssignedToday"] ? [NSDate date] : result[@"dateAssigned"];
-        assessment.dateDue = result[@"isDueNextClass"] ? [NSDate dateWithTimeIntervalSinceNow:60*60*24*2] : result[@"dateDue"];
+        assessment.dateAssigned = isAssignedToday ? [self normalizedDateForDate:[NSDate date]] : result[@"dateAssigned"];
+        assessment.dateDue = isDueNextClass ? [self normalizedDateForDate:[NSDate dateWithTimeIntervalSinceNow:60*60*24*2]] : result[@"dateDue"];
         [self.delegate addDateViewControllerWillDismissWithResultAssessment:assessment];
     }
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+
+- (NSDate *)normalizedDateForDate: (NSDate *)date {
+    NSCalendar *calendar = NSCalendar.currentCalendar;
+    NSCalendarUnit preservedComponents = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
+    NSDateComponents *components = [calendar components:preservedComponents fromDate:date];
+    return [calendar dateFromComponents:components];
 }
 
 /*

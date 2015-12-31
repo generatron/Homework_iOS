@@ -38,17 +38,22 @@
     self.courseLabel.text = assignment.course.name;
     NSArray *types = @[@"Homework", @"Project", @"Other"];
     self.typeLabel.text = types[assignment.type.intValue];
-    self.dateAssignedLabel.text = [self calculateTimeAgoWithDate:assignment.dateAssigned];
-    self.dateAssignedLabel.text = [self calculateTimeAgoWithDate:assignment.dateDue];
+    self.dateAssignedLabel.text = [self calculateTimeAgoWithDate:assignment.dateAssigned type:@"assigned"];
+    self.dateAssignedLabel.text = [self calculateTimeAgoWithDate:assignment.dateDue type:@"due"];
 }
 
-- (NSString *)calculateTimeAgoWithDate:(NSDate *)date {
+- (NSString *)calculateTimeAgoWithDate:(NSDate *)date type:(NSString *)type {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components;
-    if ([date compare:[NSDate date]] == NSOrderedAscending)
+    NSDate *normalDate = [self normalizedDateForDate:[NSDate date]];
+    if ([date compare:normalDate] == NSOrderedAscending)
         components = [calendar components:(NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear|NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:date toDate:[NSDate date] options:0];
-    else components = [calendar components:(NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear|NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:[NSDate date] toDate:date options:0];
+    else components = [calendar components:(NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear|NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:normalDate toDate:date options:0];
     NSString *time;
+    if(components.year != 0) {
+        if(components.year == 1) time = [NSString stringWithFormat:@"%ld year",(long)components.year];
+        else time = [NSString stringWithFormat:@"%ld years",(long)components.year];
+    }
     if(components.month != 0) {
         if(components.month == 1) time = [NSString stringWithFormat:@"%ld month",(long)components.month];
         else time = [NSString stringWithFormat:@"%ld months",(long)components.month];
@@ -57,16 +62,21 @@
         if(components.day == 1) time = [NSString stringWithFormat:@"%ld day",(long)components.day];
         else time = [NSString stringWithFormat:@"%ld days",(long)components.day];
     }
-    else if(components.hour != 0) {
-        if(components.hour == 1) time = [NSString stringWithFormat:@"%ld hour",(long)components.hour];
-        else time = [NSString stringWithFormat:@"%ld hours",(long)components.hour];
+    else time = @"today";
+    
+    if ([type isEqualToString:@"due"]) {
+        if ([date compare:normalDate] == NSOrderedAscending) return [NSString stringWithFormat:@"Due %@ ago",time];
+        return [NSString stringWithFormat:@"Due in %@",time];
     }
-    else if(components.minute != 0) {
-        if(components.minute == 1) time = [NSString stringWithFormat:@"%ld min",(long)components.minute];
-        else time = [NSString stringWithFormat:@"%ld mins",(long)components.minute];
-    }
-    if ([date compare:[NSDate date]] == NSOrderedAscending) return [NSString stringWithFormat:@"Assigned %@ ago",time];
-    return [NSString stringWithFormat:@"Due in %@",time];
+    if ([date compare:normalDate] == NSOrderedAscending) return [NSString stringWithFormat:@"Assigned %@ ago",time];
+    return [NSString stringWithFormat:@"Assigned in %@",time];
+}
+
+- (NSDate *)normalizedDateForDate: (NSDate *)date {
+    NSCalendar *calendar = NSCalendar.currentCalendar;
+    NSCalendarUnit preservedComponents = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
+    NSDateComponents *components = [calendar components:preservedComponents fromDate:date];
+    return [calendar dateFromComponents:components];
 }
 
 - (void)didTapCheckBox:(BEMCheckBox *)checkBox {
