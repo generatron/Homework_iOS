@@ -10,6 +10,8 @@
 		DBF39B26A56C3434D4FB9E00 /* libPods-Homework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E6047CD8D245421055E6DC6 /* libPods-Homework.a */; };
 		F9163A441C2F22490071EFF6 /* AddCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9163A431C2F22490071EFF6 /* AddCourseViewController.m */; };
 		F9163A531C2FA7890071EFF6 /* UIColor+HWColors.m in Sources */ = {isa = PBXBuildFile; fileRef = F9163A521C2FA7890071EFF6 /* UIColor+HWColors.m */; };
+		F92D4F4F1C36EFA900FCE863 /* BasicDateFormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F92D4F4E1C36EFA900FCE863 /* BasicDateFormCell.m */; };
+		F92D4F531C372DFB00FCE863 /* BasicDateFormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92D4F521C372DFB00FCE863 /* BasicDateFormCell.xib */; };
 		F97D82781C2C909D004C6212 /* DayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97D82771C2C909D004C6212 /* DayViewController.m */; };
 		F98573531C3098CA00E8FE87 /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F98573521C3098CA00E8FE87 /* KxMenu.m */; };
 		F98573571C30B2A900E8FE87 /* AddDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98573561C30B2A900E8FE87 /* AddDateViewController.m */; };
@@ -63,6 +65,9 @@
 		F9163A511C2FA7890071EFF6 /* UIColor+HWColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HWColors.h"; path = "Classes/User Interface/UIColor+HWColors.h"; sourceTree = "<group>"; };
 		F9163A521C2FA7890071EFF6 /* UIColor+HWColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HWColors.m"; path = "Classes/User Interface/UIColor+HWColors.m"; sourceTree = "<group>"; };
 		F9163A551C2FA8330071EFF6 /* HomeworkPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeworkPrefixHeader.pch; sourceTree = "<group>"; };
+		F92D4F4D1C36EFA900FCE863 /* BasicDateFormCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicDateFormCell.h; sourceTree = "<group>"; };
+		F92D4F4E1C36EFA900FCE863 /* BasicDateFormCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicDateFormCell.m; sourceTree = "<group>"; };
+		F92D4F521C372DFB00FCE863 /* BasicDateFormCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicDateFormCell.xib; sourceTree = "<group>"; };
 		F97D82761C2C909D004C6212 /* DayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayViewController.h; sourceTree = "<group>"; };
 		F97D82771C2C909D004C6212 /* DayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayViewController.m; sourceTree = "<group>"; };
 		F98573511C3098CA00E8FE87 /* KxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxMenu.h; path = "Third Party/KxMenu/KxMenu.h"; sourceTree = "<group>"; };
@@ -155,6 +160,9 @@
 				F985735D1C30E0A700E8FE87 /* AssignmentTableViewCell.h */,
 				F985735E1C30E0A700E8FE87 /* AssignmentTableViewCell.m */,
 				F98573601C30E0CB00E8FE87 /* AssignmentTableViewCell.xib */,
+				F92D4F4D1C36EFA900FCE863 /* BasicDateFormCell.h */,
+				F92D4F4E1C36EFA900FCE863 /* BasicDateFormCell.m */,
+				F92D4F521C372DFB00FCE863 /* BasicDateFormCell.xib */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -447,6 +455,7 @@
 				F98573611C30E0CB00E8FE87 /* AssignmentTableViewCell.xib in Resources */,
 				F9FFE9E61C276C0A004A5CE3 /* LaunchScreen.storyboard in Resources */,
 				F9FFE9E31C276C0A004A5CE3 /* Assets.xcassets in Resources */,
+				F92D4F531C372DFB00FCE863 /* BasicDateFormCell.xib in Resources */,
 				F9FFE9DE1C276C0A004A5CE3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,6 +531,7 @@
 			files = (
 				F9FFEA191C27718D004A5CE3 /* HWAssignment+CoreDataProperties.m in Sources */,
 				F9FFEA201C27718D004A5CE3 /* HWCourseList.m in Sources */,
+				F92D4F4F1C36EFA900FCE863 /* BasicDateFormCell.m in Sources */,
 				F9FFEA1D1C27718D004A5CE3 /* HWCourse+CoreDataProperties.m in Sources */,
 				F9FFEA1F1C27718D004A5CE3 /* HWCourseList+CoreDataProperties.m in Sources */,
 				F9FFE9DB1C276C0A004A5CE3 /* MainViewController.m in Sources */,

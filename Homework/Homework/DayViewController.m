@@ -124,13 +124,31 @@
 }
 
 - (void)moreButtonToggle:(UIButton *)sender {
-    NSLog(@"More");
+    if (true) {
+        self.fetchedResultsController.fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[
+            [NSPredicate predicateWithFormat:@"dateDue >= %@ ", [NSDate dateWithTimeIntervalSince1970:0]],
+            [NSPredicate predicateWithFormat:@"dateDue < %@", [NSDate dateWithTimeIntervalSinceNow:60*60*24*365]]]];
+    }
+    else {
+        self.fetchedResultsController.fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[
+            [NSPredicate predicateWithFormat:@"dateDue >= %@ ", [NSDate dateWithTimeIntervalSince1970:0]],
+            [NSPredicate predicateWithFormat:@"dateDue < %@", [NSDate dateWithTimeIntervalSinceNow:60*60*24*365]],
+            [NSPredicate predicateWithFormat:@"isCompleted == NO"]]];
+    }
+    NSError *error;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        // Update to handle the error appropriately.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
+    [self.tableView reloadData];
 }
 
 - (void)save {
     NSError *error;
     [self.context save:&error];
     if (error) NSLog(@"%@",error);
+    [self.delegate tabUpdateRequestByDayViewController:self];
     //[self.tableView reloadData];
 }
 
@@ -170,7 +188,6 @@
 
 - (void)assignmentTableViewCellCompletedValueToggledForAssignment:(HWAssignment *)assignment {
     assignment.isCompleted = [NSNumber numberWithBool:!assignment.isCompleted.boolValue];
-    [self.delegate tabUpdateRequestByDayViewController:self];
     [self save];
 }
 

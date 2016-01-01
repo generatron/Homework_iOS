@@ -54,7 +54,7 @@
         courseColor.textColor = [UIColor whiteColor];
         courseColor.textAlignment = NSTextAlignmentCenter;
         courseColor.backgroundColor = course.color;
-        courseColor.font = [UIFont systemFontOfSize:40 weight:UIFontWeightLight];
+        courseColor.font = [UIFont systemFontOfSize:35 weight:UIFontWeightLight];
         courseColor.layer.cornerRadius = 20;
         courseColor.clipsToBounds = YES;
         [cell addSubview:courseColor];

@@ -23,6 +23,8 @@
 @property NSArray *titleArray;
 @property int dayOfWeek;
 
+@property int currentTabIndex;
+
 @end
 
 @implementation MainViewController
@@ -83,8 +85,14 @@
 }
 
 - (void)viewDidLayoutSubviews {
-    if (self.dayOfWeek > 5) [self selectTabAtIndex:6]; //weekend
-    else [self selectTabAtIndex:self.dayOfWeek];
+    if (self.dayOfWeek > 5) {
+        [self selectTabAtIndex:6]; //weekend
+        self.currentTabIndex = 6;
+    }
+    else {
+        [self selectTabAtIndex:self.dayOfWeek];
+        self.currentTabIndex = self.dayOfWeek;
+    }
 }
 
 - (IBAction)settingsButtonPressed:(id)sender {
@@ -190,30 +198,41 @@
         if (localDayOfWeek < self.dayOfWeek) label.textColor = [UIColor lightGrayColor];
     }
     [view addSubview:label];
-    [self updateSublabelTextAtIndex:index];
+    [self updateSublabelAtIndex:index];
     [view addSubview:self.tabSublabels[index]];
     return view;
 }
 
-- (void)updateSublabelTextAtIndex:(NSUInteger)index{
-    self.tabSublabels[index].text = [self textForTabAtIndex:index];
+- (void)updateSublabels {
+    for (int i = 0; i < 8; i++) [self updateSublabelAtIndex:i];
 }
 
-- (NSString *)textForTabAtIndex:(NSUInteger)index{
+- (void)updateSublabelAtIndex:(NSUInteger)index{
+    self.tabSublabels[index] = [self labelForTabAtIndex:index];
+}
+
+- (UILabel *)labelForTabAtIndex:(NSUInteger)index{
+    UILabel *label = self.tabSublabels[index];
     if (index == 0) //all
-        return [NSString stringWithFormat:@"%d Incomplete",(int)[self arrayOfAssignmentsBetweenBeginDate:[NSDate dateWithTimeIntervalSince1970:0]
-                                                                                              andEndDate:[NSDate dateWithTimeIntervalSinceNow:60*60*24*365]
-                                                                                         predicateString:@"isCompleted == NO"].count];
+        label.text = [NSString stringWithFormat:@"%d Incomplete",(int)[self arrayOfAssignmentsBetweenBeginDate:[NSDate dateWithTimeIntervalSince1970:0]
+                                                                                                    andEndDate:[NSDate dateWithTimeIntervalSinceNow:60*60*24*365]
+                                                                                               predicateString:@"isCompleted == NO"].count];
     else {
-        int timeInterval = 60*60*24*((int)index-self.dayOfWeek);
+        int timeInterval = 60*60*24*((int)index-self.dayOfWeek+1);
         NSCalendar *calendar = NSCalendar.currentCalendar;
         NSCalendarUnit preservedComponents = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
         NSDateComponents *components = [calendar components:preservedComponents fromDate:[NSDate dateWithTimeIntervalSinceNow:timeInterval]];
         NSDate *normalizedDate = [calendar dateFromComponents:components];
         int total = (int)[self arrayOfAssignmentsBetweenBeginDate:normalizedDate andEndDate:[normalizedDate dateByAddingTimeInterval:60*60*24] predicateString:nil].count;
         int complete = (int)[self arrayOfAssignmentsBetweenBeginDate:normalizedDate andEndDate:[normalizedDate dateByAddingTimeInterval:60*60*24] predicateString:@"isCompleted == YES"].count;
-        return [NSString stringWithFormat:@"%d/%d Complete",complete,total];
+        if (index<self.dayOfWeek) {
+            label.text  = [NSString stringWithFormat:@"%d Late",total-complete];
+            if (total-complete != 0) label.textColor = [UIColor redColor];
+            else label.textColor = [UIColor lightGrayColor];
+        }
+        else label.text = [NSString stringWithFormat:@"%d/%d Complete",complete,total];
     }
+    return label;
 }
 
 - (NSArray *)arrayOfAssignmentsBetweenBeginDate:(NSDate *)d1 andEndDate:(NSDate *)d2 predicateString:(NSString *)predicateString {
@@ -242,6 +261,7 @@
 
 #pragma mark - ViewPagerDelegate
 - (void)viewPager:(ViewPagerController *)viewPager didChangeTabToIndex:(NSUInteger)index {
+    self.currentTabIndex = (int)index;
     NSArray *labelText = @[@"All Dates", @"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"This Weekend", @"Next Week"];
     if (index == 0) self.titleArray = @[@"", labelText[index], labelText[index+1]];
     else if (index == 7) self.titleArray = @[labelText[index-1], labelText[index], @""];
@@ -296,6 +316,7 @@
     [self.context save:&error];
     if (error) NSLog(@"%@",error);
     [self reloadData];
+    [self selectTabAtIndex:self.currentTabIndex];
 }
 
 #pragma mark - addDateVC delegate
@@ -311,8 +332,7 @@
 #pragma mark - dayVC delegate
 
 - (void)tabUpdateRequestByDayViewController:(DayViewController *)dayVC {
-    [self updateSublabelTextAtIndex:dayVC.type];
-    [self updateSublabelTextAtIndex:0];
+    [self updateSublabels];
 }
 
 @end

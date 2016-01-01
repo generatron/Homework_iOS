@@ -7,6 +7,7 @@
 //
 
 #import "AddDateViewController.h"
+#import "BasicDateFormCell.h"
 
 @interface AddDateViewController ()
 @end
@@ -19,6 +20,10 @@
     else if (self.assesment) self.title = @"Edit Assesment";
     else if (self.dateType == 1) self.title = @"Add Assignment";
     else self.title = @"Add Assessment";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(cancelButtonPressed:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
@@ -32,7 +37,7 @@
     XLFormSectionDescriptor *section;
     XLFormRowDescriptor *row;
     form = [XLFormDescriptor formDescriptor];
-    form.assignFirstResponderOnShow = YES;
+    //form.assignFirstResponderOnShow = YES;
     
     // First section (name, class, type)
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Information"];
@@ -90,13 +95,14 @@
     [form addFormSection:section];
     // Today Bool
     XLFormRowDescriptor *todayRow = [XLFormRowDescriptor formRowDescriptorWithTag:@"isAssignedToday" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Assigned Today"];
+    todayRow.value = [NSNumber numberWithBool:YES];
     [section addFormRow:todayRow];
     // Begin Date
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"dateAssigned" rowType:XLFormRowDescriptorTypeDateInline title:@"Date Assigned"];
-    row.value = [NSDate date];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"dateAssigned" rowType:XLFormRowDescriptorTypeBasicDate title:@"Date Assigned"];
     row.hidden = [NSString stringWithFormat:@"$%@ == YES",todayRow];
-    [row.cellConfigAtConfigure setObject:[NSDate dateWithTimeIntervalSinceNow:-60*60*24*14] forKey:@"minimumDate"];
-    [row.cellConfigAtConfigure setObject:[NSDate dateWithTimeIntervalSinceNow:60*60*24*314] forKey:@"maximumDate"];
+    [row.cellConfigAtConfigure setObject:[NSDate dateWithTimeIntervalSinceNow:-60*60*24*14] forKey:@"startDate"];
+    [row.cellConfigAtConfigure setObject:[NSDate dateWithTimeIntervalSinceNow:60*60*24*314] forKey:@"endDate"];
+    row.value = [self normalizedDateForDate:[NSDate date]];
     if (self.assignment) row.value = self.assignment.dateAssigned;
     if (self.assesment) row.value = self.assesment.dateAssigned;
     [section addFormRow:row];
@@ -104,11 +110,11 @@
     XLFormRowDescriptor *dueRow = [XLFormRowDescriptor formRowDescriptorWithTag:@"isDueNextClass" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Due Next Class"];
     [section addFormRow:dueRow];
     // Due Date
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"dateDue" rowType:XLFormRowDescriptorTypeDateInline title:@"Due Date"];
-    row.value = [NSDate dateWithTimeIntervalSinceNow:60*60*24*2];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"dateDue" rowType:XLFormRowDescriptorTypeBasicDate title:@"Due Date"];
     row.hidden = [NSString stringWithFormat:@"$%@ == YES",dueRow];
-    [row.cellConfigAtConfigure setObject:[NSDate dateWithTimeIntervalSinceNow:0] forKey:@"minimumDate"];
-    [row.cellConfigAtConfigure setObject:[NSDate dateWithTimeIntervalSinceNow:60*60*24*315] forKey:@"maximumDate"];
+    [row.cellConfigAtConfigure setObject:[NSDate dateWithTimeIntervalSinceNow:0] forKey:@"startDate"];
+    [row.cellConfigAtConfigure setObject:[NSDate dateWithTimeIntervalSinceNow:60*60*24*315] forKey:@"endDate"];
+    row.value = [self normalizedDateForDate:[NSDate dateWithTimeIntervalSinceNow:60*60*24*2]];
     if (self.assignment) row.value = self.assignment.dateDue;
     if (self.assesment) row.value = self.assesment.dateDue;
     [section addFormRow:row];
@@ -162,6 +168,12 @@
         assessment.dateDue = isDueNextClass ? [self normalizedDateForDate:[NSDate dateWithTimeIntervalSinceNow:60*60*24*2]] : result[@"dateDue"];
         [self.delegate addDateViewControllerWillDismissWithResultAssessment:assessment];
     }
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+- (void)cancelButtonPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
