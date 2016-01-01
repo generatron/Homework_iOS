@@ -134,12 +134,18 @@
     }
     bool isAssignedToday = ![result[@"isAssignedToday"] isKindOfClass:[NSNull class]];
     bool isDueNextClass = ![result[@"isDueNextClass"] isKindOfClass:[NSNull class]];
+    NSNumber *type;
+    if ([result[@"type"] isKindOfClass:[NSNull class]]) {
+        if (self.dateType == 1) type = @2;
+        else type = @3;
+    }
+    else type = ((XLFormOptionsObject *)result[@"type"]).formValue;
     if (self.dateType == 1) {
         HWAssignment *assignment = [NSEntityDescription insertNewObjectForEntityForName:@"HWAssignment" inManagedObjectContext:self.context];
         if ([result[@"name"] isKindOfClass:[NSNull class]]) assignment.name = @"Untitled";
         else assignment.name = result[@"name"];
         assignment.course = ((XLFormOptionsObject *)result[@"course"]).formValue;
-        assignment.type = ((XLFormOptionsObject *)result[@"type"]).formValue;
+        assignment.type = type;
         assignment.dateAssigned = isAssignedToday ? [self normalizedDateForDate:[NSDate date]] : result[@"dateAssigned"];
         assignment.dateDue = isDueNextClass ? [self normalizedDateForDate:[NSDate dateWithTimeIntervalSinceNow:60*60*24*2]] : result[@"dateDue"];
         assignment.isCompleted = [NSNumber numberWithBool:NO];
@@ -151,7 +157,7 @@
         if ([result[@"name"] isKindOfClass:[NSNull class]]) assessment.name = @"Untitled";
         else assessment.name = result[@"name"];
         assessment.course = ((XLFormOptionsObject *)result[@"course"]).formValue;
-        assessment.type = ((XLFormOptionsObject *)result[@"type"]).formValue;
+        assessment.type = type;
         assessment.dateAssigned = isAssignedToday ? [self normalizedDateForDate:[NSDate date]] : result[@"dateAssigned"];
         assessment.dateDue = isDueNextClass ? [self normalizedDateForDate:[NSDate dateWithTimeIntervalSinceNow:60*60*24*2]] : result[@"dateDue"];
         [self.delegate addDateViewControllerWillDismissWithResultAssessment:assessment];

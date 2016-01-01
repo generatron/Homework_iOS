@@ -31,7 +31,7 @@
 - (void)loadAssignment: (HWAssignment *) assignment {
     self.checkbox.frame = self.colorLabel.frame;
     self.checkbox.on = assignment.isCompleted.boolValue;
-    //self.colorLabel.backgroundColor = ;
+    self.colorLabel.backgroundColor = assignment.course.color;
     self.checkbox.onFillColor = [UIColor HWMediumColor];
     self.checkbox.onTintColor = [UIColor clearColor];
     self.assignment = assignment;
@@ -66,12 +66,13 @@
     }
     
     if ([type isEqualToString:@"due"]) {
-        if (components.day == 0) return @"Due today";
         if ([date compare:normalDate] == NSOrderedAscending) return [NSString stringWithFormat:@"Due %@ ago",time];
+        if (components.day == 0 && components.month == 0 && components.year == 0) return @"Due today";
+        if (components.day == 1 && components.month == 0 && components.year == 0) return @"Due tomorrow";
         return [NSString stringWithFormat:@"Due in %@",time];
     }
-    if (components.day == 0) return @"Assigned today";
     if ([date compare:normalDate] == NSOrderedAscending) return [NSString stringWithFormat:@"Assigned %@ ago",time];
+    if (components.day == 0 && components.month == 0 && components.year == 0) return @"Assigned today";
     return [NSString stringWithFormat:@"Assigned in %@",time];
 }
 

@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    int timeInterval = 60*60*24*((int)self.type-self.currentDayOfTheWeek);
+    int timeInterval = 60*60*24*((int)self.type-self.currentDayOfTheWeek+1); //"+1" gives user a day to finish date
     NSCalendar *calendar = NSCalendar.currentCalendar;
     NSCalendarUnit preservedComponents = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
     NSDateComponents *components = [calendar components:preservedComponents fromDate:[NSDate dateWithTimeIntervalSinceNow:timeInterval]];
@@ -89,6 +89,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id sectionInfo = [[_fetchedResultsController sections] objectAtIndex:section];
     long count = [sectionInfo numberOfObjects];
+    if (self.type == DayViewControllerTypeAll) return count+1;
     if (count == 0) {
         UILabel *overlayView = [[UILabel alloc] initWithFrame:self.tableView.frame];
         overlayView.backgroundColor = [UIColor whiteColor];
@@ -98,19 +99,20 @@
         overlayView.text = @"No Dates";
         [self.view addSubview:overlayView];
     }
-    if (self.type == DayViewControllerTypeAll) return [sectionInfo numberOfObjects]+1;
-    return [sectionInfo numberOfObjects];
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AssignmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Identifier"];
     if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"AssignmentTableViewCell" owner:self options:nil].firstObject;
     if (indexPath.row == [[[_fetchedResultsController sections] objectAtIndex:0] numberOfObjects]) {
+        UITableViewCell *altCell = [[UITableViewCell alloc] init];
         UIButton *more = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-100, 15, 200, 50)];
         [more setTitle:@"Show Completed Dates" forState:UIControlStateNormal];
         [more setTitleColor:[UIColor HWDarkColor] forState:UIControlStateNormal];
         [more addTarget:self action:@selector(moreButtonToggle:) forControlEvents:UIControlEventTouchUpInside];
-        [cell addSubview:more];
+        [altCell addSubview:more];
+        return altCell;
     }
     else {
         HWAssignment *assignment = [self.fetchedResultsController objectAtIndexPath:indexPath];
