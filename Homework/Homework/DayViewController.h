@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "ZFModalTransitionAnimator.h"
 #import "HWCourse.h"
-#import "AssignmentTableViewCell.h"
+#import "DateTableViewCell.h"
 #import "RNGridMenu.h"
 #import "AddDateViewController.h"
 
@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, DayViewControllerType) {
 - (void)tabUpdateRequestByDayViewController:(DayViewController *)dayVC;
 @end
 
-@interface DayViewController : UIViewController <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate, AssignmentTableViewCellDelegate, RNGridMenuDelegate, AddDateViewControllerDelegate>
+@interface DayViewController : UIViewController <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate, DateTableViewCellDelegate, RNGridMenuDelegate, AddDateViewControllerDelegate>
 
 @property id<DayViewControllerDelegate> delegate;
 
@@ -41,6 +41,7 @@ typedef NS_ENUM(NSInteger, DayViewControllerType) {
 @property (nonatomic) DayViewControllerType type;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) NSFetchedResultsController *assignmentFetchedResultsController;
+@property (nonatomic, retain) NSFetchedResultsController *assessmentFetchedResultsController;
 
 @end

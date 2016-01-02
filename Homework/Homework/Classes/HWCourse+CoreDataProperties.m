@@ -17,7 +17,7 @@
 @dynamic period;
 @dynamic color;
 @dynamic assignments;
-@dynamic assesments;
+@dynamic assessments;
 @dynamic courseList;
 
 @end

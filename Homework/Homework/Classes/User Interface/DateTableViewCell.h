@@ -1,5 +1,5 @@
 //
-//  AssignmentTableViewCell.h
+//  DateTableViewCell.h
 //  Homework
 //
 //  Created by Chappy Asel on 12/27/15.
@@ -11,17 +11,17 @@
 #import "BEMCheckBox.h"
 #import "Canvas.h"
 
-@class AssignmentTableViewCell;
+@class DateTableViewCell;
 
-@protocol AssignmentTableViewCellDelegate <NSObject>
+@protocol DateTableViewCellDelegate <NSObject>
 @required
-- (void)assignmentTableViewCellCompletedValueToggledForAssignment:(HWAssignment *)assignment;
-- (void)assignmentTableViewCellNeedsMenuPopup:(AssignmentTableViewCell *)cell atLocation: (CGPoint)location;
+- (void)dateTableViewCellCompletedValueToggledForAssignment:(HWAssignment *)assignment;
+- (void)dateTableViewCellNeedsMenuPopup:(DateTableViewCell *)cell atLocation: (CGPoint)location;
 @end
 
-@interface AssignmentTableViewCell : UITableViewCell <BEMCheckBoxDelegate>
+@interface DateTableViewCell : UITableViewCell <BEMCheckBoxDelegate>
 
-@property id <AssignmentTableViewCellDelegate> delegate;
+@property id <DateTableViewCellDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UILabel *colorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -31,7 +31,8 @@
 @property (strong, nonatomic) BEMCheckBox *checkbox;
 
 @property HWAssignment *assignment;
+@property HWAssessment *assessment;
 
-- (void)loadAssignment: (HWAssignment *) assignment;
+- (void)loadDate: (id)date;
 
 @end

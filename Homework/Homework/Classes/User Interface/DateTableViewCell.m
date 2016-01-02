@@ -1,14 +1,14 @@
 //
-//  AssignmentTableViewCell.m
+//  DateTableViewCell.m
 //  Homework
 //
 //  Created by Chappy Asel on 12/27/15.
 //  Copyright © 2015 CD. All rights reserved.
 //
 
-#import "AssignmentTableViewCell.h"
+#import "DateTableViewCell.h"
 
-@implementation AssignmentTableViewCell {
+@implementation DateTableViewCell {
     bool longPressIsValid;
 }
 
@@ -28,20 +28,42 @@
     [self addSubview:self.checkbox];
 }
 
-- (void)loadAssignment: (HWAssignment *) assignment {
-    self.checkbox.frame = self.colorLabel.frame;
-    self.checkbox.on = assignment.isCompleted.boolValue;
-    self.colorLabel.backgroundColor = assignment.course.color;
-    self.checkbox.onFillColor = [UIColor HWMediumColor];
-    self.checkbox.onTintColor = [UIColor clearColor];
-    self.assignment = assignment;
-    self.colorLabel.text = [assignment.course.name substringToIndex:1];
-    self.nameLabel.text = assignment.name;
-    self.courseLabel.text = assignment.course.name;
-    NSArray *types = @[@"Homework", @"Project", @"Other"];
-    self.typeLabel.text = types[assignment.type.intValue];
-    self.dateAssignedLabel.text = [self calculateTimeAgoWithDate:assignment.dateAssigned type:@"assigned"];
-    self.dateAssignedLabel.text = [self calculateTimeAgoWithDate:assignment.dateDue type:@"due"];
+- (void)loadDate:(id)date {
+    if ([date isKindOfClass:[HWAssignment class]]) {
+        HWAssignment *assignment = date;
+        self.checkbox.on = assignment.isCompleted.boolValue;
+        self.colorLabel.backgroundColor = assignment.course.color;
+        self.colorLabel.text = [assignment.course.name substringToIndex:1];
+        self.nameLabel.text = assignment.name;
+        self.courseLabel.text = assignment.course.name;
+        NSArray *types = @[@"Homework", @"Project", @"Other"];
+        self.typeLabel.text = types[assignment.type.intValue];
+        self.dateAssignedLabel.text = [self calculateTimeAgoWithDate:assignment.dateAssigned type:@"assigned"];
+        self.dateAssignedLabel.text = [self calculateTimeAgoWithDate:assignment.dateDue type:@"due"];
+        self.assignment = assignment;
+        
+        self.checkbox.frame = self.colorLabel.frame;
+        self.checkbox.onFillColor = [UIColor HWMediumColor];
+        self.checkbox.onTintColor = [UIColor clearColor];
+    }
+    else {
+        HWAssessment *assessment = date;
+        self.colorLabel.backgroundColor = assessment.course.color;
+        self.colorLabel.text = [assessment.course.name substringToIndex:1];
+        self.nameLabel.text = assessment.name;
+        self.courseLabel.text = assessment.course.name;
+        NSArray *types = @[@"Test", @"Quiz", @"Presentation", @"Other"];
+        self.typeLabel.text = types[assessment.type.intValue];
+        self.dateAssignedLabel.text = [self calculateTimeAgoWithDate:assessment.dateAssigned type:@"assigned"];
+        self.dateAssignedLabel.text = [self calculateTimeAgoWithDate:assessment.dateDue type:@"due"];
+        self.assessment = assessment;
+        
+        self.checkbox = nil;
+    }
+    if (self.colorLabel.backgroundColor == nil) {
+        self.colorLabel.backgroundColor = [UIColor colorWithRed:120/255.0 green:144/255.0 blue:156/255.0 alpha:1];
+        self.colorLabel.text = @"~";
+    }
 }
 
 - (NSString *)calculateTimeAgoWithDate:(NSDate *)date type:(NSString *)type {
@@ -84,13 +106,13 @@
 }
 
 - (void)didTapCheckBox:(BEMCheckBox *)checkBox {
-    [self.delegate assignmentTableViewCellCompletedValueToggledForAssignment:self.assignment];
+    [self.delegate dateTableViewCellCompletedValueToggledForAssignment:self.assignment];
 }
 
 - (IBAction)longPressedCell:(UILongPressGestureRecognizer *)sender {
     if (longPressIsValid) {
         CGPoint location = [sender locationInView:self.superview];
-        [self.delegate assignmentTableViewCellNeedsMenuPopup:self atLocation:location];
+        [self.delegate dateTableViewCellNeedsMenuPopup:self atLocation:location];
         longPressIsValid = NO;
     }
 }

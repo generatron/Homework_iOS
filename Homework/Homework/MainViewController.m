@@ -23,7 +23,7 @@
 @property NSArray *titleArray;
 @property int dayOfWeek;
 
-@property int currentTabIndex;
+@property NSUInteger currentTabIndex;
 
 @end
 
@@ -94,7 +94,7 @@
         self.currentTabIndex = self.dayOfWeek;
     }
 }
-
+ 
 - (IBAction)settingsButtonPressed:(id)sender {
     CourseListViewController *rootVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cl"];
     rootVC.courseList = self.courseList;
@@ -123,7 +123,7 @@
     [KxMenu showMenuInView:self.navigationController.view
                   fromRect:frame
                  menuItems:@[[KxMenuItem menuItem:@"Add Assignment" image:nil target:self action:@selector(addAssignment:)],
-                             [KxMenuItem menuItem:@"Add Assessment" image:nil target:self action:@selector(addAssesment:)]]];
+                             [KxMenuItem menuItem:@"Add Assessment" image:nil target:self action:@selector(addAssessment:)]]];
 }
 
 - (void)addAssignment:(UIButton *)sender {
@@ -151,7 +151,7 @@
     [self presentViewController:modalVC animated:YES completion:nil];
 }
 
-- (void)addAssesment:(UIButton *)sender {
+- (void)addAssessment:(UIButton *)sender {
     AddDateViewController *rootVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ad"];
     rootVC.dateType = 2;
     rootVC.courseList = self.courseList;
@@ -218,11 +218,15 @@
                                                                                                     andEndDate:[NSDate dateWithTimeIntervalSinceNow:60*60*24*365]
                                                                                                predicateString:@"isCompleted == NO"].count];
     else {
-        int timeInterval = 60*60*24*((int)index-self.dayOfWeek+1);
+        int timeInterval = 60*60*24*((int)index-self.dayOfWeek+1); //need to adjust this, too
+        if (index == DayViewControllerTypeMore) timeInterval += 60*60*24;
         NSCalendar *calendar = NSCalendar.currentCalendar;
         NSCalendarUnit preservedComponents = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
         NSDateComponents *components = [calendar components:preservedComponents fromDate:[NSDate dateWithTimeIntervalSinceNow:timeInterval]];
         NSDate *normalizedDate = [calendar dateFromComponents:components];
+        int interval = 60*60*24;
+        if (index == DayViewControllerTypeMore) interval = 60*60*24*365;
+        else if (index == DayViewControllerTypeWeekend) interval = 60*60*24*2;
         int total = (int)[self arrayOfAssignmentsBetweenBeginDate:normalizedDate andEndDate:[normalizedDate dateByAddingTimeInterval:60*60*24] predicateString:nil].count;
         int complete = (int)[self arrayOfAssignmentsBetweenBeginDate:normalizedDate andEndDate:[normalizedDate dateByAddingTimeInterval:60*60*24] predicateString:@"isCompleted == YES"].count;
         if (index<self.dayOfWeek) {
@@ -261,7 +265,7 @@
 
 #pragma mark - ViewPagerDelegate
 - (void)viewPager:(ViewPagerController *)viewPager didChangeTabToIndex:(NSUInteger)index {
-    self.currentTabIndex = (int)index;
+    self.currentTabIndex = index;
     NSArray *labelText = @[@"All Dates", @"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"This Weekend", @"Next Week"];
     if (index == 0) self.titleArray = @[@"", labelText[index], labelText[index+1]];
     else if (index == 7) self.titleArray = @[labelText[index-1], labelText[index], @""];
@@ -315,8 +319,8 @@
     NSError *error;
     [self.context save:&error];
     if (error) NSLog(@"%@",error);
-    [self reloadData];
-    [self selectTabAtIndex:self.currentTabIndex];
+    [self reloadInputViews];
+    [self updateSublabels];
 }
 
 #pragma mark - addDateVC delegate

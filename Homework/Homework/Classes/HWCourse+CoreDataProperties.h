@@ -19,23 +19,23 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *period;
 @property (nullable, nonatomic, retain) UIColor *color;
 @property (nullable, nonatomic, retain) NSOrderedSet<HWAssignment *> *assignments;
-@property (nullable, nonatomic, retain) NSOrderedSet<HWAssessment *> *assesments;
+@property (nullable, nonatomic, retain) NSOrderedSet<HWAssessment *> *assessments;
 @property (nullable, nonatomic, retain) NSManagedObject *courseList;
 
 @end
 
 @interface HWCourse (CoreDataGeneratedAccessors)
 
-- (void)insertObject:(HWAssessment *)value inAssesmentsAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromAssesmentsAtIndex:(NSUInteger)idx;
-- (void)insertAssesments:(NSArray<HWAssessment *> *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removeAssesmentsAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInAssesmentsAtIndex:(NSUInteger)idx withObject:(HWAssessment *)value;
-- (void)replaceAssesmentsAtIndexes:(NSIndexSet *)indexes withAssesments:(NSArray<HWAssessment *> *)values;
-- (void)addAssesmentsObject:(HWAssessment *)value;
-- (void)removeAssesmentsObject:(HWAssessment *)value;
-- (void)addAssesments:(NSOrderedSet<HWAssessment *> *)values;
-- (void)removeAssesments:(NSOrderedSet<HWAssessment *> *)values;
+- (void)insertObject:(HWAssessment *)value inAssessmentsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromAssessmentsAtIndex:(NSUInteger)idx;
+- (void)insertAssessments:(NSArray<HWAssessment *> *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeAssessmentsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInAssessmentsAtIndex:(NSUInteger)idx withObject:(HWAssessment *)value;
+- (void)replaceAssessmentsAtIndexes:(NSIndexSet *)indexes withAssessments:(NSArray<HWAssessment *> *)values;
+- (void)addAssessmentsObject:(HWAssessment *)value;
+- (void)removeAssessmentsObject:(HWAssessment *)value;
+- (void)addAssessments:(NSOrderedSet<HWAssessment *> *)values;
+- (void)removeAssessments:(NSOrderedSet<HWAssessment *> *)values;
 
 - (void)insertObject:(HWAssignment *)value inAssignmentsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromAssignmentsAtIndex:(NSUInteger)idx;

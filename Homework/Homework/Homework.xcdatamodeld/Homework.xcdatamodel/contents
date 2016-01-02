@@ -5,7 +5,7 @@
         <attribute name="dateDue" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HWCourse" inverseName="assesments" inverseEntity="HWCourse" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HWCourse" inverseName="assessments" inverseEntity="HWCourse" syncable="YES"/>
     </entity>
     <entity name="HWAssignment" representedClassName="HWAssignment" syncable="YES">
         <attribute name="dateAssigned" optional="YES" attributeType="Date" syncable="YES"/>
@@ -19,7 +19,7 @@
         <attribute name="color" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="period" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="assesments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HWAssessment" inverseName="course" inverseEntity="HWAssessment" syncable="YES"/>
+        <relationship name="assessments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HWAssessment" inverseName="course" inverseEntity="HWAssessment" syncable="YES"/>
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HWAssignment" inverseName="course" inverseEntity="HWAssignment" syncable="YES"/>
         <relationship name="courseList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HWCourseList" inverseName="courses" inverseEntity="HWCourseList" syncable="YES"/>
     </entity>

@@ -21,7 +21,7 @@
 @property id <AddDateViewControllerDelegate> delegate;
 
 @property HWAssignment *assignment;
-@property HWAssessment *assesment;
+@property HWAssessment *assessment;
 @property int dateType;
 
 @property NSManagedObjectContext *context;

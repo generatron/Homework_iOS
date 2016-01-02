@@ -166,7 +166,7 @@
                                             <action selector="courseNameEditingEnded:" destination="XnB-gL-aNZ" eventType="editingDidEnd" id="vdD-s9-zrp"/>
                                         </connections>
                                     </textField>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="1" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="Gdg-Sj-N51">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="1" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gdg-Sj-N51">
                                         <rect key="frame" x="130" y="69" width="224" height="31"/>
                                         <connections>
                                             <action selector="periodSliderValueChanged:" destination="XnB-gL-aNZ" eventType="valueChanged" id="1bo-kv-B6Y"/>

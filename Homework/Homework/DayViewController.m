@@ -12,7 +12,7 @@
 @interface DayViewController ()
 @property (nonatomic, strong) ZFModalTransitionAnimator *animator;
 @property NSDate *referenceDate;
-@property AssignmentTableViewCell *selectedCell;
+@property DateTableViewCell *selectedCell;
 @end
 
 @implementation DayViewController
@@ -25,21 +25,26 @@
     NSDateComponents *components = [calendar components:preservedComponents fromDate:[NSDate dateWithTimeIntervalSinceNow:timeInterval]];
     self.referenceDate = [calendar dateFromComponents:components];
     NSError *error;
-    if (![[self fetchedResultsController] performFetch:&error]) {
+    if (![[self assignmentFetchedResultsController] performFetch:&error]) {
         // Update to handle the error appropriately.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        NSLog(@"Unresolved error Assign %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
+    if (![[self assessmentFetchedResultsController] performFetch:&error]) {
+        // Update to handle the error appropriately.
+        NSLog(@"Unresolved error Assess %@, %@", error, [error userInfo]);
         exit(-1);  // Fail
     }
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
 
-- (NSFetchedResultsController *)fetchedResultsController {
-    if (_fetchedResultsController != nil) return _fetchedResultsController;
+- (NSFetchedResultsController *)assignmentFetchedResultsController {
+    if (_assignmentFetchedResultsController != nil) return _assignmentFetchedResultsController;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"HWAssignment" inManagedObjectContext:self.context];
-    NSMutableArray *predicates = [[NSMutableArray alloc] init];
     [fetchRequest setEntity:entity];
+    NSMutableArray *predicates = [[NSMutableArray alloc] init];
     if (self.type == DayViewControllerTypeAll) {
         NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"dateDue >= %@ ", [NSDate dateWithTimeIntervalSince1970:0]];
         [predicates addObject:subPredFrom];
@@ -75,9 +80,53 @@
                                                                managedObjectContext:self.context
                                                                  sectionNameKeyPath:nil
                                                                           cacheName:nil];
-    self.fetchedResultsController = theFetchedResultsController;
-    _fetchedResultsController.delegate = self;
-    return _fetchedResultsController;
+    self.assignmentFetchedResultsController = theFetchedResultsController;
+    _assignmentFetchedResultsController.delegate = self;
+    return _assignmentFetchedResultsController;
+}
+
+- (NSFetchedResultsController *)assessmentFetchedResultsController {
+    if (_assessmentFetchedResultsController != nil) return _assessmentFetchedResultsController;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"HWAssessment" inManagedObjectContext:self.context];
+    NSMutableArray *predicates = [[NSMutableArray alloc] init];
+    [fetchRequest setEntity:entity];
+    if (self.type == DayViewControllerTypeAll) {
+        NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"dateDue >= %@ ", [NSDate dateWithTimeIntervalSince1970:0]];
+        [predicates addObject:subPredFrom];
+        NSPredicate *subPredTo = [NSPredicate predicateWithFormat:@"dateDue < %@", [NSDate dateWithTimeIntervalSinceNow:60*60*24*365]];
+        [predicates addObject:subPredTo];
+    }
+    else if (self.type == DayViewControllerTypeMore) {
+        NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"dateDue >= %@ ", [self.referenceDate dateByAddingTimeInterval:60*60*24]];
+        [predicates addObject:subPredFrom];
+        NSPredicate *subPredTo = [NSPredicate predicateWithFormat:@"dateDue < %@", [self.referenceDate dateByAddingTimeInterval:60*60*24*365]];
+        [predicates addObject:subPredTo];
+    }
+    else  if (self.type == DayViewControllerTypeWeekend) {
+        NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"dateDue >= %@ ", self.referenceDate];
+        [predicates addObject:subPredFrom];
+        NSPredicate *subPredTo = [NSPredicate predicateWithFormat:@"dateDue < %@", [self.referenceDate dateByAddingTimeInterval:60*60*24*2]];
+        [predicates addObject:subPredTo];
+    }
+    else {
+        NSPredicate *subPredFrom = [NSPredicate predicateWithFormat:@"dateDue >= %@ ", self.referenceDate];
+        [predicates addObject:subPredFrom];
+        NSPredicate *subPredTo = [NSPredicate predicateWithFormat:@"dateDue < %@", [self.referenceDate dateByAddingTimeInterval:60*60*24]];
+        [predicates addObject:subPredTo];
+    }
+    [fetchRequest setPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicates]];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"course.period" ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    //[fetchRequest setFetchBatchSize:20];
+    NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc]
+                                                               initWithFetchRequest:fetchRequest
+                                                               managedObjectContext:self.context
+                                                               sectionNameKeyPath:nil
+                                                               cacheName:nil];
+    self.assessmentFetchedResultsController = theFetchedResultsController;
+    _assessmentFetchedResultsController.delegate = self;
+    return _assessmentFetchedResultsController;
 }
 
 #pragma mark - tableView delegate
@@ -87,8 +136,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    id sectionInfo = [[_fetchedResultsController sections] objectAtIndex:section];
-    long count = [sectionInfo numberOfObjects];
+    long section1 = _assignmentFetchedResultsController.fetchedObjects.count;
+    long section2 = _assessmentFetchedResultsController.fetchedObjects.count;
+    long count = section1+section2;
     if (self.type == DayViewControllerTypeAll) return count+1;
     if (count == 0) {
         UILabel *overlayView = [[UILabel alloc] initWithFrame:self.tableView.frame];
@@ -103,9 +153,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    AssignmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Identifier"];
-    if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"AssignmentTableViewCell" owner:self options:nil].firstObject;
-    if (indexPath.row == [[[_fetchedResultsController sections] objectAtIndex:0] numberOfObjects]) {
+    DateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Identifier"];
+    if (cell == nil) cell = [[NSBundle mainBundle] loadNibNamed:@"DateTableViewCell" owner:self options:nil].firstObject;
+    if (indexPath.row == _assignmentFetchedResultsController.fetchedObjects.count +
+                         _assessmentFetchedResultsController.fetchedObjects.count  ) {
         UITableViewCell *altCell = [[UITableViewCell alloc] init];
         UIButton *more = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-100, 15, 200, 50)];
         [more setTitle:@"Show Completed Dates" forState:UIControlStateNormal];
@@ -115,15 +166,20 @@
         return altCell;
     }
     else {
-        HWAssignment *assignment = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        id date;
+        long count = _assessmentFetchedResultsController.fetchedObjects.count;
+        if (indexPath.row < _assessmentFetchedResultsController.fetchedObjects.count)
+             date = self.assessmentFetchedResultsController.fetchedObjects[indexPath.row];
+        else date = self.assignmentFetchedResultsController.fetchedObjects[indexPath.row-count];
         cell.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 80);
         cell.delegate = self;
-        [cell loadAssignment:assignment];
+        [cell loadDate:date];
     }
     return cell;
 }
 
 - (void)moreButtonToggle:(UIButton *)sender {
+    /*
     if (true) {
         self.fetchedResultsController.fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[
             [NSPredicate predicateWithFormat:@"dateDue >= %@ ", [NSDate dateWithTimeIntervalSince1970:0]],
@@ -142,6 +198,7 @@
         exit(-1);  // Fail
     }
     [self.tableView reloadData];
+     */
 }
 
 - (void)save {
@@ -169,7 +226,7 @@
             break;
         }
         case NSFetchedResultsChangeUpdate: {
-            //[self configureCell:(TSPToDoCell *)[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self.tableView cellForRowAtIndexPath:indexPath];
             break;
         }
         case NSFetchedResultsChangeMove: {
@@ -186,14 +243,16 @@
 
 #pragma mark - AssignmentTVCell delegate
 
-- (void)assignmentTableViewCellCompletedValueToggledForAssignment:(HWAssignment *)assignment {
+- (void)dateTableViewCellCompletedValueToggledForAssignment:(HWAssignment *)assignment {
     assignment.isCompleted = [NSNumber numberWithBool:!assignment.isCompleted.boolValue];
     [self save];
 }
 
-- (void)assignmentTableViewCellNeedsMenuPopup:(AssignmentTableViewCell *)cell atLocation:(CGPoint)location {
+- (void)dateTableViewCellNeedsMenuPopup:(DateTableViewCell *)cell atLocation:(CGPoint)location {
     self.selectedCell = cell;
-    RNGridMenu *gridMenu = [[RNGridMenu alloc] initWithTitles:@[@"Edit Assignment",@"Delete Assignment",@"Complete Assignment"]];
+    RNGridMenu *gridMenu;
+    if (cell.assignment) gridMenu = [[RNGridMenu alloc] initWithTitles:@[@"Edit Assignment",@"Delete Assignment",@"Complete Assignment"]];
+    else gridMenu = [[RNGridMenu alloc] initWithTitles:@[@"Edit Assessment",@"Delete Assessment"]];
     gridMenu.delegate = self;
     gridMenu.itemSize = CGSizeMake(200, 40);
     gridMenu.backgroundColor = [UIColor colorWithWhite:247.0/255.0 alpha:1];
@@ -209,8 +268,12 @@
 - (void)gridMenu:(RNGridMenu *)gridMenu willDismissWithSelectedItem:(RNGridMenuItem *)item atIndex:(NSInteger)itemIndex {
     if (itemIndex == 0) { //edit
         AddDateViewController *rootVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ad"];
-        rootVC.dateType = 1;
-        rootVC.assignment = self.selectedCell.assignment;
+        rootVC.dateType = 2;
+        if (self.selectedCell.assignment) {
+            rootVC.assignment = self.selectedCell.assignment;
+            rootVC.dateType = 1;
+        }
+        else rootVC.assessment = self.selectedCell.assessment;
         rootVC.courseList = [HWCourseList fetchCurrentCourseList];
         rootVC.context = self.context;
         rootVC.delegate = self;
@@ -232,7 +295,8 @@
         [self presentViewController:modalVC animated:YES completion:nil];
     }
     if (itemIndex == 1) { //delete
-        [self.context deleteObject:self.selectedCell.assignment];
+        if (self.selectedCell.assignment) [self.context deleteObject:self.selectedCell.assignment];
+        else [self.context deleteObject:self.selectedCell.assessment];
         [self save];
     }
     if (itemIndex == 2) { //complete
@@ -250,6 +314,7 @@
 }
 
 - (void)addDateViewControllerWillDismissWithResultAssessment:(HWAssessment *)assessment {
+    [self.context deleteObject:self.selectedCell.assessment]; //delete as it will be replaced
     [self save];
 }
 

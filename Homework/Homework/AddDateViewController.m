@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (self.assignment) self.title = @"Edit Assignment";
-    else if (self.assesment) self.title = @"Edit Assesment";
+    else if (self.assessment) self.title = @"Edit Assessment";
     else if (self.dateType == 1) self.title = @"Add Assignment";
     else self.title = @"Add Assessment";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
@@ -47,7 +47,7 @@
     if (self.dateType == 1) [row.cellConfigAtConfigure setObject:@"Assignment Name" forKey:@"textField.placeholder"];
     else [row.cellConfigAtConfigure setObject:@"Assessment Name" forKey:@"textField.placeholder"];
     if (self.assignment) row.value = self.assignment.name;
-    else if (self.assesment) row.value = self.assesment.name;
+    else if (self.assessment) row.value = self.assessment.name;
     [section addFormRow:row];
     // Class
     NSMutableArray *selectorOptions = [[NSMutableArray alloc] init];
@@ -60,8 +60,8 @@
     row.value = [XLFormOptionsObject formOptionsObjectWithValue:nil displayText:@"None"];
     if (self.assignment) row.value = [XLFormOptionsObject formOptionsObjectWithValue:self.assignment.course
                                                                          displayText:[NSString stringWithFormat:@"Period %@: %@",self.assignment.course.period,self.assignment.course.name]];
-    if (self.assesment) row.value = [XLFormOptionsObject formOptionsObjectWithValue:self.assesment.course
-                                                                         displayText:[NSString stringWithFormat:@"Period %@: %@",self.assesment.course.period,self.assesment.course.name]];
+    if (self.assessment) row.value = [XLFormOptionsObject formOptionsObjectWithValue:self.assessment.course
+                                                                         displayText:[NSString stringWithFormat:@"Period %@: %@",self.assessment.course.period,self.assessment.course.name]];
     [section addFormRow:row];
     // Type
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"type" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Assignment Type"];
@@ -86,7 +86,7 @@
                                 [XLFormOptionsObject formOptionsObjectWithValue:[NSNumber numberWithInteger:HWAssessmentTypeOther]
                                                                                                 displayText:@"Other"]];
         row.value = [XLFormOptionsObject formOptionsObjectWithValue:[NSNumber numberWithInteger:HWAssessmentTypeTest] displayText:@"Test"];
-        if (self.assesment) row.value = row.selectorOptions[self.assesment.type.intValue];
+        if (self.assessment) row.value = row.selectorOptions[self.assessment.type.intValue];
     }
     [section addFormRow:row];
     
@@ -104,7 +104,7 @@
     [row.cellConfigAtConfigure setObject:[NSDate dateWithTimeIntervalSinceNow:60*60*24*314] forKey:@"endDate"];
     row.value = [self normalizedDateForDate:[NSDate date]];
     if (self.assignment) row.value = self.assignment.dateAssigned;
-    if (self.assesment) row.value = self.assesment.dateAssigned;
+    if (self.assessment) row.value = self.assessment.dateAssigned;
     [section addFormRow:row];
     // Next Class Bool
     XLFormRowDescriptor *dueRow = [XLFormRowDescriptor formRowDescriptorWithTag:@"isDueNextClass" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Due Next Class"];
@@ -116,7 +116,7 @@
     [row.cellConfigAtConfigure setObject:[NSDate dateWithTimeIntervalSinceNow:60*60*24*315] forKey:@"endDate"];
     row.value = [self normalizedDateForDate:[NSDate dateWithTimeIntervalSinceNow:60*60*24*2]];
     if (self.assignment) row.value = self.assignment.dateDue;
-    if (self.assesment) row.value = self.assesment.dateDue;
+    if (self.assessment) row.value = self.assessment.dateDue;
     [section addFormRow:row];
     // Third Section (reminder)
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Reminder"];
@@ -169,7 +169,7 @@
         [self.delegate addDateViewControllerWillDismissWithResultAssessment:assessment];
     }
     [self dismissViewControllerAnimated:YES completion:^{
-        
+
     }];
 }
 
