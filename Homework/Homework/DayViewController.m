@@ -254,12 +254,12 @@
     if (cell.assignment) gridMenu = [[RNGridMenu alloc] initWithTitles:@[@"Edit Assignment",@"Delete Assignment",@"Complete Assignment"]];
     else gridMenu = [[RNGridMenu alloc] initWithTitles:@[@"Edit Assessment",@"Delete Assessment"]];
     gridMenu.delegate = self;
-    gridMenu.itemSize = CGSizeMake(200, 40);
-    gridMenu.backgroundColor = [UIColor colorWithWhite:247.0/255.0 alpha:1];
-    gridMenu.highlightColor = [UIColor colorWithWhite:230.0/255.0 alpha:1];
+    gridMenu.itemSize = CGSizeMake(210, 40);
+    gridMenu.backgroundColor = [UIColor colorWithWhite:238.0/255.0 alpha:1];
+    gridMenu.highlightColor = [UIColor colorWithWhite:220.0/255.0 alpha:1];
     gridMenu.itemTextColor = [UIColor blackColor];
-    gridMenu.itemFont = [UIFont systemFontOfSize:15.0 weight:UIFontWeightMedium];
-    gridMenu.blurLevel = 0.2;
+    gridMenu.itemFont = [UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium];
+    gridMenu.blurLevel = 0.15;
     [gridMenu showInViewController:self center:location];
 }
 

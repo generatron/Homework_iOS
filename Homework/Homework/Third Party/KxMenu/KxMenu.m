@@ -39,7 +39,7 @@
 #import "KxMenu.h"
 #import <QuartzCore/QuartzCore.h>
 
-const CGFloat kArrowSize = 5.0;
+const CGFloat kArrowSize = 6.0;
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -57,7 +57,7 @@ const CGFloat kArrowSize = 5.0;
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:.2]; //COLOR SET
+        self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:.0]; //COLOR SET
         self.opaque = NO;
         UITapGestureRecognizer *gestureRecognizer;
         gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
@@ -155,7 +155,7 @@ typedef enum {
     const CGSize contentSize = _contentView.frame.size;
     const CGFloat outerWidth = view.bounds.size.width;
     const CGFloat outerHeight = view.bounds.size.height;
-    const float offset = 15.0;
+    const float offset = 18.0; //INCLUDES OFFSET
     const CGFloat rectX0 = fromRect.origin.x;
     const CGFloat rectX1 = fromRect.origin.x + fromRect.size.width;
     const CGFloat rectXM = fromRect.origin.x + fromRect.size.width * 0.5f;
@@ -173,10 +173,15 @@ typedef enum {
         CGPoint point = (CGPoint) {rectXM - widthHalf, rectY1};
         if (point.x < kMargin) point.x = kMargin;
         if ((point.x + contentSize.width + kMargin) > outerWidth) point.x = outerWidth - contentSize.width - kMargin;
-        _arrowPosition = rectXM - point.x;
-        //_arrowPosition = MAX(16, MIN(_arrowPosition, contentSize.width - 16));        
+        _arrowPosition = rectXM - point.x + 40; //INCLUDES OFFSET
+        //_arrowPosition = MAX(16, MIN(_arrowPosition, contentSize.width - 16));
         _contentView.frame = (CGRect){0, kArrowSize, contentSize};
-        self.frame = (CGRect) {point, contentSize.width, contentSize.height + kArrowSize};
+        
+        CGPoint editPoint = (CGPoint) {rectXM - widthHalf - 100, rectY1}; //INCLUDES OFFSET
+        //self.frame = (CGRect) {point, contentSize.width, contentSize.height + kArrowSize};
+        self.frame = (CGRect) {editPoint, 200, 100 + kArrowSize}; //HARD CODED
+        
+        
     } else if (heightPlusArrow < rectY0) {
         _arrowDirection = KxMenuViewArrowDirectionDown;
         CGPoint point = (CGPoint) {rectXM - widthHalf, rectY0 - heightPlusArrow};
@@ -261,7 +266,7 @@ typedef enum {
     const CGFloat kMinMenuItemHeight = 32.f;
     const CGFloat kMinMenuItemWidth = 32.f;
     const CGFloat kMarginX = 10.f;
-    const CGFloat kMarginY = 5.f;
+    const CGFloat kMarginY = 2.f; //HARD CODED
     CGFloat maxImageWidth = 0;    
     CGFloat maxItemHeight = 0;
     CGFloat maxItemWidth = 0;
@@ -273,7 +278,7 @@ typedef enum {
     if (maxImageWidth) maxImageWidth += kMarginX;
     for (KxMenuItem *menuItem in _menuItems) {
         const CGSize titleSize = [menuItem.title sizeWithAttributes:
-                                  @{NSFontAttributeName: [UIFont systemFontOfSize:17.0f weight:UIFontWeightRegular]}];
+                                  @{NSFontAttributeName: [UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium]}];
         const CGSize imageSize = menuItem.image.size;
         const CGFloat itemHeight = MAX(titleSize.height, imageSize.height) + kMarginY * 2;
         const CGFloat itemWidth = ((!menuItem.enabled && !menuItem.image) ? titleSize.width : maxImageWidth + titleSize.width) + kMarginX * 4;
@@ -283,8 +288,8 @@ typedef enum {
        
     maxItemWidth  = MAX(maxItemWidth, kMinMenuItemWidth);
     maxItemHeight = MAX(maxItemHeight, kMinMenuItemHeight);
-    const CGFloat titleX = kMarginX * 2 + maxImageWidth;
-    const CGFloat titleWidth = maxItemWidth - titleX - kMarginX * 2;
+    //const CGFloat titleX = kMarginX * 2 + maxImageWidth;
+    //const CGFloat titleWidth = maxItemWidth - titleX - kMarginX * 2;
     
     UIView *contentView = [[UIView alloc] initWithFrame:CGRectZero];
     contentView.autoresizingMask = UIViewAutoresizingNone;
@@ -294,40 +299,36 @@ typedef enum {
     NSUInteger itemNum = 0;
         
     for (KxMenuItem *menuItem in _menuItems) {
-        const CGRect itemFrame = (CGRect){0, itemY, maxItemWidth, maxItemHeight};
+        const CGRect itemFrame = (CGRect){0, itemY, 200, 50}; //HARD CODED
         UIView *itemView = [[UIView alloc] initWithFrame:itemFrame];
         itemView.autoresizingMask = UIViewAutoresizingNone;
-        itemView.backgroundColor = [UIColor clearColor];        
-        itemView.opaque = NO;
+        itemView.backgroundColor = [UIColor clearColor];
         [contentView addSubview:itemView];
-        if (menuItem.enabled) {
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.tag = itemNum;
-            button.frame = itemView.bounds;
-            button.enabled = menuItem.enabled;
-            button.backgroundColor = [UIColor clearColor];
-            button.opaque = NO;
-            button.autoresizingMask = UIViewAutoresizingNone;
-            [button addTarget:self action:@selector(performAction:)
-             forControlEvents:UIControlEventTouchUpInside];
-            [button setBackgroundColor:[UIColor clearColor]];
-            [itemView addSubview:button];
-        }
         if (menuItem.title.length) {
             CGRect titleFrame;
             if (!menuItem.enabled && !menuItem.image)
-                titleFrame = (CGRect) {kMarginX * 2, kMarginY, maxItemWidth - kMarginX * 4, maxItemHeight - kMarginY * 2};
-            else titleFrame = (CGRect) {titleX, kMarginY, titleWidth, maxItemHeight - kMarginY * 2};
+                titleFrame = (CGRect) {0, 0, 200, 50}; // >>
+            else titleFrame = (CGRect) {0, 0, 200, 50}; //HARD CODED
             
             UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
             titleLabel.text = menuItem.title;
-            titleLabel.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightRegular];
+            if ([menuItem.title isEqualToString:@"Add Assessment"])
+                titleLabel.center = CGPointMake(titleLabel.center.x, titleLabel.center.y+10); //HARD CODED
+            titleLabel.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightMedium];
             titleLabel.textAlignment = NSTextAlignmentCenter;
             titleLabel.textColor = [UIColor blackColor]; //COLOR SET
             titleLabel.backgroundColor = [UIColor clearColor];
             titleLabel.autoresizingMask = UIViewAutoresizingNone;
             //titleLabel.backgroundColor = [UIColor greenColor];
-            [itemView addSubview:titleLabel];            
+            [itemView addSubview:titleLabel];
+            
+            UIButton *button = [[UIButton alloc] init];
+            button.tag = itemNum;
+            button.frame = titleLabel.frame;
+            [button addTarget:self action:@selector(performAction:)
+             forControlEvents:UIControlEventTouchUpInside];
+            [button setBackgroundColor:[UIColor clearColor]];
+            [itemView addSubview:button];
         }
         if (menuItem.image) {
             const CGRect imageFrame = {kMarginX * 2, kMarginY, maxImageWidth, maxItemHeight - kMarginY * 2};
@@ -366,7 +367,8 @@ typedef enum {
 
 - (void)drawBackground:(CGRect)frame inContext:(CGContextRef) context {
     float alpha = 1.0;
-    CGFloat R0 = 247.0/255.0, G0 = 247.0/255.0, B0 = 247.0/255.0; //COLOR SET
+    float gray = 238.0;
+    CGFloat R0 = gray/255.0, G0 = gray/255.0, B0 = gray/255.0; //COLOR SET
     CGFloat X0 = frame.origin.x;
     CGFloat X1 = frame.origin.x + frame.size.width;
     CGFloat Y0 = frame.origin.y;
