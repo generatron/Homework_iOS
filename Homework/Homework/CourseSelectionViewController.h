@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XLForm.h"
 
-@interface CourseSelectionViewController : UIViewController
+extern NSString *const XLFormRowDescriptorTypeCourseSelection;
+
+@interface CourseSelectionViewController : UIViewController <XLFormRowDescriptorViewController, UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

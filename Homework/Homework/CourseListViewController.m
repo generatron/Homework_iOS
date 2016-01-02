@@ -75,7 +75,7 @@
     }
     else {
         UIButton *add = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, 40)];
-        [add setTitle:@"Add New Course" forState:UIControlStateNormal];
+        [add setTitle:@"Add Course" forState:UIControlStateNormal];
         [add setTitleColor:self.view.tintColor forState:UIControlStateNormal];
         [add addTarget:self action:@selector(addCourseButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:add];

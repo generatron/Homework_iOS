@@ -76,6 +76,8 @@ const CGFloat kArrowSize = 5.0;
     }
 }
 
+- (void)dismissMenu:(id)sender {}
+
 @end
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -270,7 +272,8 @@ typedef enum {
     }
     if (maxImageWidth) maxImageWidth += kMarginX;
     for (KxMenuItem *menuItem in _menuItems) {
-        const CGSize titleSize = [menuItem.title sizeWithFont:[UIFont systemFontOfSize:17.0 weight:UIFontWeightRegular]];
+        const CGSize titleSize = [menuItem.title sizeWithAttributes:
+                                  @{NSFontAttributeName: [UIFont systemFontOfSize:17.0f weight:UIFontWeightRegular]}];
         const CGSize imageSize = menuItem.image.size;
         const CGFloat itemHeight = MAX(titleSize.height, imageSize.height) + kMarginY * 2;
         const CGFloat itemWidth = ((!menuItem.enabled && !menuItem.image) ? titleSize.width : maxImageWidth + titleSize.width) + kMarginX * 4;

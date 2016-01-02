@@ -8,6 +8,8 @@
 
 #import "AddDateViewController.h"
 #import "BasicDateFormCell.h"
+#import "CourseSelectionViewController.h"
+#import "CourseValueTransformer.h"
 
 @interface AddDateViewController ()
 @end
@@ -44,26 +46,27 @@
     [form addFormSection:section];
     // Name
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"name" rowType:XLFormRowDescriptorTypeText];
-    if (self.dateType == 1) [row.cellConfigAtConfigure setObject:@"Assignment Name" forKey:@"textField.placeholder"];
-    else [row.cellConfigAtConfigure setObject:@"Assessment Name" forKey:@"textField.placeholder"];
+    row.title = @"Name";
+    if (self.dateType == 1) [row.cellConfigAtConfigure setObject:@"Eg. Bookwork pg. 291" forKey:@"textField.placeholder"];
+    else [row.cellConfigAtConfigure setObject:@"Eg. Chapter 3 test" forKey:@"textField.placeholder"];
     if (self.assignment) row.value = self.assignment.name;
     else if (self.assessment) row.value = self.assessment.name;
     [section addFormRow:row];
     // Class
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"course" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Course"];
+    row.action.viewControllerStoryboardId = @"csvc";
+    row.valueTransformer = [CourseValueTransformer class];
+    row.value = nil;
+    /*
     NSMutableArray *selectorOptions = [[NSMutableArray alloc] init];
     [selectorOptions addObject: [XLFormOptionsObject formOptionsObjectWithValue:nil displayText:@"None"]];
     for (HWCourse *course in self.courseList.courses)
         [selectorOptions addObject:[XLFormOptionsObject formOptionsObjectWithValue:course
                                                                        displayText:[NSString stringWithFormat:@"Period %@: %@",course.period,course.name]]];
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"course" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Course"];
     row.selectorOptions = selectorOptions;
-    row.value = [XLFormOptionsObject formOptionsObjectWithValue:nil displayText:@"None"];
-    if (self.assignment && self.assignment.course)
-        row.value = [XLFormOptionsObject formOptionsObjectWithValue:self.assignment.course
-                                                        displayText:[NSString stringWithFormat:@"Period %@: %@",self.assignment.course.period,self.assignment.course.name]];
-    if (self.assessment && self.assessment.course)
-        row.value = [XLFormOptionsObject formOptionsObjectWithValue:self.assessment.course
-                                                        displayText:[NSString stringWithFormat:@"Period %@: %@",self.assessment.course.period,self.assessment.course.name]];
+     */
+    if (self.assignment && self.assignment.course) row.value = self.assignment.course;
+    if (self.assessment && self.assessment.course) row.value = self.assessment.course;
     [section addFormRow:row];
     // Type
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"type" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Assignment Type"];
@@ -148,11 +151,14 @@
         else type = @3;
     }
     else type = ((XLFormOptionsObject *)result[@"type"]).formValue;
+    HWCourse *course;
+    if ([result[@"course"] isKindOfClass:[NSNull class]]) course = nil;
+    else course = result[@"course"];
     if (self.dateType == 1) {
         HWAssignment *assignment = [NSEntityDescription insertNewObjectForEntityForName:@"HWAssignment" inManagedObjectContext:self.context];
         if ([result[@"name"] isKindOfClass:[NSNull class]]) assignment.name = @"Untitled";
         else assignment.name = result[@"name"];
-        assignment.course = ((XLFormOptionsObject *)result[@"course"]).formValue;
+        assignment.course = course;
         assignment.type = type;
         assignment.dateAssigned = isAssignedToday ? [self normalizedDateForDate:[NSDate date]] : result[@"dateAssigned"];
         assignment.dateDue = isDueNextClass ? [self normalizedDateForDate:[NSDate dateWithTimeIntervalSinceNow:60*60*24*2]] : result[@"dateDue"];
@@ -164,7 +170,7 @@
         HWAssessment *assessment = [NSEntityDescription insertNewObjectForEntityForName:@"HWAssessment" inManagedObjectContext:self.context];
         if ([result[@"name"] isKindOfClass:[NSNull class]]) assessment.name = @"Untitled";
         else assessment.name = result[@"name"];
-        assessment.course = ((XLFormOptionsObject *)result[@"course"]).formValue;
+        assessment.course = course;
         assessment.type = type;
         assessment.dateAssigned = isAssignedToday ? [self normalizedDateForDate:[NSDate date]] : result[@"dateAssigned"];
         assessment.dateDue = isDueNextClass ? [self normalizedDateForDate:[NSDate dateWithTimeIntervalSinceNow:60*60*24*2]] : result[@"dateDue"];

@@ -10,6 +10,7 @@
 		DBF39B26A56C3434D4FB9E00 /* libPods-Homework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E6047CD8D245421055E6DC6 /* libPods-Homework.a */; };
 		F9163A441C2F22490071EFF6 /* AddCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9163A431C2F22490071EFF6 /* AddCourseViewController.m */; };
 		F9163A531C2FA7890071EFF6 /* UIColor+HWColors.m in Sources */ = {isa = PBXBuildFile; fileRef = F9163A521C2FA7890071EFF6 /* UIColor+HWColors.m */; };
+		F92A75081C37614800198A9F /* CourseValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F92A75071C37614800198A9F /* CourseValueTransformer.m */; };
 		F92D4F4F1C36EFA900FCE863 /* BasicDateFormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F92D4F4E1C36EFA900FCE863 /* BasicDateFormCell.m */; };
 		F92D4F531C372DFB00FCE863 /* BasicDateFormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92D4F521C372DFB00FCE863 /* BasicDateFormCell.xib */; };
 		F97D82781C2C909D004C6212 /* DayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97D82771C2C909D004C6212 /* DayViewController.m */; };
@@ -65,6 +66,8 @@
 		F9163A511C2FA7890071EFF6 /* UIColor+HWColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HWColors.h"; path = "Classes/User Interface/UIColor+HWColors.h"; sourceTree = "<group>"; };
 		F9163A521C2FA7890071EFF6 /* UIColor+HWColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HWColors.m"; path = "Classes/User Interface/UIColor+HWColors.m"; sourceTree = "<group>"; };
 		F9163A551C2FA8330071EFF6 /* HomeworkPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeworkPrefixHeader.pch; sourceTree = "<group>"; };
+		F92A75061C37614800198A9F /* CourseValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseValueTransformer.h; path = Classes/CourseValueTransformer.h; sourceTree = "<group>"; };
+		F92A75071C37614800198A9F /* CourseValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CourseValueTransformer.m; path = Classes/CourseValueTransformer.m; sourceTree = "<group>"; };
 		F92D4F4D1C36EFA900FCE863 /* BasicDateFormCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicDateFormCell.h; sourceTree = "<group>"; };
 		F92D4F4E1C36EFA900FCE863 /* BasicDateFormCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicDateFormCell.m; sourceTree = "<group>"; };
 		F92D4F521C372DFB00FCE863 /* BasicDateFormCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicDateFormCell.xib; sourceTree = "<group>"; };
@@ -155,14 +158,9 @@
 		F9163A541C2FA7940071EFF6 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
-				F9163A511C2FA7890071EFF6 /* UIColor+HWColors.h */,
-				F9163A521C2FA7890071EFF6 /* UIColor+HWColors.m */,
-				F985735D1C30E0A700E8FE87 /* DateTableViewCell.h */,
-				F985735E1C30E0A700E8FE87 /* DateTableViewCell.m */,
-				F98573601C30E0CB00E8FE87 /* DateTableViewCell.xib */,
-				F92D4F4D1C36EFA900FCE863 /* BasicDateFormCell.h */,
-				F92D4F4E1C36EFA900FCE863 /* BasicDateFormCell.m */,
-				F92D4F521C372DFB00FCE863 /* BasicDateFormCell.xib */,
+				F92A750A1C376DCA00198A9F /* Colors */,
+				F92A750B1C376DD200198A9F /* Date Table View */,
+				F92A750C1C376DE000198A9F /* XLForm Custom Cell */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -170,23 +168,102 @@
 		F9163A561C2FB08C0071EFF6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F9FFE9D91C276C0A004A5CE3 /* MainViewController.h */,
-				F9FFE9DA1C276C0A004A5CE3 /* MainViewController.m */,
-				F97D82761C2C909D004C6212 /* DayViewController.h */,
-				F97D82771C2C909D004C6212 /* DayViewController.m */,
-				F9FFEA261C278903004A5CE3 /* CourseListViewController.h */,
-				F9FFEA271C278903004A5CE3 /* CourseListViewController.m */,
-				F9163A421C2F22490071EFF6 /* AddCourseViewController.h */,
-				F9163A431C2F22490071EFF6 /* AddCourseViewController.m */,
-				F98573551C30B2A900E8FE87 /* AddDateViewController.h */,
-				F98573561C30B2A900E8FE87 /* AddDateViewController.m */,
-				F9E6C2B41C35F123007DB66C /* CourseSelectionViewController.h */,
-				F9E6C2B51C35F123007DB66C /* CourseSelectionViewController.m */,
+				F92A750D1C376DF800198A9F /* Main */,
+				F92A750E1C376DFD00198A9F /* Day */,
+				F92A750F1C376E0300198A9F /* Course List */,
+				F92A75111C376E1600198A9F /* Add Date */,
 				F9FFE9DC1C276C0A004A5CE3 /* Main.storyboard */,
 				F9FFE9D61C276C0A004A5CE3 /* AppDelegate.h */,
 				F9FFE9D71C276C0A004A5CE3 /* AppDelegate.m */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		F92A75091C37615100198A9F /* Course selection */ = {
+			isa = PBXGroup;
+			children = (
+				F9E6C2B41C35F123007DB66C /* CourseSelectionViewController.h */,
+				F9E6C2B51C35F123007DB66C /* CourseSelectionViewController.m */,
+				F92A75061C37614800198A9F /* CourseValueTransformer.h */,
+				F92A75071C37614800198A9F /* CourseValueTransformer.m */,
+			);
+			name = "Course selection";
+			sourceTree = "<group>";
+		};
+		F92A750A1C376DCA00198A9F /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				F9163A511C2FA7890071EFF6 /* UIColor+HWColors.h */,
+				F9163A521C2FA7890071EFF6 /* UIColor+HWColors.m */,
+			);
+			name = Colors;
+			sourceTree = "<group>";
+		};
+		F92A750B1C376DD200198A9F /* Date Table View */ = {
+			isa = PBXGroup;
+			children = (
+				F985735D1C30E0A700E8FE87 /* DateTableViewCell.h */,
+				F985735E1C30E0A700E8FE87 /* DateTableViewCell.m */,
+				F98573601C30E0CB00E8FE87 /* DateTableViewCell.xib */,
+			);
+			name = "Date Table View";
+			sourceTree = "<group>";
+		};
+		F92A750C1C376DE000198A9F /* XLForm Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F92D4F4D1C36EFA900FCE863 /* BasicDateFormCell.h */,
+				F92D4F4E1C36EFA900FCE863 /* BasicDateFormCell.m */,
+				F92D4F521C372DFB00FCE863 /* BasicDateFormCell.xib */,
+			);
+			name = "XLForm Custom Cell";
+			sourceTree = "<group>";
+		};
+		F92A750D1C376DF800198A9F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				F9FFE9D91C276C0A004A5CE3 /* MainViewController.h */,
+				F9FFE9DA1C276C0A004A5CE3 /* MainViewController.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		F92A750E1C376DFD00198A9F /* Day */ = {
+			isa = PBXGroup;
+			children = (
+				F97D82761C2C909D004C6212 /* DayViewController.h */,
+				F97D82771C2C909D004C6212 /* DayViewController.m */,
+			);
+			name = Day;
+			sourceTree = "<group>";
+		};
+		F92A750F1C376E0300198A9F /* Course List */ = {
+			isa = PBXGroup;
+			children = (
+				F9FFEA261C278903004A5CE3 /* CourseListViewController.h */,
+				F9FFEA271C278903004A5CE3 /* CourseListViewController.m */,
+				F92A75101C376E0F00198A9F /* Add Course */,
+			);
+			name = "Course List";
+			sourceTree = "<group>";
+		};
+		F92A75101C376E0F00198A9F /* Add Course */ = {
+			isa = PBXGroup;
+			children = (
+				F9163A421C2F22490071EFF6 /* AddCourseViewController.h */,
+				F9163A431C2F22490071EFF6 /* AddCourseViewController.m */,
+			);
+			name = "Add Course";
+			sourceTree = "<group>";
+		};
+		F92A75111C376E1600198A9F /* Add Date */ = {
+			isa = PBXGroup;
+			children = (
+				F98573551C30B2A900E8FE87 /* AddDateViewController.h */,
+				F98573561C30B2A900E8FE87 /* AddDateViewController.m */,
+				F92A75091C37615100198A9F /* Course selection */,
+			);
+			name = "Add Date";
 			sourceTree = "<group>";
 		};
 		F984CAFE9C1F6FEED3E373D7 /* Pods */ = {
@@ -543,6 +620,7 @@
 				F9FFEA1B1C27718D004A5CE3 /* HWAssessment+CoreDataProperties.m in Sources */,
 				F9FFE9D81C276C0A004A5CE3 /* AppDelegate.m in Sources */,
 				F97D82781C2C909D004C6212 /* DayViewController.m in Sources */,
+				F92A75081C37614800198A9F /* CourseValueTransformer.m in Sources */,
 				F9FFE9D51C276C0A004A5CE3 /* main.m in Sources */,
 				F9FFEA1E1C27718D004A5CE3 /* HWCourse.m in Sources */,
 				F98573531C3098CA00E8FE87 /* KxMenu.m in Sources */,
