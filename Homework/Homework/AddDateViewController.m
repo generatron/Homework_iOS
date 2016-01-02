@@ -58,10 +58,12 @@
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"course" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Course"];
     row.selectorOptions = selectorOptions;
     row.value = [XLFormOptionsObject formOptionsObjectWithValue:nil displayText:@"None"];
-    if (self.assignment) row.value = [XLFormOptionsObject formOptionsObjectWithValue:self.assignment.course
-                                                                         displayText:[NSString stringWithFormat:@"Period %@: %@",self.assignment.course.period,self.assignment.course.name]];
-    if (self.assessment) row.value = [XLFormOptionsObject formOptionsObjectWithValue:self.assessment.course
-                                                                         displayText:[NSString stringWithFormat:@"Period %@: %@",self.assessment.course.period,self.assessment.course.name]];
+    if (self.assignment && self.assignment.course)
+        row.value = [XLFormOptionsObject formOptionsObjectWithValue:self.assignment.course
+                                                        displayText:[NSString stringWithFormat:@"Period %@: %@",self.assignment.course.period,self.assignment.course.name]];
+    if (self.assessment && self.assessment.course)
+        row.value = [XLFormOptionsObject formOptionsObjectWithValue:self.assessment.course
+                                                        displayText:[NSString stringWithFormat:@"Period %@: %@",self.assessment.course.period,self.assessment.course.name]];
     [section addFormRow:row];
     // Type
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"type" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Assignment Type"];

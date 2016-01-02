@@ -319,8 +319,7 @@
     NSError *error;
     [self.context save:&error];
     if (error) NSLog(@"%@",error);
-    [self reloadInputViews];
-    [self updateSublabels];
+    [self reloadData];
 }
 
 #pragma mark - addDateVC delegate
