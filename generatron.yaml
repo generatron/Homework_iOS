@@ -1,0 +1,8 @@
+git :
+ - bundleName : "PerfectSwift(.)*"
+   gitUrl : "git@github.com:generatron/Homework_iOS.git"
+   subdir : "SwiftBackend"
+output:
+ ignores:
+  - name :  "(.)*Server.swift"
+  - name :  "make"
