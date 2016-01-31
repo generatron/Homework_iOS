@@ -24,13 +24,14 @@ Description:  BaseRequestHandler
 Project:      Homework
 Template: /PerfectSwift/server/Extensions.swift.vmg
  */
+
 import PerfectLib
 
 //
 //  extension.swift
 //  SwiftBBS
 //
-//  Created by Takeo Namba on 2016/01/16.
+//  Modified from original Created by Takeo Namba on 2016/01/16.
 //	Copyright GrooveLab
 //
 
@@ -81,9 +82,7 @@ extension WebRequest {
 }
 
 extension String {
-    var htmlBrString: String {
-        return stringByReplacingString("\r\n", withString: "\n").stringByReplacingString("\n", withString: "<br>")
-    }
+
     
     var sha1: String {
         return self.dynamicType.base64(utf8.sha1)
@@ -123,11 +122,27 @@ extension String.UTF8View {
     }
 }
 
+extension NSDate {
+    var SQLiteDateString : String {
+        let dateFormat : NSDateFormatter;
+        dateFormat.dateFormat = "YYYY-MM-dd"
+        return dateFormat.stringFromDate(self);
+    }
+}
+
+/*
+[STATS]
+It would take a person typing  @ 100.0 cpm, 
+approximately 30.39 minutes to type the 3039+ characters in this file.
+ */
+
+
+
 
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 30.39 minutes to type the 3039+ characters in this file.
+approximately 32.45 minutes to type the 3245+ characters in this file.
  */
 
 
