@@ -30,10 +30,10 @@ class PersistenceManager {
 	static let sharedInstance = PersistenceManager()
 	
     var db: SQLite!
-        lazy var hWAssessmentRepository :  HWAssessmentRepository! = null; 
-	    lazy var hWAssignmentRepository :  HWAssignmentRepository! = null; 
-	    lazy var hWCourseRepository :  HWCourseRepository! = null; 
-	    lazy var hWCourseListRepository :  HWCourseListRepository! = null; 
+        var hWAssessmentRepository :  HWAssessmentRepository! 
+	    var hWAssignmentRepository :  HWAssignmentRepository! 
+	    var hWCourseRepository :  HWCourseRepository! 
+	    var hWCourseListRepository :  HWCourseListRepository! 
 	    init() {
     	// Create our SQLite database.
     	do {
@@ -41,19 +41,19 @@ class PersistenceManager {
 			
 			//Variables for HWAssessment
 			hWAssessmentRepository = HWAssessmentRepository(db:self.db);
-			hWAssessmentRepository.createTable()
+			try hWAssessmentRepository.createTable()
 			
 			//Variables for HWAssignment
 			hWAssignmentRepository = HWAssignmentRepository(db:self.db);
-			hWAssignmentRepository.createTable()
+			try hWAssignmentRepository.createTable()
 			
 			//Variables for HWCourse
 			hWCourseRepository = HWCourseRepository(db:self.db);
-			hWCourseRepository.createTable()
+			try hWCourseRepository.createTable()
 			
 			//Variables for HWCourseList
 			hWCourseListRepository = HWCourseListRepository(db:self.db);
-			hWCourseListRepository.createTable()
+			try hWCourseListRepository.createTable()
     	} catch (let e){
         	print("Failure creating database at " + Config.dbPath)
         	print(e)
@@ -65,7 +65,7 @@ class PersistenceManager {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 12.05 minutes to type the 1205+ characters in this file.
+approximately 11.69 minutes to type the 1169+ characters in this file.
  */
 
 
