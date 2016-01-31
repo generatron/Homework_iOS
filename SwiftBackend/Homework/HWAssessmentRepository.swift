@@ -28,12 +28,13 @@ Template: /PerfectSwift/server/EntityRepository.swift.vm
 
 import PerfectLib
 class HWAssessmentRepository : Repository {
-func createTable() throws -> {
+func createTable() throws ->  Int {
    try db.execute("CREATE TABLE IF NOT EXISTS hWAssessment (dateAssigned TEXT, dateDue TEXT, id NUMBER, name TEXT, type TEXT)")
    let errCode = db.errCode()
         if errCode > 0 {
             throw RepositoryError.CreateTable(errCode)
       }
+      return 0;
 }
 func insert(entity: HWAssessment) throws -> Int {
        	let sql = "INSERT INTO hWAssessment(dateAssigned,dateDue,id,name,type) VALUES ( :dateAssigned, :dateDue, :id, :name, :type)"
@@ -145,7 +146,7 @@ func insert(entity: HWAssessment) throws -> Int {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 38.08 minutes to type the 3808+ characters in this file.
+approximately 38.3 minutes to type the 3830+ characters in this file.
  */
 
 

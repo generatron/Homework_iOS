@@ -28,7 +28,7 @@ Template: /PerfectSwift/server/Entity.swift.vm
 
 import PerfectLib
 
-class HWAssessment : Entity {
+class HWAssessment  {
         var dateAssigned : NSDate
         var dateDue : NSDate
         var id : Int64
@@ -50,7 +50,7 @@ class HWAssessment : Entity {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 4.21 minutes to type the 421+ characters in this file.
+approximately 4.13 minutes to type the 413+ characters in this file.
  */
 
 

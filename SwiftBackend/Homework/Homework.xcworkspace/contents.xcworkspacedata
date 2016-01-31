@@ -19,30 +19,29 @@ Engineered using http://www.generatron.com/
 
 [GENERATRON]
 Generator :   System Templates
-Filename:     HWCourseList.swift
-Description:  Class that holds the data for HWCourseList
+Filename:     contents.xcworkspacedata
+Description:  Swift Server
 Project:      Homework
-Template: /PerfectSwift/server/Entity.swift.vm
+Template: /PerfectSwift/server/XcodeWorkspace.xcworkspace.vmg
  */
-
-
-import PerfectLib
-
-class HWCourseList  {
-        var id : Int64
-        
-    
-    func toDictionary() -> [String: Any] {
-                return [
-    "id" : id
-        ]
-    }
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Homework/Homework.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Perfect/PerfectServer/PerfectServer.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Perfect/PerfectLib/PerfectLib.xcodeproj">
+   </FileRef>
+</Workspace>
 
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 1.9199998 minutes to type the 192+ characters in this file.
+approximately 3.64 minutes to type the 364+ characters in this file.
  */
 
 

@@ -22,26 +22,58 @@ Generator :   System Templates
 Filename:     HomeworkServer.swift
 Description:  Swift Server
 Project:      Homework
-Template: /PerfectSwift/server/XcodeWorkspace.xcworkspace.vmg
+Template: /PerfectSwift/server/ServerModuleInit.swift.vmg
  */
-<?xml version="1.0" encoding="UTF-8"?>
-<Workspace
-   version = "1.0">
-   <FileRef
-      location = "group:Homework/Homework.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Perfect/PerfectServer/PerfectServer.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Perfect/PerfectLib/PerfectLib.xcodeproj">
-   </FileRef>
-</Workspace>
+
+import PerfectLib
+
+public func PerfectServerModuleInit() {
+	Routing.Handler.registerGlobally()
+	Routing.Routes["GET", ["/assets/*/*"]] = { _ in return StaticFileHandler() }
+	Routing.Routes["GET", ["/uploads/*"]] = { _ in return StaticFileHandler() }
+  
+	//Routes for HWAssessment
+	Routing.Routes["GET", ["/api/hWAssessment"] ] = { (_:WebResponse) in return HWAssessmentListHandler() }
+	Routing.Routes["POST", ["/api/hWAssessment"] ] = { (_:WebResponse) in return HWAssessmentCreateHandler() }
+	Routing.Routes["GET", "/api/hWAssessment/{id}"] = { _ in return HWAssessmentRetrieveHandler() }
+	Routing.Routes["PUT", "/api/hWAssessment/{id}"] = { _ in return HWAssessmentUpdateHandler() }
+	Routing.Routes["POST", "/api/hWAssessment/{id}"] = { _ in return HWAssessmentUpdateHandler() }
+	Routing.Routes["DELETE", "/api/hWAssessment/{id}"] = { _ in return HWAssessmentDeleteHandler() }
+	
+	//Routes for HWAssignment
+	Routing.Routes["GET", ["/api/hWAssignment"] ] = { (_:WebResponse) in return HWAssignmentListHandler() }
+	Routing.Routes["POST", ["/api/hWAssignment"] ] = { (_:WebResponse) in return HWAssignmentCreateHandler() }
+	Routing.Routes["GET", "/api/hWAssignment/{id}"] = { _ in return HWAssignmentRetrieveHandler() }
+	Routing.Routes["PUT", "/api/hWAssignment/{id}"] = { _ in return HWAssignmentUpdateHandler() }
+	Routing.Routes["POST", "/api/hWAssignment/{id}"] = { _ in return HWAssignmentUpdateHandler() }
+	Routing.Routes["DELETE", "/api/hWAssignment/{id}"] = { _ in return HWAssignmentDeleteHandler() }
+	
+	//Routes for HWCourse
+	Routing.Routes["GET", ["/api/hWCourse"] ] = { (_:WebResponse) in return HWCourseListHandler() }
+	Routing.Routes["POST", ["/api/hWCourse"] ] = { (_:WebResponse) in return HWCourseCreateHandler() }
+	Routing.Routes["GET", "/api/hWCourse/{id}"] = { _ in return HWCourseRetrieveHandler() }
+	Routing.Routes["PUT", "/api/hWCourse/{id}"] = { _ in return HWCourseUpdateHandler() }
+	Routing.Routes["POST", "/api/hWCourse/{id}"] = { _ in return HWCourseUpdateHandler() }
+	Routing.Routes["DELETE", "/api/hWCourse/{id}"] = { _ in return HWCourseDeleteHandler() }
+	
+	//Routes for HWCourseList
+	Routing.Routes["GET", ["/api/hWCourseList"] ] = { (_:WebResponse) in return HWCourseListListHandler() }
+	Routing.Routes["POST", ["/api/hWCourseList"] ] = { (_:WebResponse) in return HWCourseListCreateHandler() }
+	Routing.Routes["GET", "/api/hWCourseList/{id}"] = { _ in return HWCourseListRetrieveHandler() }
+	Routing.Routes["PUT", "/api/hWCourseList/{id}"] = { _ in return HWCourseListUpdateHandler() }
+	Routing.Routes["POST", "/api/hWCourseList/{id}"] = { _ in return HWCourseListUpdateHandler() }
+	Routing.Routes["DELETE", "/api/hWCourseList/{id}"] = { _ in return HWCourseListDeleteHandler() }
+	
+	print("\(Routing.Routes.description)") 
+	//Initialize PM and repositories  
+	PersistenceManager.sharedInstance
+}
+
 
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 3.64 minutes to type the 364+ characters in this file.
+approximately 28.72 minutes to type the 2872+ characters in this file.
  */
 
 
