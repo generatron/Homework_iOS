@@ -25,6 +25,7 @@ Project:      Homework
 Template: /PerfectSwift/server/entityHandlerClass.swift.vm
  */
 
+import PerfectLib
 
 class HWCourseListHandler: BaseRequestHandler  {
   
@@ -65,7 +66,7 @@ class HWCourseDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 13.03 minutes to type the 1303+ characters in this file.
+approximately 13.22 minutes to type the 1322+ characters in this file.
  */
 
 
