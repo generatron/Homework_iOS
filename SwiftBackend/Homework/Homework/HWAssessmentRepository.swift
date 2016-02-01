@@ -131,11 +131,11 @@ func insert(entity: HWAssessment) throws -> Int {
             //nothing to see here
         }) { (stmt:SQLiteStmt, r:Int) -> () in
                 let entity =  HWAssessment()
-		entity.dateAssigned = stmt.columnText(0)
-		entity.dateDue = stmt.columnText(1)
-		entity.id = stmt.columnInt(2)
+            entity.dateAssigned.SQLiteStringDate(stmt.columnText(0));
+            entity.dateDue.SQLiteStringDate(stmt.columnText(0));
+            entity.id = stmt.columnInt64(2)
 		entity.name = stmt.columnText(3)
-		entity.type = stmt.columnInt(4)
+		entity.type = stmt.columnText(4)
         	    entities.append(entity)
         }
         return entities

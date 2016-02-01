@@ -1,4 +1,4 @@
-/* 
+/*
 Copyright (c) 2016 NgeosOne LLC
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
@@ -29,7 +29,8 @@ import PerfectLib
 
 class HWAssignmentListHandler: BaseRequestHandler  {
   
-  func handleRequest(request: WebRequest, response: WebResponse) {
+override  func handleRequest(request: WebRequest, response: WebResponse) {
+    super.handleRequest(request, response: response)
     response.appendBodyString("Index handler: You accessed path \(request.requestURI())")
     response.requestCompletedCallback()
   }

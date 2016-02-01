@@ -10,6 +10,25 @@
 		CF4202401C5ED70000F8BB24 /* Homework.h in Headers */ = {isa = PBXBuildFile; fileRef = CF42023F1C5ED70000F8BB24 /* Homework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CF4202471C5ED70000F8BB24 /* Homework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF42023C1C5ED70000F8BB24 /* Homework.framework */; };
 		CF42024C1C5ED70000F8BB24 /* HomeworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF42024B1C5ED70000F8BB24 /* HomeworkTests.swift */; };
+		CF4202681C5ED7A600F8BB24 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4202561C5ED7A600F8BB24 /* Repository.swift */; };
+		CF4202691C5ED7A600F8BB24 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4202571C5ED7A600F8BB24 /* PersistenceManager.swift */; };
+		CF42026A1C5ED7A600F8BB24 /* HWCourseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4202581C5ED7A600F8BB24 /* HWCourseRepository.swift */; };
+		CF42026B1C5ED7A600F8BB24 /* HWCourseListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4202591C5ED7A600F8BB24 /* HWCourseListRepository.swift */; };
+		CF42026C1C5ED7A600F8BB24 /* HWCourseListHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF42025A1C5ED7A600F8BB24 /* HWCourseListHandlers.swift */; };
+		CF42026D1C5ED7A600F8BB24 /* HWCourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF42025B1C5ED7A600F8BB24 /* HWCourseList.swift */; };
+		CF42026E1C5ED7A600F8BB24 /* HWCourseHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF42025C1C5ED7A600F8BB24 /* HWCourseHandlers.swift */; };
+		CF42026F1C5ED7A600F8BB24 /* HWCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF42025D1C5ED7A600F8BB24 /* HWCourse.swift */; };
+		CF4202701C5ED7A600F8BB24 /* HWAssignmentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF42025E1C5ED7A600F8BB24 /* HWAssignmentRepository.swift */; };
+		CF4202711C5ED7A600F8BB24 /* HWAssignmentHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF42025F1C5ED7A600F8BB24 /* HWAssignmentHandlers.swift */; };
+		CF4202721C5ED7A600F8BB24 /* HWAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4202601C5ED7A600F8BB24 /* HWAssignment.swift */; };
+		CF4202731C5ED7A600F8BB24 /* HWAssessmentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4202611C5ED7A600F8BB24 /* HWAssessmentRepository.swift */; };
+		CF4202741C5ED7A600F8BB24 /* HWAssessmentHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4202621C5ED7A600F8BB24 /* HWAssessmentHandlers.swift */; };
+		CF4202751C5ED7A600F8BB24 /* HWAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4202631C5ED7A600F8BB24 /* HWAssessment.swift */; };
+		CF4202761C5ED7A600F8BB24 /* HomeworkServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4202641C5ED7A600F8BB24 /* HomeworkServer.swift */; };
+		CF4202771C5ED7A600F8BB24 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4202651C5ED7A600F8BB24 /* Extensions.swift */; };
+		CF4202781C5ED7A600F8BB24 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4202661C5ED7A600F8BB24 /* Config.swift */; };
+		CF4202791C5ED7A600F8BB24 /* BaseRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4202671C5ED7A600F8BB24 /* BaseRequestHandler.swift */; };
+		CF42027B1C5ED7BE00F8BB24 /* PerfectLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF42027A1C5ED7BE00F8BB24 /* PerfectLib.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +48,25 @@
 		CF4202461C5ED70000F8BB24 /* HomeworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF42024B1C5ED70000F8BB24 /* HomeworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkTests.swift; sourceTree = "<group>"; };
 		CF42024D1C5ED70000F8BB24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF4202561C5ED7A600F8BB24 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		CF4202571C5ED7A600F8BB24 /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		CF4202581C5ED7A600F8BB24 /* HWCourseRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWCourseRepository.swift; sourceTree = "<group>"; };
+		CF4202591C5ED7A600F8BB24 /* HWCourseListRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWCourseListRepository.swift; sourceTree = "<group>"; };
+		CF42025A1C5ED7A600F8BB24 /* HWCourseListHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWCourseListHandlers.swift; sourceTree = "<group>"; };
+		CF42025B1C5ED7A600F8BB24 /* HWCourseList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWCourseList.swift; sourceTree = "<group>"; };
+		CF42025C1C5ED7A600F8BB24 /* HWCourseHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWCourseHandlers.swift; sourceTree = "<group>"; };
+		CF42025D1C5ED7A600F8BB24 /* HWCourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWCourse.swift; sourceTree = "<group>"; };
+		CF42025E1C5ED7A600F8BB24 /* HWAssignmentRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWAssignmentRepository.swift; sourceTree = "<group>"; };
+		CF42025F1C5ED7A600F8BB24 /* HWAssignmentHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWAssignmentHandlers.swift; sourceTree = "<group>"; };
+		CF4202601C5ED7A600F8BB24 /* HWAssignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWAssignment.swift; sourceTree = "<group>"; };
+		CF4202611C5ED7A600F8BB24 /* HWAssessmentRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWAssessmentRepository.swift; sourceTree = "<group>"; };
+		CF4202621C5ED7A600F8BB24 /* HWAssessmentHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWAssessmentHandlers.swift; sourceTree = "<group>"; };
+		CF4202631C5ED7A600F8BB24 /* HWAssessment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWAssessment.swift; sourceTree = "<group>"; };
+		CF4202641C5ED7A600F8BB24 /* HomeworkServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeworkServer.swift; sourceTree = "<group>"; };
+		CF4202651C5ED7A600F8BB24 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CF4202661C5ED7A600F8BB24 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		CF4202671C5ED7A600F8BB24 /* BaseRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRequestHandler.swift; sourceTree = "<group>"; };
+		CF42027A1C5ED7BE00F8BB24 /* PerfectLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PerfectLib.framework; path = ../../../../../../../Library/Frameworks/PerfectLib.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF42027B1C5ED7BE00F8BB24 /* PerfectLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +92,7 @@
 		CF4202321C5ED70000F8BB24 = {
 			isa = PBXGroup;
 			children = (
+				CF42027A1C5ED7BE00F8BB24 /* PerfectLib.framework */,
 				CF42023E1C5ED70000F8BB24 /* Homework */,
 				CF42024A1C5ED70000F8BB24 /* HomeworkTests */,
 				CF42023D1C5ED70000F8BB24 /* Products */,
@@ -71,6 +111,24 @@
 		CF42023E1C5ED70000F8BB24 /* Homework */ = {
 			isa = PBXGroup;
 			children = (
+				CF4202561C5ED7A600F8BB24 /* Repository.swift */,
+				CF4202571C5ED7A600F8BB24 /* PersistenceManager.swift */,
+				CF4202581C5ED7A600F8BB24 /* HWCourseRepository.swift */,
+				CF4202591C5ED7A600F8BB24 /* HWCourseListRepository.swift */,
+				CF42025A1C5ED7A600F8BB24 /* HWCourseListHandlers.swift */,
+				CF42025B1C5ED7A600F8BB24 /* HWCourseList.swift */,
+				CF42025C1C5ED7A600F8BB24 /* HWCourseHandlers.swift */,
+				CF42025D1C5ED7A600F8BB24 /* HWCourse.swift */,
+				CF42025E1C5ED7A600F8BB24 /* HWAssignmentRepository.swift */,
+				CF42025F1C5ED7A600F8BB24 /* HWAssignmentHandlers.swift */,
+				CF4202601C5ED7A600F8BB24 /* HWAssignment.swift */,
+				CF4202611C5ED7A600F8BB24 /* HWAssessmentRepository.swift */,
+				CF4202621C5ED7A600F8BB24 /* HWAssessmentHandlers.swift */,
+				CF4202631C5ED7A600F8BB24 /* HWAssessment.swift */,
+				CF4202641C5ED7A600F8BB24 /* HomeworkServer.swift */,
+				CF4202651C5ED7A600F8BB24 /* Extensions.swift */,
+				CF4202661C5ED7A600F8BB24 /* Config.swift */,
+				CF4202671C5ED7A600F8BB24 /* BaseRequestHandler.swift */,
 				CF42023F1C5ED70000F8BB24 /* Homework.h */,
 				CF4202411C5ED70000F8BB24 /* Info.plist */,
 			);
@@ -194,6 +252,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF4202731C5ED7A600F8BB24 /* HWAssessmentRepository.swift in Sources */,
+				CF4202711C5ED7A600F8BB24 /* HWAssignmentHandlers.swift in Sources */,
+				CF4202681C5ED7A600F8BB24 /* Repository.swift in Sources */,
+				CF42026F1C5ED7A600F8BB24 /* HWCourse.swift in Sources */,
+				CF4202781C5ED7A600F8BB24 /* Config.swift in Sources */,
+				CF4202751C5ED7A600F8BB24 /* HWAssessment.swift in Sources */,
+				CF42026A1C5ED7A600F8BB24 /* HWCourseRepository.swift in Sources */,
+				CF42026C1C5ED7A600F8BB24 /* HWCourseListHandlers.swift in Sources */,
+				CF42026E1C5ED7A600F8BB24 /* HWCourseHandlers.swift in Sources */,
+				CF4202701C5ED7A600F8BB24 /* HWAssignmentRepository.swift in Sources */,
+				CF4202721C5ED7A600F8BB24 /* HWAssignment.swift in Sources */,
+				CF42026D1C5ED7A600F8BB24 /* HWCourseList.swift in Sources */,
+				CF4202771C5ED7A600F8BB24 /* Extensions.swift in Sources */,
+				CF4202691C5ED7A600F8BB24 /* PersistenceManager.swift in Sources */,
+				CF4202741C5ED7A600F8BB24 /* HWAssessmentHandlers.swift in Sources */,
+				CF4202761C5ED7A600F8BB24 /* HomeworkServer.swift in Sources */,
+				CF42026B1C5ED7A600F8BB24 /* HWCourseListRepository.swift in Sources */,
+				CF4202791C5ED7A600F8BB24 /* BaseRequestHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,11 +381,16 @@
 		CF4202511C5ED70000F8BB24 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Homework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -317,17 +398,23 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ngeosone.Homework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		CF4202521C5ED70000F8BB24 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Homework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
