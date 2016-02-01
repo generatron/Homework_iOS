@@ -1,4 +1,4 @@
-/*
+/* 
 Copyright (c) 2016 NgeosOne LLC
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
@@ -27,10 +27,9 @@ Template: /PerfectSwift/server/entityHandlerClass.swift.vm
 
 import PerfectLib
 
-class HWAssignmentListHandler: BaseRequestHandler  {
+class HWAssignmentListHandler: RequestHandler  {
   
-override  func handleRequest(request: WebRequest, response: WebResponse) {
-    super.handleRequest(request, response: response)
+  func handleRequest(request: WebRequest, response: WebResponse) {
     response.appendBodyString("Index handler: You accessed path \(request.requestURI())")
     response.requestCompletedCallback()
   }
@@ -67,7 +66,7 @@ class HWAssignmentDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 13.42 minutes to type the 1342+ characters in this file.
+approximately 13.38 minutes to type the 1338+ characters in this file.
  */
 
 

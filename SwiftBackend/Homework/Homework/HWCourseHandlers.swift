@@ -27,7 +27,7 @@ Template: /PerfectSwift/server/entityHandlerClass.swift.vm
 
 import PerfectLib
 
-class HWCourseListHandler: BaseRequestHandler  {
+class HWCourseListHandler: RequestHandler  {
   
   func handleRequest(request: WebRequest, response: WebResponse) {
     response.appendBodyString("Index handler: You accessed path \(request.requestURI())")
@@ -66,7 +66,7 @@ class HWCourseDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 13.22 minutes to type the 1322+ characters in this file.
+approximately 13.18 minutes to type the 1318+ characters in this file.
  */
 
 
