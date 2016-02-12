@@ -19,25 +19,25 @@ Engineered using http://www.generatron.com/
 
 [GENERATRON]
 Generator :   System Templates
-Filename:     HWCourseListRepository.swift
-Description:  Persistence code for for HWCourseList
+Filename:     HWAssessmentRepositoryMySQL.swift
+Description:  Persistence code for for HWAssessment
 Project:      Homework
-Template: /PerfectSwift/server/EntityRepository.swift.vm
+Template: /PerfectSwift/server/EntityRepositoryMySQL.swift.vm
  */
 
 
 import MySQL
-class HWCourseListRepository : RepositoryMySQL {
+class HWAssessmentRepositoryMySQL : RepositoryMySQL {
 func createTable() throws ->  Int {
-   let rs = try db.query("CREATE TABLE IF NOT EXISTS hWCourseList (id BIGINT(20))")
+   let rs = try db.query("CREATE TABLE IF NOT EXISTS hWAssessment (dateAssigned Date, dateDue Date, id BIGINT(20), name VARCHAR(255), type VARCHAR(255))")
    let errorCode = db.errorCode()
         if errorCode > 0 {
             throw RepositoryError.CreateTable(errorCode)
       }
       return 0;
 }
-func insert(entity: HWCourseList) throws -> Int {
-       	let sql = "INSERT INTO hWCourseList(id) VALUES ( ?)"
+func insert(entity: HWAssessment) throws -> Int {
+       	let sql = "INSERT INTO hWAssessment(dateAssigned,dateDue,id,name,type) VALUES ( ?, ?, ?, ?, ?)"
        	
        	let statement = MySQLStmt(db)
 		defer {
@@ -45,7 +45,11 @@ func insert(entity: HWCourseList) throws -> Int {
 		}
 		let prepRes = statement.prepare(sql)
 		if(prepRes){
+	statement.bindParam(entity.dateAssigned.SQLiteDateString)
+	statement.bindParam(entity.dateDue.SQLiteDateString)
 	statement.bindParam(entity.id)
+	statement.bindParam(entity.name)
+	statement.bindParam(entity.type)
 
 
 let execRes = statement.execute()
@@ -62,12 +66,12 @@ statement.close()
  return 0
 }
     
-    func update(entity: HWCourseList) throws -> Int {
+    func update(entity: HWAssessment) throws -> Int {
         guard let id = entity.id else {
             return 0
         }
         
-        let sql = "UPDATE hWCourseList SET  WHERE id = :id"
+        let sql = "UPDATE hWAssessment SET  ? , ? , ? , ? WHERE id = :id"
 
 let statement = MySQLStmt(db)
 		defer {
@@ -76,7 +80,11 @@ let statement = MySQLStmt(db)
 		let prepRes = statement.prepare(sql)
 		
 		if(prepRes){		
+	statement.bindParam(entity.dateAssigned.SQLiteDateString)
+	statement.bindParam(entity.dateDue.SQLiteDateString)
 	statement.bindParam(entity.id)
+	statement.bindParam(entity.name)
+	statement.bindParam(entity.type)
 
 let execRes = statement.execute()
 if(!execRes){
@@ -93,12 +101,12 @@ statement.close()
 		return 0
     }
     
-	func delete(entity: HWCourseList) throws -> Int {
+	func delete(entity: HWAssessment) throws -> Int {
 	    guard let id = entity.id else {
 	        return 0
 	    }
 	    
-	    let sql = "DELETE FROM hWCourseList WHERE id = ?"
+	    let sql = "DELETE FROM hWAssessment WHERE id = ?"
 	    let statement = MySQLStmt(db)
 		defer {
 			statement.close()
@@ -123,8 +131,8 @@ statement.close()
 		return 0
 	}
     
-    func retrieve(id: Int) throws -> HWCourseList? {
-        let sql = "SELECT id FROM HWCourseList WHERE id = :id"
+    func retrieve(id: Int) throws -> HWAssessment? {
+        let sql = "SELECT dateAssigned,dateDue,id,name,type FROM HWAssessment WHERE id = :id"
        	let statement = MySQLStmt(db)
 		defer {
 			statement.close()
@@ -158,17 +166,29 @@ statement.close()
 	    return entity;
     }
     
-    func list() throws -> [HWCourseList] {
-        let sql = "SELECT * FROM hWCourseList "
-        var entities = [HWCourseList]()
-        var columns = [Any]()
-        try db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
-            //nothing to see here
-        }) { (stmt:SQLiteStmt, r:Int) -> () in
-                let entity =  HWCourseList()
-		entity.id = stmt.columnInt64(0)
-        	    entities.append(entity)
-        }
+    func list() throws -> [HWAssessment] {
+        let sql = "SELECT * FROM hWAssessment "
+        var entities = [HWAssessment]()
+       let statement = MySQLStmt(db)
+			
+			let prepRes = statement.prepare(sql)
+			
+			
+			let execRes = statement.execute()
+			
+			
+			let results = statement.results()
+			
+			let ok = results.forEachRow {
+				e in
+				print(e.flatMap({ (a:Any?) -> Any? in
+					return a!
+				}))
+			}
+			
+			
+			results.close()
+			statement.close()
         return entities
     }
 }
@@ -176,7 +196,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 38.22 minutes to type the 3822+ characters in this file.
+approximately 43.94 minutes to type the 4394+ characters in this file.
  */
 
 

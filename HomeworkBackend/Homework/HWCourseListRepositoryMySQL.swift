@@ -19,15 +19,15 @@ Engineered using http://www.generatron.com/
 
 [GENERATRON]
 Generator :   System Templates
-Filename:     HWCourseListRepository.swift
+Filename:     HWCourseListRepositoryMySQL.swift
 Description:  Persistence code for for HWCourseList
 Project:      Homework
-Template: /PerfectSwift/server/EntityRepository.swift.vm
+Template: /PerfectSwift/server/EntityRepositoryMySQL.swift.vm
  */
 
 
 import MySQL
-class HWCourseListRepository : RepositoryMySQL {
+class HWCourseListRepositoryMySQL : RepositoryMySQL {
 func createTable() throws ->  Int {
    let rs = try db.query("CREATE TABLE IF NOT EXISTS hWCourseList (id BIGINT(20))")
    let errorCode = db.errorCode()
@@ -161,14 +161,26 @@ statement.close()
     func list() throws -> [HWCourseList] {
         let sql = "SELECT * FROM hWCourseList "
         var entities = [HWCourseList]()
-        var columns = [Any]()
-        try db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
-            //nothing to see here
-        }) { (stmt:SQLiteStmt, r:Int) -> () in
-                let entity =  HWCourseList()
-		entity.id = stmt.columnInt64(0)
-        	    entities.append(entity)
-        }
+       let statement = MySQLStmt(db)
+			
+			let prepRes = statement.prepare(sql)
+			
+			
+			let execRes = statement.execute()
+			
+			
+			let results = statement.results()
+			
+			let ok = results.forEachRow {
+				e in
+				print(e.flatMap({ (a:Any?) -> Any? in
+					return a!
+				}))
+			}
+			
+			
+			results.close()
+			statement.close()
         return entities
     }
 }
@@ -176,7 +188,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 38.22 minutes to type the 3822+ characters in this file.
+approximately 38.65 minutes to type the 3865+ characters in this file.
  */
 
 

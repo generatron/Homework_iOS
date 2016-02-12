@@ -54,7 +54,7 @@ func insert(entity: HWAssessment) throws -> Int {
 
 let execRes = statement.execute()
 if(!execRes){
-	println("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
+	print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
 	let errorCode = db.errorCode()
 	if errorCode > 0 {
 	    throw RepositoryError.Insert(errorCode)
@@ -71,7 +71,7 @@ statement.close()
             return 0
         }
         
-        let sql = "UPDATE hWAssessment SET dateAssigned=:dateAssigned ,dateDue=:dateDue ,name=:name ,type=:type WHERE id = :id"
+        let sql = "UPDATE hWAssessment SET  ? , ? , ? , ? WHERE id = :id"
 
 let statement = MySQLStmt(db)
 		defer {
@@ -88,7 +88,7 @@ let statement = MySQLStmt(db)
 
 let execRes = statement.execute()
 if(!execRes){
-	println("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
+	print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
 	let errorCode = db.errorCode()
 	if errorCode > 0 {
 	    throw RepositoryError.Update(errorCode)
@@ -101,52 +101,68 @@ statement.close()
 		return 0
     }
     
-    func delete(entity: HWAssessment) throws -> Int {
-        guard let id = entity.id else {
-            return 0
-        }
-        
-        let sql = "DELETE FROM hWAssessment WHERE id = :id"
-        try db.query(sql) { (stmt:SQLiteStmt) -> () in
-            try stmt.bind(":id", id)
-        }
-        
-        let errorCode = db.errorCode()
-        if errorCode > 0 {
-            throw RepositoryError.Delete(errorCode)
-        }
-        
-        return db.changes()
-    }
+	func delete(entity: HWAssessment) throws -> Int {
+	    guard let id = entity.id else {
+	        return 0
+	    }
+	    
+	    let sql = "DELETE FROM hWAssessment WHERE id = ?"
+	    let statement = MySQLStmt(db)
+		defer {
+			statement.close()
+		}
+		let prepRes = statement.prepare(sql)
+		
+		if(prepRes){
+			//HARDCODED might not exist, assuming it does, need to retrieve PK
+			statement.bindParam(entity.id)
+			
+			let execRes = statement.execute()
+	        if(!execRes){
+				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
+				let errorCode = db.errorCode()
+				if errorCode > 0 {
+	    			throw RepositoryError.Delete(errorCode)
+				}
+				statement.close()
+			}
+				
+		}
+		return 0
+	}
     
     func retrieve(id: Int) throws -> HWAssessment? {
         let sql = "SELECT dateAssigned,dateDue,id,name,type FROM HWAssessment WHERE id = :id"
-        var columns = [Any]()
-        let rs =  try db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
-            	try stmt.bind(":id", id)
-        }) { (stmt:SQLiteStmt, r:Int) -> () in
-			columns.append(stmt.columnText(0))
-			columns.append(stmt.columnText(1))
-			columns.append(stmt.columnInt64(2))
-			columns.append(stmt.columnText(3))
-			columns.append(stmt.columnInt64(4))
-        }
-        
-        let errorCode = db.errorCode()
-        if errorCode > 0 {
-            throw RepositoryError.Select(errorCode)
-        }
-        
-        guard columns.count > 0 else {
-            return nil
-        }
-        
-        let entity =  HWAssessment()
-		entity.dateAssigned = columns[0] as? NSDate
-		entity.dateDue = columns[1] as? NSDate
-		entity.id = columns[2] as? Int64
-		entity.name = columns[3] as? String
-		entity.type = columns[4] as? String
+       	let statement = MySQLStmt(db)
+		defer {
+			statement.close()
+		}
+		let prepRes = statement.prepare(sql)
+		
+		if(prepRes){
+			//HARDCODED might not exist, assuming it does, need to retrieve PK
+			statement.bindParam(entity.id)
+			
+			let execRes = statement.execute()
+            if(!execRes){
+            	let result = statement.results()
+            	
+            	let ok = results.forEachRow {
+				e in
+				print(e.flatMap({ (a:Any?) -> Any? in
+					return a!
+				}))
+				}
+			
+				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
+				let errorCode = db.errorCode()
+				if errorCode > 0 {
+	    			throw RepositoryError.Delete(errorCode)
+				}
+				statement.close()
+			}
+				
+		}
 	    return entity;
     }
     
@@ -172,7 +188,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 44.05 minutes to type the 4405+ characters in this file.
+approximately 45.07 minutes to type the 4507+ characters in this file.
  */
 
 

@@ -53,7 +53,7 @@ func insert(entity: HWCourse) throws -> Int {
 
 let execRes = statement.execute()
 if(!execRes){
-	println("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
+	print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
 	let errorCode = db.errorCode()
 	if errorCode > 0 {
 	    throw RepositoryError.Insert(errorCode)
@@ -70,7 +70,7 @@ statement.close()
             return 0
         }
         
-        let sql = "UPDATE hWCourse SET color=:color ,name=:name ,period=:period WHERE id = :id"
+        let sql = "UPDATE hWCourse SET  ? , ? , ? WHERE id = :id"
 
 let statement = MySQLStmt(db)
 		defer {
@@ -86,7 +86,7 @@ let statement = MySQLStmt(db)
 
 let execRes = statement.execute()
 if(!execRes){
-	println("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
+	print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
 	let errorCode = db.errorCode()
 	if errorCode > 0 {
 	    throw RepositoryError.Update(errorCode)
@@ -99,50 +99,68 @@ statement.close()
 		return 0
     }
     
-    func delete(entity: HWCourse) throws -> Int {
-        guard let id = entity.id else {
-            return 0
-        }
-        
-        let sql = "DELETE FROM hWCourse WHERE id = :id"
-        try db.query(sql) { (stmt:SQLiteStmt) -> () in
-            try stmt.bind(":id", id)
-        }
-        
-        let errorCode = db.errorCode()
-        if errorCode > 0 {
-            throw RepositoryError.Delete(errorCode)
-        }
-        
-        return db.changes()
-    }
+	func delete(entity: HWCourse) throws -> Int {
+	    guard let id = entity.id else {
+	        return 0
+	    }
+	    
+	    let sql = "DELETE FROM hWCourse WHERE id = ?"
+	    let statement = MySQLStmt(db)
+		defer {
+			statement.close()
+		}
+		let prepRes = statement.prepare(sql)
+		
+		if(prepRes){
+			//HARDCODED might not exist, assuming it does, need to retrieve PK
+			statement.bindParam(entity.id)
+			
+			let execRes = statement.execute()
+	        if(!execRes){
+				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
+				let errorCode = db.errorCode()
+				if errorCode > 0 {
+	    			throw RepositoryError.Delete(errorCode)
+				}
+				statement.close()
+			}
+				
+		}
+		return 0
+	}
     
     func retrieve(id: Int) throws -> HWCourse? {
         let sql = "SELECT color,id,name,period FROM HWCourse WHERE id = :id"
-        var columns = [Any]()
-        let rs =  try db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
-            	try stmt.bind(":id", id)
-        }) { (stmt:SQLiteStmt, r:Int) -> () in
-			columns.append(stmt.columnText(0))
-			columns.append(stmt.columnInt64(1))
-			columns.append(stmt.columnText(2))
-			columns.append(stmt.columnInt64(3))
-        }
-        
-        let errorCode = db.errorCode()
-        if errorCode > 0 {
-            throw RepositoryError.Select(errorCode)
-        }
-        
-        guard columns.count > 0 else {
-            return nil
-        }
-        
-        let entity =  HWCourse()
-		entity.color = columns[0] as? String
-		entity.id = columns[1] as? Int64
-		entity.name = columns[2] as? String
-		entity.period = columns[3] as? String
+       	let statement = MySQLStmt(db)
+		defer {
+			statement.close()
+		}
+		let prepRes = statement.prepare(sql)
+		
+		if(prepRes){
+			//HARDCODED might not exist, assuming it does, need to retrieve PK
+			statement.bindParam(entity.id)
+			
+			let execRes = statement.execute()
+            if(!execRes){
+            	let result = statement.results()
+            	
+            	let ok = results.forEachRow {
+				e in
+				print(e.flatMap({ (a:Any?) -> Any? in
+					return a!
+				}))
+				}
+			
+				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
+				let errorCode = db.errorCode()
+				if errorCode > 0 {
+	    			throw RepositoryError.Delete(errorCode)
+				}
+				statement.close()
+			}
+				
+		}
 	    return entity;
     }
     
@@ -167,7 +185,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 39.93 minutes to type the 3993+ characters in this file.
+approximately 42.09 minutes to type the 4209+ characters in this file.
  */
 
 

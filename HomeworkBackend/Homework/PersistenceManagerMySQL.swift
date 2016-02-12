@@ -31,10 +31,10 @@ import MySQL
 class PersistenceManagerMySQL {
 	static let sharedInstance = PersistenceManagerMySQL()
     var mysql = MySQL ()
-        var hWAssessmentRepository :  HWAssessmentRepository! 
-	    var hWAssignmentRepository :  HWAssignmentRepository! 
-	    var hWCourseRepository :  HWCourseRepository! 
-	    var hWCourseListRepository :  HWCourseListRepository! 
+        var hWAssessmentRepository :  HWAssessmentRepositoryMySQL! 
+	    var hWAssignmentRepository :  HWAssignmentRepositoryMySQL! 
+	    var hWCourseRepository :  HWCourseRepositoryMySQL! 
+	    var hWCourseListRepository :  HWCourseListRepositoryMySQL! 
 	    init() {
     	// Connect to Database. 
     	do {
@@ -46,20 +46,20 @@ class PersistenceManagerMySQL {
             {
 			
 			//Variables for HWAssessment
-			hWAssessmentRepository = HWAssessmentRepository(db:self.mysql);
-			try hWAssessmentRepository.createTable()
+			hWAssessmentRepository = HWAssessmentRepositoryMySQL(db:self.mysql);
+			//try hWAssessmentRepository.createTable()
 			
 			//Variables for HWAssignment
-			hWAssignmentRepository = HWAssignmentRepository(db:self.mysql);
-			try hWAssignmentRepository.createTable()
+			hWAssignmentRepository = HWAssignmentRepositoryMySQL(db:self.mysql);
+			//try hWAssignmentRepository.createTable()
 			
 			//Variables for HWCourse
-			hWCourseRepository = HWCourseRepository(db:self.mysql);
-			try hWCourseRepository.createTable()
+			hWCourseRepository = HWCourseRepositoryMySQL(db:self.mysql);
+			//try hWCourseRepository.createTable()
 			
 			//Variables for HWCourseList
-			hWCourseListRepository = HWCourseListRepository(db:self.mysql);
-			try hWCourseListRepository.createTable()
+			hWCourseListRepository = HWCourseListRepositoryMySQL(db:self.mysql);
+			//try hWCourseListRepository.createTable()
 }
 }
     	} catch (let e){
@@ -73,7 +73,7 @@ class PersistenceManagerMySQL {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 14.27 minutes to type the 1427+ characters in this file.
+approximately 14.75 minutes to type the 1475+ characters in this file.
  */
 
 
