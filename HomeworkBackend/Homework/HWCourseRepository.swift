@@ -58,7 +58,7 @@ func insert(entity: HWCourse) throws -> Int {
         }
         
         let sql = "UPDATE hWCourse SET color=:color ,name=:name ,period=:period WHERE id = :id"
-        try let rs =  db.query(sql) { (stmt:SQLiteStmt) -> () in
+        let rs =  try db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":color", entity.color)
 	try stmt.bind(":id", entity.id)
 	try stmt.bind(":name", entity.name)
@@ -94,7 +94,7 @@ func insert(entity: HWCourse) throws -> Int {
     func retrieve(id: Int) throws -> HWCourse? {
         let sql = "SELECT color,id,name,period FROM HWCourse WHERE id = :id"
         var columns = [Any]()
-        try let rs =  db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
+        let rs =  try db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
             	try stmt.bind(":id", id)
         }) { (stmt:SQLiteStmt, r:Int) -> () in
 			columns.append(stmt.columnText(0))

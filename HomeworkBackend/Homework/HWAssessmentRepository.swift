@@ -59,7 +59,7 @@ func insert(entity: HWAssessment) throws -> Int {
         }
         
         let sql = "UPDATE hWAssessment SET dateAssigned=:dateAssigned ,dateDue=:dateDue ,name=:name ,type=:type WHERE id = :id"
-        try let rs =  db.query(sql) { (stmt:SQLiteStmt) -> () in
+        let rs =  try db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":dateAssigned", entity.dateAssigned.SQLiteDateString)
 	try stmt.bind(":dateDue", entity.dateDue.SQLiteDateString)
 	try stmt.bind(":id", entity.id)
@@ -96,7 +96,7 @@ func insert(entity: HWAssessment) throws -> Int {
     func retrieve(id: Int) throws -> HWAssessment? {
         let sql = "SELECT dateAssigned,dateDue,id,name,type FROM HWAssessment WHERE id = :id"
         var columns = [Any]()
-        try let rs =  db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
+        let rs =  try db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
             	try stmt.bind(":id", id)
         }) { (stmt:SQLiteStmt, r:Int) -> () in
 			columns.append(stmt.columnText(0))
