@@ -30,7 +30,7 @@ import MySQL
 
 class PersistenceManagerMySQL {
 	static let sharedInstance = PersistenceManagerMySQL()
-    var db = MySQL ()
+    var mysql = MySQL ()
         var hWAssessmentRepository :  HWAssessmentRepository! 
 	    var hWAssignmentRepository :  HWAssignmentRepository! 
 	    var hWCourseRepository :  HWCourseRepository! 
@@ -46,19 +46,19 @@ class PersistenceManagerMySQL {
             {
 			
 			//Variables for HWAssessment
-			hWAssessmentRepository = HWAssessmentRepository(db:self.db);
+			hWAssessmentRepository = HWAssessmentRepository(db:self.mysql);
 			try hWAssessmentRepository.createTable()
 			
 			//Variables for HWAssignment
-			hWAssignmentRepository = HWAssignmentRepository(db:self.db);
+			hWAssignmentRepository = HWAssignmentRepository(db:self.mysql);
 			try hWAssignmentRepository.createTable()
 			
 			//Variables for HWCourse
-			hWCourseRepository = HWCourseRepository(db:self.db);
+			hWCourseRepository = HWCourseRepository(db:self.mysql);
 			try hWCourseRepository.createTable()
 			
 			//Variables for HWCourseList
-			hWCourseListRepository = HWCourseListRepository(db:self.db);
+			hWCourseListRepository = HWCourseListRepository(db:self.mysql);
 			try hWCourseListRepository.createTable()
 }
 }
@@ -73,7 +73,7 @@ class PersistenceManagerMySQL {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 14.12 minutes to type the 1412+ characters in this file.
+approximately 14.27 minutes to type the 1427+ characters in this file.
  */
 
 
