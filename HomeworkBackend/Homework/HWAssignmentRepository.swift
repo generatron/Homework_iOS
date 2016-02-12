@@ -37,22 +37,35 @@ func createTable() throws ->  Int {
       return 0;
 }
 func insert(entity: HWAssignment) throws -> Int {
-       	let sql = "INSERT INTO hWAssignment(dateAssigned,dateDue,id,isCompleted,name,type) VALUES ( :dateAssigned, :dateDue, :id, :isCompleted, :name, :type)"
-        let rs =  try db.query(sql) { (stmt:SQLiteStmt) -> () in
-	try stmt.bind(":dateAssigned", entity.dateAssigned.SQLiteDateString)
-	try stmt.bind(":dateDue", entity.dateDue.SQLiteDateString)
-	try stmt.bind(":id", entity.id)
-	try stmt.bind(":isCompleted", entity.isCompleted)
-	try stmt.bind(":name", entity.name)
-	try stmt.bind(":type", entity.type)
-        }
-        let errorCode = db.errorCode()
-        if errorCode > 0 {
-            throw RepositoryError.Insert(errorCode)
-        }
-        //return db.changes()
-        return 0
-    }
+       	let sql = "INSERT INTO hWAssignment(dateAssigned,dateDue,id,isCompleted,name,type) VALUES ( ?, ?, ?, ?, ?, ?)"
+       	
+       	let statement = MySQLStmt(db)
+		defer {
+			statement.close()
+		}
+		let prepRes = statement.prepare(sql)
+		if(prepRes){
+	statement.bindParam(entity.dateAssigned.SQLiteDateString)
+	statement.bindParam(entity.dateDue.SQLiteDateString)
+	statement.bindParam(entity.id)
+	statement.bindParam(entity.isCompleted)
+	statement.bindParam(entity.name)
+	statement.bindParam(entity.type)
+
+
+let execRes = statement.execute()
+if(!execRes){
+	println "\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())"
+	let errorCode = db.errorCode()
+	if errorCode > 0 {
+	    throw RepositoryError.Insert(errorCode)
+	}
+}
+	
+statement.close()
+}        
+ return 0
+}
     
     func update(entity: HWAssignment) throws -> Int {
         guard let id = entity.id else {
@@ -60,21 +73,35 @@ func insert(entity: HWAssignment) throws -> Int {
         }
         
         let sql = "UPDATE hWAssignment SET dateAssigned=:dateAssigned ,dateDue=:dateDue ,isCompleted=:isCompleted ,name=:name ,type=:type WHERE id = :id"
-        let rs =  try db.query(sql) { (stmt:SQLiteStmt) -> () in
-	try stmt.bind(":dateAssigned", entity.dateAssigned.SQLiteDateString)
-	try stmt.bind(":dateDue", entity.dateDue.SQLiteDateString)
-	try stmt.bind(":id", entity.id)
-	try stmt.bind(":isCompleted", entity.isCompleted)
-	try stmt.bind(":name", entity.name)
-	try stmt.bind(":type", entity.type)
-        }
+
+let statement = MySQLStmt(db)
+		defer {
+			statement.close()
+		}
+		let prepRes = statement.prepare(sql)
+		
+		let prepRes = statement.prepare(sql)
+		if(prepRes){		
+	statement.bindParam(entity.dateAssigned.SQLiteDateString)
+	statement.bindParam(entity.dateDue.SQLiteDateString)
+	statement.bindParam(entity.id)
+	statement.bindParam(entity.isCompleted)
+	statement.bindParam(entity.name)
+	statement.bindParam(entity.type)
+
+let execRes = statement.execute()
+if(!execRes){
+	println "\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())"
+	let errorCode = db.errorCode()
+	if errorCode > 0 {
+	    throw RepositoryError.Update(errorCode)
+	}
+}
+	
+statement.close()
+		}
         
-        let errorCode = db.errorCode()
-        if errorCode > 0 {
-            throw RepositoryError.Update(errorCode)
-        }
-        
-        return db.changes()
+		return 0
     }
     
     func delete(entity: HWAssignment) throws -> Int {
@@ -151,7 +178,7 @@ func insert(entity: HWAssignment) throws -> Int {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 44.15 minutes to type the 4415+ characters in this file.
+approximately 47.28 minutes to type the 4728+ characters in this file.
  */
 
 

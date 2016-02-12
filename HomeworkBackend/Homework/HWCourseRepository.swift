@@ -37,20 +37,33 @@ func createTable() throws ->  Int {
       return 0;
 }
 func insert(entity: HWCourse) throws -> Int {
-       	let sql = "INSERT INTO hWCourse(color,id,name,period) VALUES ( :color, :id, :name, :period)"
-        let rs =  try db.query(sql) { (stmt:SQLiteStmt) -> () in
-	try stmt.bind(":color", entity.color)
-	try stmt.bind(":id", entity.id)
-	try stmt.bind(":name", entity.name)
-	try stmt.bind(":period", entity.period)
-        }
-        let errorCode = db.errorCode()
-        if errorCode > 0 {
-            throw RepositoryError.Insert(errorCode)
-        }
-        //return db.changes()
-        return 0
-    }
+       	let sql = "INSERT INTO hWCourse(color,id,name,period) VALUES ( ?, ?, ?, ?)"
+       	
+       	let statement = MySQLStmt(db)
+		defer {
+			statement.close()
+		}
+		let prepRes = statement.prepare(sql)
+		if(prepRes){
+	statement.bindParam(entity.color)
+	statement.bindParam(entity.id)
+	statement.bindParam(entity.name)
+	statement.bindParam(entity.period)
+
+
+let execRes = statement.execute()
+if(!execRes){
+	println "\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())"
+	let errorCode = db.errorCode()
+	if errorCode > 0 {
+	    throw RepositoryError.Insert(errorCode)
+	}
+}
+	
+statement.close()
+}        
+ return 0
+}
     
     func update(entity: HWCourse) throws -> Int {
         guard let id = entity.id else {
@@ -58,19 +71,33 @@ func insert(entity: HWCourse) throws -> Int {
         }
         
         let sql = "UPDATE hWCourse SET color=:color ,name=:name ,period=:period WHERE id = :id"
-        let rs =  try db.query(sql) { (stmt:SQLiteStmt) -> () in
-	try stmt.bind(":color", entity.color)
-	try stmt.bind(":id", entity.id)
-	try stmt.bind(":name", entity.name)
-	try stmt.bind(":period", entity.period)
-        }
+
+let statement = MySQLStmt(db)
+		defer {
+			statement.close()
+		}
+		let prepRes = statement.prepare(sql)
+		
+		let prepRes = statement.prepare(sql)
+		if(prepRes){		
+	statement.bindParam(entity.color)
+	statement.bindParam(entity.id)
+	statement.bindParam(entity.name)
+	statement.bindParam(entity.period)
+
+let execRes = statement.execute()
+if(!execRes){
+	println "\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())"
+	let errorCode = db.errorCode()
+	if errorCode > 0 {
+	    throw RepositoryError.Update(errorCode)
+	}
+}
+	
+statement.close()
+		}
         
-        let errorCode = db.errorCode()
-        if errorCode > 0 {
-            throw RepositoryError.Update(errorCode)
-        }
-        
-        return db.changes()
+		return 0
     }
     
     func delete(entity: HWCourse) throws -> Int {
@@ -141,7 +168,7 @@ func insert(entity: HWCourse) throws -> Int {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 36.58 minutes to type the 3658+ characters in this file.
+approximately 40.36 minutes to type the 4036+ characters in this file.
  */
 
 

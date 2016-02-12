@@ -37,17 +37,30 @@ func createTable() throws ->  Int {
       return 0;
 }
 func insert(entity: HWCourseList) throws -> Int {
-       	let sql = "INSERT INTO hWCourseList(id) VALUES ( :id)"
-        let rs =  try db.query(sql) { (stmt:SQLiteStmt) -> () in
-	try stmt.bind(":id", entity.id)
-        }
-        let errorCode = db.errorCode()
-        if errorCode > 0 {
-            throw RepositoryError.Insert(errorCode)
-        }
-        //return db.changes()
-        return 0
-    }
+       	let sql = "INSERT INTO hWCourseList(id) VALUES ( ?)"
+       	
+       	let statement = MySQLStmt(db)
+		defer {
+			statement.close()
+		}
+		let prepRes = statement.prepare(sql)
+		if(prepRes){
+	statement.bindParam(entity.id)
+
+
+let execRes = statement.execute()
+if(!execRes){
+	println "\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())"
+	let errorCode = db.errorCode()
+	if errorCode > 0 {
+	    throw RepositoryError.Insert(errorCode)
+	}
+}
+	
+statement.close()
+}        
+ return 0
+}
     
     func update(entity: HWCourseList) throws -> Int {
         guard let id = entity.id else {
@@ -55,16 +68,30 @@ func insert(entity: HWCourseList) throws -> Int {
         }
         
         let sql = "UPDATE hWCourseList SET  WHERE id = :id"
-        let rs =  try db.query(sql) { (stmt:SQLiteStmt) -> () in
-	try stmt.bind(":id", entity.id)
-        }
+
+let statement = MySQLStmt(db)
+		defer {
+			statement.close()
+		}
+		let prepRes = statement.prepare(sql)
+		
+		let prepRes = statement.prepare(sql)
+		if(prepRes){		
+	statement.bindParam(entity.id)
+
+let execRes = statement.execute()
+if(!execRes){
+	println "\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())"
+	let errorCode = db.errorCode()
+	if errorCode > 0 {
+	    throw RepositoryError.Update(errorCode)
+	}
+}
+	
+statement.close()
+		}
         
-        let errorCode = db.errorCode()
-        if errorCode > 0 {
-            throw RepositoryError.Update(errorCode)
-        }
-        
-        return db.changes()
+		return 0
     }
     
     func delete(entity: HWCourseList) throws -> Int {
@@ -126,7 +153,7 @@ func insert(entity: HWCourseList) throws -> Int {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 29.68 minutes to type the 2968+ characters in this file.
+approximately 33.85 minutes to type the 3385+ characters in this file.
  */
 
 

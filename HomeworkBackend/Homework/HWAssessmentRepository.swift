@@ -29,9 +29,7 @@ Template: /PerfectSwift/server/EntityRepository.swift.vm
 import PerfectLib
 class HWAssessmentRepository : RepositoryMySQL {
 func createTable() throws ->  Int {
-
    let rs = try db.query("CREATE TABLE IF NOT EXISTS hWAssessment (dateAssigned Date, dateDue Date, id BIGINT(20), name VARCHAR(255), type VARCHAR(255))")
-
    let errorCode = db.errorCode()
         if errorCode > 0 {
             throw RepositoryError.CreateTable(errorCode)
@@ -39,21 +37,34 @@ func createTable() throws ->  Int {
       return 0;
 }
 func insert(entity: HWAssessment) throws -> Int {
-       	let sql = "INSERT INTO hWAssessment(dateAssigned,dateDue,id,name,type) VALUES ( :dateAssigned, :dateDue, :id, :name, :type)"
-        let rs =  try db.query(sql) { (stmt:SQLiteStmt) -> () in
-	try stmt.bind(":dateAssigned", entity.dateAssigned.SQLiteDateString)
-	try stmt.bind(":dateDue", entity.dateDue.SQLiteDateString)
-	try stmt.bind(":id", entity.id)
-	try stmt.bind(":name", entity.name)
-	try stmt.bind(":type", entity.type)
-        }
-        let errorCode = db.errorCode()
-        if errorCode > 0 {
-            throw RepositoryError.Insert(errorCode)
-        }
-        //return db.changes()
-        return 0
-    }
+       	let sql = "INSERT INTO hWAssessment(dateAssigned,dateDue,id,name,type) VALUES ( ?, ?, ?, ?, ?)"
+       	
+       	let statement = MySQLStmt(db)
+		defer {
+			statement.close()
+		}
+		let prepRes = statement.prepare(sql)
+		if(prepRes){
+	statement.bindParam(entity.dateAssigned.SQLiteDateString)
+	statement.bindParam(entity.dateDue.SQLiteDateString)
+	statement.bindParam(entity.id)
+	statement.bindParam(entity.name)
+	statement.bindParam(entity.type)
+
+
+let execRes = statement.execute()
+if(!execRes){
+	println "\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())"
+	let errorCode = db.errorCode()
+	if errorCode > 0 {
+	    throw RepositoryError.Insert(errorCode)
+	}
+}
+	
+statement.close()
+}        
+ return 0
+}
     
     func update(entity: HWAssessment) throws -> Int {
         guard let id = entity.id else {
@@ -61,20 +72,34 @@ func insert(entity: HWAssessment) throws -> Int {
         }
         
         let sql = "UPDATE hWAssessment SET dateAssigned=:dateAssigned ,dateDue=:dateDue ,name=:name ,type=:type WHERE id = :id"
-        let rs =  try db.query(sql) { (stmt:SQLiteStmt) -> () in
-	try stmt.bind(":dateAssigned", entity.dateAssigned.SQLiteDateString)
-	try stmt.bind(":dateDue", entity.dateDue.SQLiteDateString)
-	try stmt.bind(":id", entity.id)
-	try stmt.bind(":name", entity.name)
-	try stmt.bind(":type", entity.type)
-        }
+
+let statement = MySQLStmt(db)
+		defer {
+			statement.close()
+		}
+		let prepRes = statement.prepare(sql)
+		
+		let prepRes = statement.prepare(sql)
+		if(prepRes){		
+	statement.bindParam(entity.dateAssigned.SQLiteDateString)
+	statement.bindParam(entity.dateDue.SQLiteDateString)
+	statement.bindParam(entity.id)
+	statement.bindParam(entity.name)
+	statement.bindParam(entity.type)
+
+let execRes = statement.execute()
+if(!execRes){
+	println "\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())"
+	let errorCode = db.errorCode()
+	if errorCode > 0 {
+	    throw RepositoryError.Update(errorCode)
+	}
+}
+	
+statement.close()
+		}
         
-        let errorCode = db.errorCode()
-        if errorCode > 0 {
-            throw RepositoryError.Update(errorCode)
-        }
-        
-        return db.changes()
+		return 0
     }
     
     func delete(entity: HWAssessment) throws -> Int {
@@ -143,24 +168,12 @@ func insert(entity: HWAssessment) throws -> Int {
         }
         return entities
     }
-<<<<<<< Updated upstream
 }
 
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 41.04 minutes to type the 4104+ characters in this file.
+approximately 44.48 minutes to type the 4448+ characters in this file.
  */
 
 
-=======
-}
-
-/* 
-[STATS]
-It would take a person typing  @ 100.0 cpm, 
-approximately 40.86 minutes to type the 4086+ characters in this file.
- */
-
-
->>>>>>> Stashed changes
