@@ -29,7 +29,7 @@ Template: /PerfectSwift/server/EntityRepository.swift.vm
 import PerfectLib
 class HWAssessmentRepository : RepositoryMySQL {
 func createTable() throws ->  Int {
-   try db.query("CREATE TABLE IF NOT EXISTS hWAssessment (dateAssigned Date, dateDue Date, id Long, name String, type String)")
+   try let rs = db.query("CREATE TABLE IF NOT EXISTS hWAssessment (dateAssigned Date, dateDue Date, id Long, name String, type String)")
    let errorCode = db.errorCode()
         if errorCode > 0 {
             throw RepositoryError.CreateTable(errorCode)
@@ -38,7 +38,7 @@ func createTable() throws ->  Int {
 }
 func insert(entity: HWAssessment) throws -> Int {
        	let sql = "INSERT INTO hWAssessment(dateAssigned,dateDue,id,name,type) VALUES ( :dateAssigned, :dateDue, :id, :name, :type)"
-        try db.query(sql) { (stmt:SQLiteStmt) -> () in
+        try let rs =  db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":dateAssigned", entity.dateAssigned.SQLiteDateString)
 	try stmt.bind(":dateDue", entity.dateDue.SQLiteDateString)
 	try stmt.bind(":id", entity.id)
@@ -49,7 +49,8 @@ func insert(entity: HWAssessment) throws -> Int {
         if errorCode > 0 {
             throw RepositoryError.Insert(errorCode)
         }
-        return db.changes()
+        //return db.changes()
+        return 0
     }
     
     func update(entity: HWAssessment) throws -> Int {
@@ -58,7 +59,7 @@ func insert(entity: HWAssessment) throws -> Int {
         }
         
         let sql = "UPDATE hWAssessment SET dateAssigned=:dateAssigned ,dateDue=:dateDue ,name=:name ,type=:type WHERE id = :id"
-        try db.query(sql) { (stmt:SQLiteStmt) -> () in
+        try let rs =  db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":dateAssigned", entity.dateAssigned.SQLiteDateString)
 	try stmt.bind(":dateDue", entity.dateDue.SQLiteDateString)
 	try stmt.bind(":id", entity.id)
@@ -95,7 +96,7 @@ func insert(entity: HWAssessment) throws -> Int {
     func retrieve(id: Int) throws -> HWAssessment? {
         let sql = "SELECT dateAssigned,dateDue,id,name,type FROM HWAssessment WHERE id = :id"
         var columns = [Any]()
-        try db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
+        try let rs =  db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
             	try stmt.bind(":id", id)
         }) { (stmt:SQLiteStmt, r:Int) -> () in
 			columns.append(stmt.columnText(0))
@@ -145,7 +146,7 @@ func insert(entity: HWAssessment) throws -> Int {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 40.27 minutes to type the 4027+ characters in this file.
+approximately 40.86 minutes to type the 4086+ characters in this file.
  */
 
 

@@ -29,7 +29,7 @@ Template: /PerfectSwift/server/EntityRepository.swift.vm
 import PerfectLib
 class HWCourseListRepository : RepositoryMySQL {
 func createTable() throws ->  Int {
-   try db.query("CREATE TABLE IF NOT EXISTS hWCourseList (id Long)")
+   try let rs = db.query("CREATE TABLE IF NOT EXISTS hWCourseList (id Long)")
    let errorCode = db.errorCode()
         if errorCode > 0 {
             throw RepositoryError.CreateTable(errorCode)
@@ -38,14 +38,15 @@ func createTable() throws ->  Int {
 }
 func insert(entity: HWCourseList) throws -> Int {
        	let sql = "INSERT INTO hWCourseList(id) VALUES ( :id)"
-        try db.query(sql) { (stmt:SQLiteStmt) -> () in
+        try let rs =  db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":id", entity.id)
         }
         let errorCode = db.errorCode()
         if errorCode > 0 {
             throw RepositoryError.Insert(errorCode)
         }
-        return db.changes()
+        //return db.changes()
+        return 0
     }
     
     func update(entity: HWCourseList) throws -> Int {
@@ -54,7 +55,7 @@ func insert(entity: HWCourseList) throws -> Int {
         }
         
         let sql = "UPDATE hWCourseList SET  WHERE id = :id"
-        try db.query(sql) { (stmt:SQLiteStmt) -> () in
+        try let rs =  db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":id", entity.id)
         }
         
@@ -87,7 +88,7 @@ func insert(entity: HWCourseList) throws -> Int {
     func retrieve(id: Int) throws -> HWCourseList? {
         let sql = "SELECT id FROM HWCourseList WHERE id = :id"
         var columns = [Any]()
-        try db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
+        try let rs =  db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
             	try stmt.bind(":id", id)
         }) { (stmt:SQLiteStmt, r:Int) -> () in
 			columns.append(stmt.columnInt64(0))
@@ -125,7 +126,7 @@ func insert(entity: HWCourseList) throws -> Int {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 29.03 minutes to type the 2903+ characters in this file.
+approximately 29.62 minutes to type the 2962+ characters in this file.
  */
 
 

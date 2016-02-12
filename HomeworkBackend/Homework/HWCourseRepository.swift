@@ -29,7 +29,7 @@ Template: /PerfectSwift/server/EntityRepository.swift.vm
 import PerfectLib
 class HWCourseRepository : RepositoryMySQL {
 func createTable() throws ->  Int {
-   try db.query("CREATE TABLE IF NOT EXISTS hWCourse (color String, id Long, name String, period String)")
+   try let rs = db.query("CREATE TABLE IF NOT EXISTS hWCourse (color String, id Long, name String, period String)")
    let errorCode = db.errorCode()
         if errorCode > 0 {
             throw RepositoryError.CreateTable(errorCode)
@@ -38,7 +38,7 @@ func createTable() throws ->  Int {
 }
 func insert(entity: HWCourse) throws -> Int {
        	let sql = "INSERT INTO hWCourse(color,id,name,period) VALUES ( :color, :id, :name, :period)"
-        try db.query(sql) { (stmt:SQLiteStmt) -> () in
+        try let rs =  db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":color", entity.color)
 	try stmt.bind(":id", entity.id)
 	try stmt.bind(":name", entity.name)
@@ -48,7 +48,8 @@ func insert(entity: HWCourse) throws -> Int {
         if errorCode > 0 {
             throw RepositoryError.Insert(errorCode)
         }
-        return db.changes()
+        //return db.changes()
+        return 0
     }
     
     func update(entity: HWCourse) throws -> Int {
@@ -57,7 +58,7 @@ func insert(entity: HWCourse) throws -> Int {
         }
         
         let sql = "UPDATE hWCourse SET color=:color ,name=:name ,period=:period WHERE id = :id"
-        try db.query(sql) { (stmt:SQLiteStmt) -> () in
+        try let rs =  db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":color", entity.color)
 	try stmt.bind(":id", entity.id)
 	try stmt.bind(":name", entity.name)
@@ -93,7 +94,7 @@ func insert(entity: HWCourse) throws -> Int {
     func retrieve(id: Int) throws -> HWCourse? {
         let sql = "SELECT color,id,name,period FROM HWCourse WHERE id = :id"
         var columns = [Any]()
-        try db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
+        try let rs =  db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
             	try stmt.bind(":id", id)
         }) { (stmt:SQLiteStmt, r:Int) -> () in
 			columns.append(stmt.columnText(0))
@@ -140,7 +141,7 @@ func insert(entity: HWCourse) throws -> Int {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 35.75 minutes to type the 3575+ characters in this file.
+approximately 36.34 minutes to type the 3634+ characters in this file.
  */
 
 
