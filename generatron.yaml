@@ -1,7 +1,7 @@
 git :
  - bundleName : "PerfectSwift(.)*"
    gitUrl : "git@github.com:generatron/Homework_iOS.git"
-   subdir : "SwiftBackend"
+   subdir : "HomeworkBackend"
 output:
  ignores:
   - name :  "(.)*Server.swift"
