@@ -29,25 +29,25 @@ Template: /PerfectSwift/server/EntityRepository.swift.vm
 import PerfectLib
 class HWAssessmentRepository : RepositoryMySQL {
 func createTable() throws ->  Int {
-   try db.execute("CREATE TABLE IF NOT EXISTS hWAssessment (dateAssigned Date, dateDue Date, id Long, name String, type String)")
-   let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.CreateTable(errCode)
+   try db.query("CREATE TABLE IF NOT EXISTS hWAssessment (dateAssigned Date, dateDue Date, id Long, name String, type String)")
+   let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.CreateTable(errorCode)
       }
       return 0;
 }
 func insert(entity: HWAssessment) throws -> Int {
        	let sql = "INSERT INTO hWAssessment(dateAssigned,dateDue,id,name,type) VALUES ( :dateAssigned, :dateDue, :id, :name, :type)"
-        try db.execute(sql) { (stmt:SQLiteStmt) -> () in
+        try db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":dateAssigned", entity.dateAssigned.SQLiteDateString)
 	try stmt.bind(":dateDue", entity.dateDue.SQLiteDateString)
 	try stmt.bind(":id", entity.id)
 	try stmt.bind(":name", entity.name)
 	try stmt.bind(":type", entity.type)
         }
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Insert(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Insert(errorCode)
         }
         return db.changes()
     }
@@ -58,7 +58,7 @@ func insert(entity: HWAssessment) throws -> Int {
         }
         
         let sql = "UPDATE hWAssessment SET dateAssigned=:dateAssigned ,dateDue=:dateDue ,name=:name ,type=:type WHERE id = :id"
-        try db.execute(sql) { (stmt:SQLiteStmt) -> () in
+        try db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":dateAssigned", entity.dateAssigned.SQLiteDateString)
 	try stmt.bind(":dateDue", entity.dateDue.SQLiteDateString)
 	try stmt.bind(":id", entity.id)
@@ -66,9 +66,9 @@ func insert(entity: HWAssessment) throws -> Int {
 	try stmt.bind(":type", entity.type)
         }
         
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Update(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Update(errorCode)
         }
         
         return db.changes()
@@ -80,13 +80,13 @@ func insert(entity: HWAssessment) throws -> Int {
         }
         
         let sql = "DELETE FROM hWAssessment WHERE id = :id"
-        try db.execute(sql) { (stmt:SQLiteStmt) -> () in
+        try db.query(sql) { (stmt:SQLiteStmt) -> () in
             try stmt.bind(":id", id)
         }
         
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Delete(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Delete(errorCode)
         }
         
         return db.changes()
@@ -105,9 +105,9 @@ func insert(entity: HWAssessment) throws -> Int {
 			columns.append(stmt.columnInt64(4))
         }
         
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Select(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Select(errorCode)
         }
         
         guard columns.count > 0 else {
@@ -145,7 +145,7 @@ func insert(entity: HWAssessment) throws -> Int {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 39.95 minutes to type the 3995+ characters in this file.
+approximately 40.27 minutes to type the 4027+ characters in this file.
  */
 
 

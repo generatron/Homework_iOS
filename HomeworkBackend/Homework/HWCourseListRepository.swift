@@ -29,21 +29,21 @@ Template: /PerfectSwift/server/EntityRepository.swift.vm
 import PerfectLib
 class HWCourseListRepository : RepositoryMySQL {
 func createTable() throws ->  Int {
-   try db.execute("CREATE TABLE IF NOT EXISTS hWCourseList (id Long)")
-   let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.CreateTable(errCode)
+   try db.query("CREATE TABLE IF NOT EXISTS hWCourseList (id Long)")
+   let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.CreateTable(errorCode)
       }
       return 0;
 }
 func insert(entity: HWCourseList) throws -> Int {
        	let sql = "INSERT INTO hWCourseList(id) VALUES ( :id)"
-        try db.execute(sql) { (stmt:SQLiteStmt) -> () in
+        try db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":id", entity.id)
         }
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Insert(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Insert(errorCode)
         }
         return db.changes()
     }
@@ -54,13 +54,13 @@ func insert(entity: HWCourseList) throws -> Int {
         }
         
         let sql = "UPDATE hWCourseList SET  WHERE id = :id"
-        try db.execute(sql) { (stmt:SQLiteStmt) -> () in
+        try db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":id", entity.id)
         }
         
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Update(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Update(errorCode)
         }
         
         return db.changes()
@@ -72,13 +72,13 @@ func insert(entity: HWCourseList) throws -> Int {
         }
         
         let sql = "DELETE FROM hWCourseList WHERE id = :id"
-        try db.execute(sql) { (stmt:SQLiteStmt) -> () in
+        try db.query(sql) { (stmt:SQLiteStmt) -> () in
             try stmt.bind(":id", id)
         }
         
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Delete(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Delete(errorCode)
         }
         
         return db.changes()
@@ -93,9 +93,9 @@ func insert(entity: HWCourseList) throws -> Int {
 			columns.append(stmt.columnInt64(0))
         }
         
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Select(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Select(errorCode)
         }
         
         guard columns.count > 0 else {
@@ -125,7 +125,7 @@ func insert(entity: HWCourseList) throws -> Int {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 28.71 minutes to type the 2871+ characters in this file.
+approximately 29.03 minutes to type the 2903+ characters in this file.
  */
 
 

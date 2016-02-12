@@ -29,24 +29,24 @@ Template: /PerfectSwift/server/EntityRepository.swift.vm
 import PerfectLib
 class HWCourseRepository : RepositoryMySQL {
 func createTable() throws ->  Int {
-   try db.execute("CREATE TABLE IF NOT EXISTS hWCourse (color String, id Long, name String, period String)")
-   let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.CreateTable(errCode)
+   try db.query("CREATE TABLE IF NOT EXISTS hWCourse (color String, id Long, name String, period String)")
+   let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.CreateTable(errorCode)
       }
       return 0;
 }
 func insert(entity: HWCourse) throws -> Int {
        	let sql = "INSERT INTO hWCourse(color,id,name,period) VALUES ( :color, :id, :name, :period)"
-        try db.execute(sql) { (stmt:SQLiteStmt) -> () in
+        try db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":color", entity.color)
 	try stmt.bind(":id", entity.id)
 	try stmt.bind(":name", entity.name)
 	try stmt.bind(":period", entity.period)
         }
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Insert(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Insert(errorCode)
         }
         return db.changes()
     }
@@ -57,16 +57,16 @@ func insert(entity: HWCourse) throws -> Int {
         }
         
         let sql = "UPDATE hWCourse SET color=:color ,name=:name ,period=:period WHERE id = :id"
-        try db.execute(sql) { (stmt:SQLiteStmt) -> () in
+        try db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":color", entity.color)
 	try stmt.bind(":id", entity.id)
 	try stmt.bind(":name", entity.name)
 	try stmt.bind(":period", entity.period)
         }
         
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Update(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Update(errorCode)
         }
         
         return db.changes()
@@ -78,13 +78,13 @@ func insert(entity: HWCourse) throws -> Int {
         }
         
         let sql = "DELETE FROM hWCourse WHERE id = :id"
-        try db.execute(sql) { (stmt:SQLiteStmt) -> () in
+        try db.query(sql) { (stmt:SQLiteStmt) -> () in
             try stmt.bind(":id", id)
         }
         
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Delete(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Delete(errorCode)
         }
         
         return db.changes()
@@ -102,9 +102,9 @@ func insert(entity: HWCourse) throws -> Int {
 			columns.append(stmt.columnInt64(3))
         }
         
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Select(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Select(errorCode)
         }
         
         guard columns.count > 0 else {
@@ -140,7 +140,7 @@ func insert(entity: HWCourse) throws -> Int {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 35.43 minutes to type the 3543+ characters in this file.
+approximately 35.75 minutes to type the 3575+ characters in this file.
  */
 
 

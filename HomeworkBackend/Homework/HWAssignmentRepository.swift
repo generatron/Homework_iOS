@@ -29,16 +29,16 @@ Template: /PerfectSwift/server/EntityRepository.swift.vm
 import PerfectLib
 class HWAssignmentRepository : RepositoryMySQL {
 func createTable() throws ->  Int {
-   try db.execute("CREATE TABLE IF NOT EXISTS hWAssignment (dateAssigned Date, dateDue Date, id Long, isCompleted Boolean, name String, type String)")
-   let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.CreateTable(errCode)
+   try db.query("CREATE TABLE IF NOT EXISTS hWAssignment (dateAssigned Date, dateDue Date, id Long, isCompleted Boolean, name String, type String)")
+   let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.CreateTable(errorCode)
       }
       return 0;
 }
 func insert(entity: HWAssignment) throws -> Int {
        	let sql = "INSERT INTO hWAssignment(dateAssigned,dateDue,id,isCompleted,name,type) VALUES ( :dateAssigned, :dateDue, :id, :isCompleted, :name, :type)"
-        try db.execute(sql) { (stmt:SQLiteStmt) -> () in
+        try db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":dateAssigned", entity.dateAssigned.SQLiteDateString)
 	try stmt.bind(":dateDue", entity.dateDue.SQLiteDateString)
 	try stmt.bind(":id", entity.id)
@@ -46,9 +46,9 @@ func insert(entity: HWAssignment) throws -> Int {
 	try stmt.bind(":name", entity.name)
 	try stmt.bind(":type", entity.type)
         }
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Insert(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Insert(errorCode)
         }
         return db.changes()
     }
@@ -59,7 +59,7 @@ func insert(entity: HWAssignment) throws -> Int {
         }
         
         let sql = "UPDATE hWAssignment SET dateAssigned=:dateAssigned ,dateDue=:dateDue ,isCompleted=:isCompleted ,name=:name ,type=:type WHERE id = :id"
-        try db.execute(sql) { (stmt:SQLiteStmt) -> () in
+        try db.query(sql) { (stmt:SQLiteStmt) -> () in
 	try stmt.bind(":dateAssigned", entity.dateAssigned.SQLiteDateString)
 	try stmt.bind(":dateDue", entity.dateDue.SQLiteDateString)
 	try stmt.bind(":id", entity.id)
@@ -68,9 +68,9 @@ func insert(entity: HWAssignment) throws -> Int {
 	try stmt.bind(":type", entity.type)
         }
         
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Update(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Update(errorCode)
         }
         
         return db.changes()
@@ -82,13 +82,13 @@ func insert(entity: HWAssignment) throws -> Int {
         }
         
         let sql = "DELETE FROM hWAssignment WHERE id = :id"
-        try db.execute(sql) { (stmt:SQLiteStmt) -> () in
+        try db.query(sql) { (stmt:SQLiteStmt) -> () in
             try stmt.bind(":id", id)
         }
         
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Delete(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Delete(errorCode)
         }
         
         return db.changes()
@@ -108,9 +108,9 @@ func insert(entity: HWAssignment) throws -> Int {
 			columns.append(stmt.columnInt64(5))
         }
         
-        let errCode = db.errCode()
-        if errCode > 0 {
-            throw RepositoryError.Select(errCode)
+        let errorCode = db.errorCode()
+        if errorCode > 0 {
+            throw RepositoryError.Select(errorCode)
         }
         
         guard columns.count > 0 else {
@@ -150,7 +150,7 @@ func insert(entity: HWAssignment) throws -> Int {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 43.1 minutes to type the 4310+ characters in this file.
+approximately 43.42 minutes to type the 4342+ characters in this file.
  */
 
 
