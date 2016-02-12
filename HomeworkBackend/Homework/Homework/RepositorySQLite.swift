@@ -19,10 +19,10 @@ Engineered using http://www.generatron.com/
 
 [GENERATRON]
 Generator :   System Templates
-Filename:     Repository.swift
+Filename:     RepositorySQLite.swift
 Description:  Base Repository class
 Project:      Homework
-Template: /PerfectSwift/server/Repository.swift.vmg
+Template: /PerfectSwift/server/RepositorySQLite.swift.vmg
  */
 
 import PerfectLib
@@ -35,7 +35,7 @@ enum RepositoryError : ErrorType {
     case CreateTable(Int)
 }
 
-class Repository {
+class RepositorySQLite {
     let db: SQLite!
     
     init(db: SQLite) {
@@ -51,7 +51,7 @@ class Repository {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 3.66 minutes to type the 366+ characters in this file.
+approximately 3.72 minutes to type the 372+ characters in this file.
  */
 
 

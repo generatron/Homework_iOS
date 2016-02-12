@@ -27,9 +27,9 @@ Template: /PerfectSwift/server/EntityRepository.swift.vm
 
 
 import PerfectLib
-class HWCourseListRepository : Repository {
+class HWCourseListRepository : RepositoryMySQL {
 func createTable() throws ->  Int {
-   try db.execute("CREATE TABLE IF NOT EXISTS hWCourseList (id NUMBER)")
+   try db.execute("CREATE TABLE IF NOT EXISTS hWCourseList (id Long)")
    let errCode = db.errCode()
         if errCode > 0 {
             throw RepositoryError.CreateTable(errCode)
@@ -90,7 +90,7 @@ func insert(entity: HWCourseList) throws -> Int {
         try db.forEachRow(sql, doBindings: { (stmt:SQLiteStmt) -> () in
             	try stmt.bind(":id", id)
         }) { (stmt:SQLiteStmt, r:Int) -> () in
-			columns.append(stmt.columnInt(0))
+			columns.append(stmt.columnInt64(0))
         }
         
         let errCode = db.errCode()
@@ -115,7 +115,7 @@ func insert(entity: HWCourseList) throws -> Int {
             //nothing to see here
         }) { (stmt:SQLiteStmt, r:Int) -> () in
                 let entity =  HWCourseList()
-		entity.id = stmt.columnInt(0)
+		entity.id = stmt.columnInt64(0)
         	    entities.append(entity)
         }
         return entities
@@ -125,7 +125,7 @@ func insert(entity: HWCourseList) throws -> Int {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 28.64 minutes to type the 2864+ characters in this file.
+approximately 28.71 minutes to type the 2871+ characters in this file.
  */
 
 

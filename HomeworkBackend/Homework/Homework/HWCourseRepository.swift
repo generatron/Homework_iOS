@@ -27,9 +27,9 @@ Template: /PerfectSwift/server/EntityRepository.swift.vm
 
 
 import PerfectLib
-class HWCourseRepository : Repository {
+class HWCourseRepository : RepositoryMySQL {
 func createTable() throws ->  Int {
-   try db.execute("CREATE TABLE IF NOT EXISTS hWCourse (color TEXT, id NUMBER, name TEXT, period TEXT)")
+   try db.execute("CREATE TABLE IF NOT EXISTS hWCourse (color String, id Long, name String, period String)")
    let errCode = db.errCode()
         if errCode > 0 {
             throw RepositoryError.CreateTable(errCode)
@@ -97,9 +97,9 @@ func insert(entity: HWCourse) throws -> Int {
             	try stmt.bind(":id", id)
         }) { (stmt:SQLiteStmt, r:Int) -> () in
 			columns.append(stmt.columnText(0))
-			columns.append(stmt.columnInt(1))
+			columns.append(stmt.columnInt64(1))
 			columns.append(stmt.columnText(2))
-			columns.append(stmt.columnInt(3))
+			columns.append(stmt.columnInt64(3))
         }
         
         let errCode = db.errCode()
@@ -128,9 +128,9 @@ func insert(entity: HWCourse) throws -> Int {
         }) { (stmt:SQLiteStmt, r:Int) -> () in
                 let entity =  HWCourse()
 		entity.color = stmt.columnText(0)
-		entity.id = stmt.columnInt(1)
+		entity.id = stmt.columnInt64(1)
 		entity.name = stmt.columnText(2)
-		entity.period = stmt.columnInt(3)
+		entity.period = stmt.columnInt64(3)
         	    entities.append(entity)
         }
         return entities
@@ -140,7 +140,7 @@ func insert(entity: HWCourse) throws -> Int {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 35.26 minutes to type the 3526+ characters in this file.
+approximately 35.43 minutes to type the 3543+ characters in this file.
  */
 
 

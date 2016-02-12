@@ -66,14 +66,14 @@ public func PerfectServerModuleInit() {
 	
 	print("\(Routing.Routes.description)") 
 	//Initialize PM and repositories  
-	PersistenceManager.sharedInstance
+	PersistenceManagerMySQL.sharedInstance
 }
 
 
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 28.72 minutes to type the 2872+ characters in this file.
+approximately 28.77 minutes to type the 2877+ characters in this file.
  */
 
 

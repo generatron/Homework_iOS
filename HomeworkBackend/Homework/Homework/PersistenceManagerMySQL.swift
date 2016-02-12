@@ -30,7 +30,7 @@ import MySQL
 
 class PersistenceManagerMySQL {
 	static let sharedInstance = PersistenceManagerMySQL()
-    var db: = MySQL ()
+    var db = MySQL ()
         var hWAssessmentRepository :  HWAssessmentRepository! 
 	    var hWAssignmentRepository :  HWAssignmentRepository! 
 	    var hWCourseRepository :  HWCourseRepository! 
@@ -73,7 +73,7 @@ class PersistenceManagerMySQL {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 14.13 minutes to type the 1413+ characters in this file.
+approximately 14.12 minutes to type the 1412+ characters in this file.
  */
 
 

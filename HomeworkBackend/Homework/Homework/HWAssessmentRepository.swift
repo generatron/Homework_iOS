@@ -27,9 +27,9 @@ Template: /PerfectSwift/server/EntityRepository.swift.vm
 
 
 import PerfectLib
-class HWAssessmentRepository : Repository {
+class HWAssessmentRepository : RepositoryMySQL {
 func createTable() throws ->  Int {
-   try db.execute("CREATE TABLE IF NOT EXISTS hWAssessment (dateAssigned TEXT, dateDue TEXT, id NUMBER, name TEXT, type TEXT)")
+   try db.execute("CREATE TABLE IF NOT EXISTS hWAssessment (dateAssigned Date, dateDue Date, id Long, name String, type String)")
    let errCode = db.errCode()
         if errCode > 0 {
             throw RepositoryError.CreateTable(errCode)
@@ -100,9 +100,9 @@ func insert(entity: HWAssessment) throws -> Int {
         }) { (stmt:SQLiteStmt, r:Int) -> () in
 			columns.append(stmt.columnText(0))
 			columns.append(stmt.columnText(1))
-			columns.append(stmt.columnInt(2))
+			columns.append(stmt.columnInt64(2))
 			columns.append(stmt.columnText(3))
-			columns.append(stmt.columnInt(4))
+			columns.append(stmt.columnInt64(4))
         }
         
         let errCode = db.errCode()
@@ -133,9 +133,9 @@ func insert(entity: HWAssessment) throws -> Int {
                 let entity =  HWAssessment()
 		entity.dateAssigned = stmt.columnText(0)
 		entity.dateDue = stmt.columnText(1)
-		entity.id = stmt.columnInt(2)
+		entity.id = stmt.columnInt64(2)
 		entity.name = stmt.columnText(3)
-		entity.type = stmt.columnInt(4)
+		entity.type = stmt.columnInt64(4)
         	    entities.append(entity)
         }
         return entities
@@ -145,7 +145,7 @@ func insert(entity: HWAssessment) throws -> Int {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 39.8 minutes to type the 3980+ characters in this file.
+approximately 39.95 minutes to type the 3995+ characters in this file.
  */
 
 
