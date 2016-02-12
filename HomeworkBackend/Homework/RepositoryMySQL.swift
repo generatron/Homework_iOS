@@ -29,11 +29,11 @@ import PerfectLib
 import MySQL
 
 enum RepositoryError : ErrorType {
-    case Select(Int)
-    case Insert(Int)
-    case Update(Int)
-    case Delete(Int)
-    case CreateTable(Int)
+    case Select(UInt32)
+    case Insert(UInt32)
+    case Update(UInt32)
+    case Delete(UInt32)
+    case CreateTable(UInt32)
 }
 
 class RepositoryMySQL {
@@ -49,7 +49,7 @@ class RepositoryMySQL {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 3.05 minutes to type the 305+ characters in this file.
+approximately 3.2 minutes to type the 320+ characters in this file.
  */
 
 
