@@ -20,13 +20,13 @@ Engineered using http://www.generatron.com/
 [GENERATRON]
 Generator :   System Templates
 Filename:     HWAssessmentRepository.swift
-Description:  SQLite Persistence code for for HWAssessment
+Description:  Persistence code for for HWAssessment
 Project:      Homework
 Template: /PerfectSwift/server/EntityRepository.swift.vm
  */
 
 
-import PerfectLib
+import MySQL
 class HWAssessmentRepository : RepositoryMySQL {
 func createTable() throws ->  Int {
    let rs = try db.query("CREATE TABLE IF NOT EXISTS hWAssessment (dateAssigned Date, dateDue Date, id BIGINT(20), name VARCHAR(255), type VARCHAR(255))")
@@ -173,7 +173,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 44.48 minutes to type the 4448+ characters in this file.
+approximately 44.43 minutes to type the 4443+ characters in this file.
  */
 
 
