@@ -53,7 +53,7 @@ func insert(entity: HWCourse) throws -> Int {
 
 let execRes = statement.execute()
 if(!execRes){
-	println "\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())"
+	println("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
 	let errorCode = db.errorCode()
 	if errorCode > 0 {
 	    throw RepositoryError.Insert(errorCode)
@@ -78,7 +78,6 @@ let statement = MySQLStmt(db)
 		}
 		let prepRes = statement.prepare(sql)
 		
-		let prepRes = statement.prepare(sql)
 		if(prepRes){		
 	statement.bindParam(entity.color)
 	statement.bindParam(entity.id)
@@ -87,7 +86,7 @@ let statement = MySQLStmt(db)
 
 let execRes = statement.execute()
 if(!execRes){
-	println "\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())"
+	println("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
 	let errorCode = db.errorCode()
 	if errorCode > 0 {
 	    throw RepositoryError.Update(errorCode)
@@ -168,7 +167,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 40.31 minutes to type the 4031+ characters in this file.
+approximately 39.93 minutes to type the 3993+ characters in this file.
  */
 
 

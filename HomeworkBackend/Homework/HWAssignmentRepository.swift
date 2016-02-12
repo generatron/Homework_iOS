@@ -55,7 +55,7 @@ func insert(entity: HWAssignment) throws -> Int {
 
 let execRes = statement.execute()
 if(!execRes){
-	println "\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())"
+	println("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
 	let errorCode = db.errorCode()
 	if errorCode > 0 {
 	    throw RepositoryError.Insert(errorCode)
@@ -80,7 +80,6 @@ let statement = MySQLStmt(db)
 		}
 		let prepRes = statement.prepare(sql)
 		
-		let prepRes = statement.prepare(sql)
 		if(prepRes){		
 	statement.bindParam(entity.dateAssigned.SQLiteDateString)
 	statement.bindParam(entity.dateDue.SQLiteDateString)
@@ -91,7 +90,7 @@ let statement = MySQLStmt(db)
 
 let execRes = statement.execute()
 if(!execRes){
-	println "\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())"
+	println("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
 	let errorCode = db.errorCode()
 	if errorCode > 0 {
 	    throw RepositoryError.Update(errorCode)
@@ -178,7 +177,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 47.23 minutes to type the 4723+ characters in this file.
+approximately 46.85 minutes to type the 4685+ characters in this file.
  */
 
 
