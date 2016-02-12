@@ -29,7 +29,9 @@ Template: /PerfectSwift/server/EntityRepository.swift.vm
 import PerfectLib
 class HWAssessmentRepository : RepositoryMySQL {
 func createTable() throws ->  Int {
+
    let rs = try db.query("CREATE TABLE IF NOT EXISTS hWAssessment (dateAssigned Date, dateDue Date, id BIGINT(20), name VARCHAR(255), type VARCHAR(255))")
+
    let errorCode = db.errorCode()
         if errorCode > 0 {
             throw RepositoryError.CreateTable(errorCode)
@@ -141,6 +143,7 @@ func insert(entity: HWAssessment) throws -> Int {
         }
         return entities
     }
+<<<<<<< Updated upstream
 }
 
 /* 
@@ -150,3 +153,14 @@ approximately 41.04 minutes to type the 4104+ characters in this file.
  */
 
 
+=======
+}
+
+/* 
+[STATS]
+It would take a person typing  @ 100.0 cpm, 
+approximately 40.86 minutes to type the 4086+ characters in this file.
+ */
+
+
+>>>>>>> Stashed changes
