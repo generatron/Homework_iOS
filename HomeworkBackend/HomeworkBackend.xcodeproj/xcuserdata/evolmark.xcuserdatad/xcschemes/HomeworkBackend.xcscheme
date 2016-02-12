@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CFDC92B51C6D84D600EEF047"
+               BlueprintIdentifier = "CFDC93351C6D99CD00EEF047"
                BuildableName = "HomeworkBackend.framework"
                BlueprintName = "HomeworkBackend"
                ReferencedContainer = "container:HomeworkBackend.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CFDC92C31C6D84D600EEF047"
+               BlueprintIdentifier = "CFDC93431C6D99CD00EEF047"
                BuildableName = "HomeworkBackendTests.xctest"
                BlueprintName = "HomeworkBackendTests"
                ReferencedContainer = "container:HomeworkBackend.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CFDC92B51C6D84D600EEF047"
+            BlueprintIdentifier = "CFDC93351C6D99CD00EEF047"
             BuildableName = "HomeworkBackend.framework"
             BlueprintName = "HomeworkBackend"
             ReferencedContainer = "container:HomeworkBackend.xcodeproj">
@@ -64,7 +64,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CFDC92B51C6D84D600EEF047"
+            BlueprintIdentifier = "CFDC93351C6D99CD00EEF047"
             BuildableName = "HomeworkBackend.framework"
             BlueprintName = "HomeworkBackend"
             ReferencedContainer = "container:HomeworkBackend.xcodeproj">
@@ -82,7 +82,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CFDC92B51C6D84D600EEF047"
+            BlueprintIdentifier = "CFDC93351C6D99CD00EEF047"
             BuildableName = "HomeworkBackend.framework"
             BlueprintName = "HomeworkBackend"
             ReferencedContainer = "container:HomeworkBackend.xcodeproj">
