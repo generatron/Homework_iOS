@@ -40,7 +40,7 @@ class HWCourseListCreateHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
      let hWCourseList = HWCourseList() 
      //Init fields here
-     PersistenceManagerMySQL.sharedInstance.hWCourseListRepository.insert(hWCourseList)
+     let result = try PersistenceManagerMySQL.sharedInstance.hWCourseListRepository.insert(hWCourseList)
     response.appendBodyString("Create handler: You accessed path \(request.requestURI())")
     response.requestCompletedCallback()
   }
@@ -70,7 +70,7 @@ class HWCourseListDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 16.04 minutes to type the 1604+ characters in this file.
+approximately 16.21 minutes to type the 1621+ characters in this file.
  */
 
 
