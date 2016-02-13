@@ -176,7 +176,9 @@ statement.close()
         while let row = results.next() {
         	let hWCourse = HWCourse()
 // Transformable AnyObject
-	hWCourse.color.id = row[0];
+	//It's transformable, not supported at the moment
+   //hWCourse.color.id = row[0];
+	
 // Long Int64
 			hWCourse.id = Int64(row[1]);
 			// String String
@@ -194,7 +196,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 44.95 minutes to type the 4495+ characters in this file.
+approximately 45.54 minutes to type the 4554+ characters in this file.
  */
 
 
