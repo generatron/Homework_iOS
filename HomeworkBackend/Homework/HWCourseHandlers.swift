@@ -31,7 +31,16 @@ class HWCourseListHandler: RequestHandler  {
   
   func handleRequest(request: WebRequest, response: WebResponse) {
   	let hWCourses : [HWCourse]  = PersistenceManagerMySQL.sharedInstance.hWCourseRepository.list()
-    response.appendBodyString("Index handler: You accessed path \(request.requestURI())")
+  	print (NSJSONSerialization.isValidJSONObject (hWCourses ))
+  	do{
+  	let dataFinal = try NSJSONSerialization.dataWithJSONObject (hWCourses, options: NSJSONWritingOptions (rawValue: 0))
+  	let string = NSString (data: dataFinal, encoding: NSUTF8StringEncoding)
+  	let tee: String = string as String!
+  	response.appendBodyString (tee)
+  	}catch{
+  	  response.setStatus (500, message: "Could not list HWCourse data")
+  	}
+    //response.appendBodyString("Index handler: You accessed path \(request.requestURI())")
     response.requestCompletedCallback()
   }
 }
@@ -70,7 +79,7 @@ class HWCourseDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 15.74 minutes to type the 1574+ characters in this file.
+approximately 20.09 minutes to type the 2009+ characters in this file.
  */
 
 

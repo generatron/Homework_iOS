@@ -174,9 +174,9 @@ statement.close()
         while let row = results.next() {
         	let hWCourse = HWCourse()
 	hWCourse.color = row[0];
-	hWCourse.id = Int(row[1]);
+	hWCourse.id = Int64(row[1]);
 	hWCourse.name = row[2];
-	hWCourse.period = Int(row[3]);
+	hWCourse.period = Int64(row[3]);
 entities.append(hWCourse)
             print(row)
         }
@@ -188,7 +188,7 @@ entities.append(hWCourse)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 43.19 minutes to type the 4319+ characters in this file.
+approximately 43.23 minutes to type the 4323+ characters in this file.
  */
 
 

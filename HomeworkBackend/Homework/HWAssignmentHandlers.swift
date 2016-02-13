@@ -31,7 +31,16 @@ class HWAssignmentListHandler: RequestHandler  {
   
   func handleRequest(request: WebRequest, response: WebResponse) {
   	let hWAssignments : [HWAssignment]  = PersistenceManagerMySQL.sharedInstance.hWAssignmentRepository.list()
-    response.appendBodyString("Index handler: You accessed path \(request.requestURI())")
+  	print (NSJSONSerialization.isValidJSONObject (hWAssignments ))
+  	do{
+  	let dataFinal = try NSJSONSerialization.dataWithJSONObject (hWAssignments, options: NSJSONWritingOptions (rawValue: 0))
+  	let string = NSString (data: dataFinal, encoding: NSUTF8StringEncoding)
+  	let tee: String = string as String!
+  	response.appendBodyString (tee)
+  	}catch{
+  	  response.setStatus (500, message: "Could not list HWAssignment data")
+  	}
+    //response.appendBodyString("Index handler: You accessed path \(request.requestURI())")
     response.requestCompletedCallback()
   }
 }
@@ -70,7 +79,7 @@ class HWAssignmentDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 16.22 minutes to type the 1622+ characters in this file.
+approximately 20.69 minutes to type the 2069+ characters in this file.
  */
 
 

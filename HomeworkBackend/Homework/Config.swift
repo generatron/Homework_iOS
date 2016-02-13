@@ -40,8 +40,8 @@ class Config {
     
     //MySQL Configuration
     static let HOST = "127.0.0.1"
-    static let USER = "your user here"
-    static let PASSWORD = "password here"
+    static let USER = "perfect"
+    static let PASSWORD = "perfect123"
     static let SCHEMA = "Homework"
     
     
@@ -51,7 +51,7 @@ class Config {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 6.57 minutes to type the 657+ characters in this file.
+approximately 6.47 minutes to type the 647+ characters in this file.
  */
 
 
