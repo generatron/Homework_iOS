@@ -29,10 +29,14 @@ Template: /PerfectSwift/server/Entity.swift.vm
 import PerfectLib
 
 class HWCourse  {
-        var color : String!
-        var id : Int64!
-        var name : String!
-        var period : String!
+        // Transformable  yaml Optional
+    var color : String!
+        // Long  yaml Int64
+    var id : Int64!
+        // String  yaml String
+    var name : String!
+        // Integer 16  yaml Int
+    var period : String!
         
     
     func toDictionary() -> [String: Any] {
@@ -48,7 +52,7 @@ class HWCourse  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 3.42 minutes to type the 342+ characters in this file.
+approximately 4.61 minutes to type the 461+ characters in this file.
  */
 
 

@@ -173,14 +173,14 @@ statement.close()
   
         while let row = results.next() {
         	let hWCourse = HWCourse()
-// Transformable Optional
+// Transformable String
 	hWCourse.color = row[0];
 // Long Int64
 	hWCourse.id = Int64(row[1]);
 // String String
 	hWCourse.name = row[2];
-// Integer 16 Int
-	hWCourse.period = Int(row[3]);
+// Integer 16 String
+	hWCourse.period = String(row[3]);
 entities.append(hWCourse)
             print(row)
         }
@@ -192,7 +192,7 @@ entities.append(hWCourse)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 44.0 minutes to type the 4400+ characters in this file.
+approximately 44.04 minutes to type the 4404+ characters in this file.
  */
 
 
