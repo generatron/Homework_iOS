@@ -29,9 +29,9 @@ Template: /PerfectSwift/server/Entity.swift.vm
 import PerfectLib
 
 class HWCourse  {
-        // Transformable  CoreData Transformable
+        // Transformable  CoreData AnyObject
     
-    var color : Transformable!
+    var color : AnyObject!
         // Long  CoreData Int64
     
     var id : Int64!
@@ -56,7 +56,7 @@ class HWCourse  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 5.1 minutes to type the 510+ characters in this file.
+approximately 5.02 minutes to type the 502+ characters in this file.
  */
 
 
