@@ -29,16 +29,11 @@ Template: /PerfectSwift/server/Entity.swift.vm
 import PerfectLib
 
 class HWAssessment  {
-        // Date  CoreData NSDate
-    var dateAssigned : NSDate!
-        // Date  CoreData NSDate
-    var dateDue : NSDate!
-        // Long  CoreData Int64
-    var id : Int64!
-        // String  CoreData String
-    var name : String!
-        // Integer 16  CoreData Int
-    var type : Int!
+            var dateAssigned : NSDate!
+            var dateDue : NSDate!
+            var id : Int64!
+            var name : String!
+            var type : Int!
         
     
     func toDictionary() -> [String: Any] {
@@ -55,7 +50,7 @@ class HWAssessment  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 5.69 minutes to type the 569+ characters in this file.
+approximately 4.35 minutes to type the 435+ characters in this file.
  */
 
 
