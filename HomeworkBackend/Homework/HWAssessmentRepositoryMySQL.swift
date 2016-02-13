@@ -37,7 +37,7 @@ func createTable() throws ->  Int {
       return 0;
 }
 func insert(entity: HWAssessment) throws -> Int {
-       	let sql = "INSERT INTO hWAssessment(dateAssigned,dateDue,name,type) VALUES ( ?, ?, ?, ?)"
+       	let sql = "INSERT INTO HWAssessment(dateAssigned,dateDue,name,type) VALUES ( ?, ?, ?, ?)"
        	
        	let statement = MySQLStmt(db)
 		defer {
@@ -70,7 +70,7 @@ func insert(entity: HWAssessment) throws -> Int {
             return 0
         }
         
-        let sql = "UPDATE hWAssessment SET dateAssigned= ? ,dateDue= ? ,name= ? ,type= ? WHERE id = ?"
+        let sql = "UPDATE HWAssessment SET dateAssigned= ? ,dateDue= ? ,name= ? ,type= ? WHERE id = ?"
 
 let statement = MySQLStmt(db)
 		defer {
