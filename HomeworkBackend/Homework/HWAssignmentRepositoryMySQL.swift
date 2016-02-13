@@ -177,23 +177,17 @@ statement.close()
   
         while let row = results.next() {
         	let hWAssignment = HWAssignment()
-// Date NSDate
-	hWAssignment.dateAssigned = NSDate(string: row[0]);
-	// Date NSDate
-	hWAssignment.dateDue = NSDate(string: row[1]);
-	// Long Int64
+			hWAssignment.dateAssigned = NSDate(string: row[0]);
+			hWAssignment.dateDue = NSDate(string: row[1]);
 			hWAssignment.id = Int64(row[2]);
-			// Boolean Bool
-						if(row[3] == "1"){
-			   		hWAssignment.isCompleted = Bool(true);
+			if(row[3] == "1"){
+			   	hWAssignment.isCompleted = Bool(true);
 			}else{
-					hWAssignment.isCompleted = Bool(false);
+				hWAssignment.isCompleted = Bool(false);
 			}
-			// String String
 			hWAssignment.name = String(row[4]);
-			// Integer 16 Int
 			hWAssignment.type = Int(row[5]);
-			entities.append(hWAssignment)
+entities.append(hWAssignment)
             print(row)
         }
         results.close()
@@ -204,7 +198,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 50.91 minutes to type the 5091+ characters in this file.
+approximately 49.75 minutes to type the 4975+ characters in this file.
  */
 
 

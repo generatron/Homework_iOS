@@ -175,17 +175,12 @@ statement.close()
   
         while let row = results.next() {
         	let hWAssessment = HWAssessment()
-// Date NSDate
-	hWAssessment.dateAssigned = NSDate(string: row[0]);
-	// Date NSDate
-	hWAssessment.dateDue = NSDate(string: row[1]);
-	// Long Int64
+			hWAssessment.dateAssigned = NSDate(string: row[0]);
+			hWAssessment.dateDue = NSDate(string: row[1]);
 			hWAssessment.id = Int64(row[2]);
-			// String String
 			hWAssessment.name = String(row[3]);
-			// Integer 16 Int
 			hWAssessment.type = Int(row[4]);
-			entities.append(hWAssessment)
+entities.append(hWAssessment)
             print(row)
         }
         results.close()
@@ -196,7 +191,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 47.9 minutes to type the 4790+ characters in this file.
+approximately 46.99 minutes to type the 4699+ characters in this file.
  */
 
 
