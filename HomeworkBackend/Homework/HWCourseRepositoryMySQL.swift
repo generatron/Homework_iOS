@@ -146,9 +146,9 @@ statement.close()
             	let results = statement.results()
             	
             	let ok = results.forEachRow {
-            		e in 
-            			print e
-            		}
+            		print(e.flatMap({ (a:Any?) -> Any? in
+                    return a!
+                	}))
 				}
 			
 				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
@@ -180,7 +180,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 39.72 minutes to type the 3972+ characters in this file.
+approximately 40.16 minutes to type the 4016+ characters in this file.
  */
 
 
