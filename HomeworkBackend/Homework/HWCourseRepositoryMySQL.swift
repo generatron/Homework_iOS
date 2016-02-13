@@ -146,9 +146,9 @@ statement.close()
             	let results = statement.results()
             	
             	let ok = results.forEachRow {
-            		//e in 
-            		//print e
-            		
+            		e in 
+            			print e
+            		}
 				}
 			
 				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
@@ -163,29 +163,16 @@ statement.close()
 	    return entity;
     }
     
-    func list() throws -> [HWCourse] {
+    func list() -> [HWCourse] {
         let sql = "SELECT * FROM hWCourse "
         var entities = [HWCourse]()
-       let statement = MySQLStmt(db)
-			
-			let prepRes = statement.prepare(sql)
-			
-			
-			let execRes = statement.execute()
-			
-			
-			let results = statement.results()
-			
-			let ok = results.forEachRow {
-			 //e in 
-			//	let entity = HWCourse()
-             //   print e
-            		
-				
-			}
-			
-			results.close()
-			statement.close()
+        let queryResult = db.query(sql)
+        let results = db.storeResults()!
+  
+        while let row = results.next() {
+            print(row)
+        }
+        results.close()
         return entities
     }
 }
@@ -193,7 +180,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 41.57 minutes to type the 4157+ characters in this file.
+approximately 39.72 minutes to type the 3972+ characters in this file.
  */
 
 
