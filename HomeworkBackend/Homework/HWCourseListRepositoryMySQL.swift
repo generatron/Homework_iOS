@@ -67,7 +67,7 @@ statement.close()
             return 0
         }
         
-        let sql = "UPDATE hWCourseList SET  WHERE id = :id"
+        let sql = "UPDATE hWCourseList SET  WHERE id = ?"
 
 let statement = MySQLStmt(db)
 		defer {
@@ -76,8 +76,7 @@ let statement = MySQLStmt(db)
 		let prepRes = statement.prepare(sql)
 		
 		if(prepRes){		
-	statement.bindParam(entity.id)
-
+statement.bindParam(entity.id)
 let execRes = statement.execute()
 if(!execRes){
 	print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
@@ -124,7 +123,7 @@ statement.close()
 	}
     
     func retrieve(id: Int) throws -> HWCourseList? {
-        let sql = "SELECT id FROM HWCourseList WHERE id = :id"
+        let sql = "SELECT id FROM HWCourseList WHERE id = ?"
        	let statement = MySQLStmt(db)
 		defer {
 			statement.close()
@@ -139,10 +138,10 @@ statement.close()
             if(!execRes){
             	let results = statement.results()
             	
-            	let ok = results.forEachRow { e in
+            	let ok = results.forEachRow { e in {
             		print(e.flatMap({ (a:Any?) -> Any? in
                     return a!
-                	}))
+                	}))}
 				}
 			
 				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
@@ -174,7 +173,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 37.46 minutes to type the 3746+ characters in this file.
+approximately 37.42 minutes to type the 3742+ characters in this file.
  */
 
 

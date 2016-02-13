@@ -70,7 +70,7 @@ statement.close()
             return 0
         }
         
-        let sql = "UPDATE hWCourse SET  ? , ? , ? WHERE id = :id"
+        let sql = "UPDATE hWCourse SET color= ? ,name= ? ,period= ? WHERE id = ?"
 
 let statement = MySQLStmt(db)
 		defer {
@@ -80,10 +80,9 @@ let statement = MySQLStmt(db)
 		
 		if(prepRes){		
 	statement.bindParam(entity.color)
-	statement.bindParam(entity.id)
 	statement.bindParam(entity.name)
 	statement.bindParam(entity.period)
-
+statement.bindParam(entity.id)
 let execRes = statement.execute()
 if(!execRes){
 	print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
@@ -130,7 +129,7 @@ statement.close()
 	}
     
     func retrieve(id: Int) throws -> HWCourse? {
-        let sql = "SELECT color,id,name,period FROM HWCourse WHERE id = :id"
+        let sql = "SELECT color,id,name,period FROM HWCourse WHERE id = ?"
        	let statement = MySQLStmt(db)
 		defer {
 			statement.close()
@@ -145,10 +144,10 @@ statement.close()
             if(!execRes){
             	let results = statement.results()
             	
-            	let ok = results.forEachRow { e in
+            	let ok = results.forEachRow { e in {
             		print(e.flatMap({ (a:Any?) -> Any? in
                     return a!
-                	}))
+                	}))}
 				}
 			
 				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
@@ -180,7 +179,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 40.21 minutes to type the 4021+ characters in this file.
+approximately 40.35 minutes to type the 4035+ characters in this file.
  */
 
 

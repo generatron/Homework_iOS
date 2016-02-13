@@ -72,7 +72,7 @@ statement.close()
             return 0
         }
         
-        let sql = "UPDATE hWAssignment SET  ? , ? , ? , ? , ? WHERE id = :id"
+        let sql = "UPDATE hWAssignment SET dateAssigned= ? ,dateDue= ? ,isCompleted= ? ,name= ? ,type= ? WHERE id = ?"
 
 let statement = MySQLStmt(db)
 		defer {
@@ -134,7 +134,7 @@ statement.close()
 	}
     
     func retrieve(id: Int) throws -> HWAssignment? {
-        let sql = "SELECT dateAssigned,dateDue,id,isCompleted,name,type FROM HWAssignment WHERE id = :id"
+        let sql = "SELECT dateAssigned,dateDue,id,isCompleted,name,type FROM HWAssignment WHERE id = ?"
        	let statement = MySQLStmt(db)
 		defer {
 			statement.close()
@@ -191,7 +191,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 46.82 minutes to type the 4682+ characters in this file.
+approximately 47.21 minutes to type the 4721+ characters in this file.
  */
 
 

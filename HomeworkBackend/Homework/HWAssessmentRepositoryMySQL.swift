@@ -71,7 +71,7 @@ statement.close()
             return 0
         }
         
-        let sql = "UPDATE hWAssessment SET  ? , ? , ? , ? WHERE id = :id"
+        let sql = "UPDATE hWAssessment SET dateAssigned= ? ,dateDue= ? ,name= ? ,type= ? WHERE id = ?"
 
 let statement = MySQLStmt(db)
 		defer {
@@ -82,10 +82,9 @@ let statement = MySQLStmt(db)
 		if(prepRes){		
 	statement.bindParam(entity.dateAssigned.SQLiteDateString)
 	statement.bindParam(entity.dateDue.SQLiteDateString)
-	statement.bindParam(entity.id)
 	statement.bindParam(entity.name)
 	statement.bindParam(entity.type)
-
+statement.bindParam(entity.id)
 let execRes = statement.execute()
 if(!execRes){
 	print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
@@ -132,7 +131,7 @@ statement.close()
 	}
     
     func retrieve(id: Int) throws -> HWAssessment? {
-        let sql = "SELECT dateAssigned,dateDue,id,name,type FROM HWAssessment WHERE id = :id"
+        let sql = "SELECT dateAssigned,dateDue,id,name,type FROM HWAssessment WHERE id = ?"
        	let statement = MySQLStmt(db)
 		defer {
 			statement.close()
@@ -147,10 +146,10 @@ statement.close()
             if(!execRes){
             	let results = statement.results()
             	
-            	let ok = results.forEachRow { e in
+            	let ok = results.forEachRow { e in {
             		print(e.flatMap({ (a:Any?) -> Any? in
                     return a!
-                	}))
+                	}))}
 				}
 			
 				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
@@ -182,7 +181,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 42.75 minutes to type the 4275+ characters in this file.
+approximately 43.02 minutes to type the 4302+ characters in this file.
  */
 
 
