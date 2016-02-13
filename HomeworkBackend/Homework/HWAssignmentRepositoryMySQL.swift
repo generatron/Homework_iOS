@@ -29,7 +29,7 @@ Template: /PerfectSwift/server/EntityRepositoryMySQL.swift.vm
 import MySQL
 class HWAssignmentRepositoryMySQL : RepositoryMySQL {
 func createTable() throws ->  Int {
-   let rs = try db.query("CREATE TABLE IF NOT EXISTS HWAssignment (dateAssigned Date, dateDue Date, id BIGINT(20) NOT NULL AUTO_INCREMENT, isCompleted BIT, name VARCHAR(255), type VARCHAR(255), PRIMARY KEY (id))")
+   let rs = try db.query("CREATE TABLE IF NOT EXISTS HWAssignment (dateAssigned Date, dateDue Date, id BIGINT(20) NOT NULL AUTO_INCREMENT, isCompleted BIT, name VARCHAR(255), type INT(10), PRIMARY KEY (id))")
    let errorCode = db.errorCode()
         if errorCode > 0 {
             throw RepositoryError.CreateTable(errorCode)
@@ -187,8 +187,8 @@ statement.close()
 	hWAssignment.isCompleted = row[3];
 // String String
 	hWAssignment.name = row[4];
-// Integer 16 String
-	hWAssignment.type = String(row[5]);
+// Integer 16 Int
+	hWAssignment.type = Int(row[5]);
 entities.append(hWAssignment)
             print(row)
         }
@@ -200,7 +200,7 @@ entities.append(hWAssignment)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 49.74 minutes to type the 4974+ characters in this file.
+approximately 49.63 minutes to type the 4963+ characters in this file.
  */
 
 

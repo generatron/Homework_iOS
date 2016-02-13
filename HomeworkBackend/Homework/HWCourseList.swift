@@ -29,7 +29,7 @@ Template: /PerfectSwift/server/Entity.swift.vm
 import PerfectLib
 
 class HWCourseList  {
-        // Long  yaml Int64
+        // Long  CoreData Int64
     var id : Int64!
         
     
@@ -43,7 +43,7 @@ class HWCourseList  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 2.18 minutes to type the 218+ characters in this file.
+approximately 2.22 minutes to type the 222+ characters in this file.
  */
 
 

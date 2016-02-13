@@ -29,7 +29,7 @@ Template: /PerfectSwift/server/EntityRepositoryMySQL.swift.vm
 import MySQL
 class HWCourseRepositoryMySQL : RepositoryMySQL {
 func createTable() throws ->  Int {
-   let rs = try db.query("CREATE TABLE IF NOT EXISTS HWCourse (color VARCHAR(255), id BIGINT(20) NOT NULL AUTO_INCREMENT, name VARCHAR(255), period VARCHAR(255), PRIMARY KEY (id))")
+   let rs = try db.query("CREATE TABLE IF NOT EXISTS HWCourse (color Transformable, id BIGINT(20) NOT NULL AUTO_INCREMENT, name VARCHAR(255), period INT(10), PRIMARY KEY (id))")
    let errorCode = db.errorCode()
         if errorCode > 0 {
             throw RepositoryError.CreateTable(errorCode)
@@ -173,14 +173,14 @@ statement.close()
   
         while let row = results.next() {
         	let hWCourse = HWCourse()
-// Transformable String
+// Transformable Optional
 	hWCourse.color = row[0];
 // Long Int64
 	hWCourse.id = Int64(row[1]);
 // String String
 	hWCourse.name = row[2];
-// Integer 16 String
-	hWCourse.period = String(row[3]);
+// Integer 16 Int
+	hWCourse.period = Int(row[3]);
 entities.append(hWCourse)
             print(row)
         }
@@ -192,7 +192,7 @@ entities.append(hWCourse)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 44.04 minutes to type the 4404+ characters in this file.
+approximately 43.96 minutes to type the 4396+ characters in this file.
  */
 
 
