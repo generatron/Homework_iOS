@@ -40,8 +40,8 @@ class Config {
     
     //MySQL Configuration
     static let HOST = "127.0.0.1"
-    static let USER = "your user here"
-    static let PASSWORD = "password here"
+    static let USER = "perfect"
+    static let PASSWORD = "perfect123"
     static let SCHEMA = "Homework"
     
     
