@@ -148,8 +148,8 @@ statement.close()
             	let results = statement.results()
             	
             	let ok = results.forEachRow {
-            		e in 
-            		   print e
+            		//e in 
+            		//print e
             		
 				}
 			
@@ -179,9 +179,9 @@ statement.close()
 			let results = statement.results()
 			
 			let ok = results.forEachRow {
-			 e in 
-				let entity = HWAssessment()
-                print e
+			 //e in 
+			//	let entity = HWAssessment()
+             //   print e
             		
 				
 			}
@@ -195,7 +195,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 44.08 minutes to type the 4408+ characters in this file.
+approximately 44.15 minutes to type the 4415+ characters in this file.
  */
 
 
