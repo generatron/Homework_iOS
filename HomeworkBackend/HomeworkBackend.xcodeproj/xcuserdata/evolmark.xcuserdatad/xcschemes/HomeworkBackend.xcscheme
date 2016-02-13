@@ -42,10 +42,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CFDC93351C6D99CD00EEF047"
-            BuildableName = "HomeworkBackend.framework"
-            BlueprintName = "HomeworkBackend"
-            ReferencedContainer = "container:HomeworkBackend.xcodeproj">
+            BlueprintIdentifier = "F88B06801BDD48DD001FD0CD"
+            BuildableName = "PerfectServer HTTP.app"
+            BlueprintName = "PerfectServer HTTP App"
+            ReferencedContainer = "container:../../../PerfectSwift/Perfect/PerfectServer/PerfectServer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -61,15 +61,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CFDC93351C6D99CD00EEF047"
-            BuildableName = "HomeworkBackend.framework"
-            BlueprintName = "HomeworkBackend"
-            ReferencedContainer = "container:HomeworkBackend.xcodeproj">
+            BlueprintIdentifier = "F88B06801BDD48DD001FD0CD"
+            BuildableName = "PerfectServer HTTP.app"
+            BlueprintName = "PerfectServer HTTP App"
+            ReferencedContainer = "container:../../../PerfectSwift/Perfect/PerfectServer/PerfectServer.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
