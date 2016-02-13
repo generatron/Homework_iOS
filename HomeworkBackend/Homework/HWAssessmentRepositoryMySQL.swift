@@ -138,17 +138,17 @@ statement.close()
 			statement.close()
 		}
 		let prepRes = statement.prepare(sql)
-		
+		let entity = HWAssessment()
 		if(prepRes){
 			//HARDCODED might not exist, assuming it does, need to retrieve PK
-			statement.bindParam(entity.id)
+			statement.bindParam(id)
 			
 			let execRes = statement.execute()
             if(!execRes){
-            	let result = statement.results()
+            	let results = statement.results()
             	
             	let ok = results.forEachRow {
-				e in
+            	e in
 				print(e.flatMap({ (a:Any?) -> Any? in
 					return a!
 				}))
@@ -180,12 +180,12 @@ statement.close()
 			let results = statement.results()
 			
 			let ok = results.forEachRow {
+				let entity = HWAssessment()
 				e in
 				print(e.flatMap({ (a:Any?) -> Any? in
 					return a!
 				}))
 			}
-			
 			
 			results.close()
 			statement.close()
@@ -196,7 +196,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 43.94 minutes to type the 4394+ characters in this file.
+approximately 44.52 minutes to type the 4452+ characters in this file.
  */
 
 
