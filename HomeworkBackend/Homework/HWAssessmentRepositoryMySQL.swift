@@ -174,12 +174,12 @@ statement.close()
   
         while let row = results.next() {
         	let hWAssessment = HWAssessment()
-	entity.dateAssigned = row[0];
-	entity.dateDue = row[1];
-	entity.id = row[2];
-	entity.name = row[3];
-	entity.type = row[4];
-entities.append(entity)
+	hWAssessment.dateAssigned = row[0];
+	hWAssessment.dateDue = row[1];
+	hWAssessment.id = row[2];
+	hWAssessment.name = row[3];
+	hWAssessment.type = row[4];
+entities.append(hWAssessment)
             print(row)
         }
         results.close()
@@ -190,7 +190,7 @@ entities.append(entity)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 45.96 minutes to type the 4596+ characters in this file.
+approximately 46.32 minutes to type the 4632+ characters in this file.
  */
 
 

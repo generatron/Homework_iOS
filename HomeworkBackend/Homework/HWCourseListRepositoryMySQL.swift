@@ -166,8 +166,8 @@ statement.close()
   
         while let row = results.next() {
         	let hWCourseList = HWCourseList()
-	entity.id = row[0];
-entities.append(entity)
+	hWCourseList.id = row[0];
+entities.append(hWCourseList)
             print(row)
         }
         results.close()
@@ -178,7 +178,7 @@ entities.append(entity)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 39.31 minutes to type the 3931+ characters in this file.
+approximately 39.43 minutes to type the 3943+ characters in this file.
  */
 
 
