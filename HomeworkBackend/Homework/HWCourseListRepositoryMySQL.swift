@@ -139,7 +139,7 @@ statement.close()
             if(!execRes){
             	let results = statement.results()
             	
-            	let ok = results.forEachRow {
+            	let ok = results.forEachRow { e in
             		print(e.flatMap({ (a:Any?) -> Any? in
                     return a!
                 	}))
@@ -174,7 +174,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 37.41 minutes to type the 3741+ characters in this file.
+approximately 37.46 minutes to type the 3746+ characters in this file.
  */
 
 
