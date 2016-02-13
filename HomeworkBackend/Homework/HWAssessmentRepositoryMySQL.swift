@@ -45,28 +45,27 @@ func insert(entity: HWAssessment) throws -> Int {
 		}
 		let prepRes = statement.prepare(sql)
 		if(prepRes){
-	statement.bindParam(entity.dateAssigned.SQLiteDateString)
-	statement.bindParam(entity.dateDue.SQLiteDateString)
-	statement.bindParam(entity.id)
-	statement.bindParam(entity.name)
-	statement.bindParam(entity.type)
+			statement.bindParam(entity.dateAssigned.SQLiteDateString)
+			statement.bindParam(entity.dateDue.SQLiteDateString)
+			statement.bindParam(entity.id)
+			statement.bindParam(entity.name)
+			statement.bindParam(entity.type)
 
-
-let execRes = statement.execute()
-if(!execRes){
-	print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
-	let errorCode = db.errorCode()
-	if errorCode > 0 {
-	    throw RepositoryError.Insert(errorCode)
+			let execRes = statement.execute()
+			if(!execRes){
+				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
+				let errorCode = db.errorCode()
+				if errorCode > 0 {
+				    throw RepositoryError.Insert(errorCode)
+				}
+			}
+				
+			statement.close()
+	}        
+ 	return 0
 	}
-}
-	
-statement.close()
-}        
- return 0
-}
     
-    func update(entity: HWAssessment) throws -> Int {
+	func update(entity: HWAssessment) throws -> Int {
         guard let id = entity.id else {
             return 0
         }
@@ -80,21 +79,21 @@ let statement = MySQLStmt(db)
 		let prepRes = statement.prepare(sql)
 		
 		if(prepRes){		
-	statement.bindParam(entity.dateAssigned.SQLiteDateString)
-	statement.bindParam(entity.dateDue.SQLiteDateString)
-	statement.bindParam(entity.name)
-	statement.bindParam(entity.type)
-statement.bindParam(entity.id)
-let execRes = statement.execute()
-if(!execRes){
-	print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
-	let errorCode = db.errorCode()
-	if errorCode > 0 {
-	    throw RepositoryError.Update(errorCode)
-	}
-}
+			statement.bindParam(entity.dateAssigned.SQLiteDateString)
+			statement.bindParam(entity.dateDue.SQLiteDateString)
+			statement.bindParam(entity.name)
+			statement.bindParam(entity.type)
+			statement.bindParam(entity.id)
+			let execRes = statement.execute()
+			if(!execRes){
+				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
+				let errorCode = db.errorCode()
+				if errorCode > 0 {
+				    throw RepositoryError.Update(errorCode)
+				}
+			}
 	
-statement.close()
+			statement.close()
 		}
         
 		return 0
@@ -180,7 +179,7 @@ statement.close()
 			hWAssessment.id = Int64(row[2]);
 			hWAssessment.name = String(row[3]);
 			hWAssessment.type = Int(row[4]);
-entities.append(hWAssessment)
+			entities.append(hWAssessment)
             print(row)
         }
         results.close()
@@ -191,7 +190,7 @@ entities.append(hWAssessment)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 46.99 minutes to type the 4699+ characters in this file.
+approximately 47.78 minutes to type the 4778+ characters in this file.
  */
 
 

@@ -45,28 +45,27 @@ func insert(entity: HWCourse) throws -> Int {
 		}
 		let prepRes = statement.prepare(sql)
 		if(prepRes){
-	//It's transformable, not supported at the moment
-   //statement.bindParam(entity.color.id)
-	statement.bindParam(entity.id)
-	statement.bindParam(entity.name)
-	statement.bindParam(entity.period)
+			//It's transformable, not supported at the moment
+		   //statement.bindParam(entity.color.id)
+			statement.bindParam(entity.id)
+			statement.bindParam(entity.name)
+			statement.bindParam(entity.period)
 
-
-let execRes = statement.execute()
-if(!execRes){
-	print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
-	let errorCode = db.errorCode()
-	if errorCode > 0 {
-	    throw RepositoryError.Insert(errorCode)
+			let execRes = statement.execute()
+			if(!execRes){
+				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
+				let errorCode = db.errorCode()
+				if errorCode > 0 {
+				    throw RepositoryError.Insert(errorCode)
+				}
+			}
+				
+			statement.close()
+	}        
+ 	return 0
 	}
-}
-	
-statement.close()
-}        
- return 0
-}
     
-    func update(entity: HWCourse) throws -> Int {
+	func update(entity: HWCourse) throws -> Int {
         guard let id = entity.id else {
             return 0
         }
@@ -80,21 +79,21 @@ let statement = MySQLStmt(db)
 		let prepRes = statement.prepare(sql)
 		
 		if(prepRes){		
-	//It's transformable, not supported at the moment
-   //statement.bindParam(entity.color.id)
-	statement.bindParam(entity.name)
-	statement.bindParam(entity.period)
-statement.bindParam(entity.id)
-let execRes = statement.execute()
-if(!execRes){
-	print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
-	let errorCode = db.errorCode()
-	if errorCode > 0 {
-	    throw RepositoryError.Update(errorCode)
-	}
-}
+			//It's transformable, not supported at the moment
+   			//statement.bindParam(entity.color.id)
+			statement.bindParam(entity.name)
+			statement.bindParam(entity.period)
+			statement.bindParam(entity.id)
+			let execRes = statement.execute()
+			if(!execRes){
+				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
+				let errorCode = db.errorCode()
+				if errorCode > 0 {
+				    throw RepositoryError.Update(errorCode)
+				}
+			}
 	
-statement.close()
+			statement.close()
 		}
         
 		return 0
@@ -180,7 +179,7 @@ statement.close()
 			hWCourse.id = Int64(row[1]);
 			hWCourse.name = String(row[2]);
 			hWCourse.period = Int(row[3]);
-entities.append(hWCourse)
+			entities.append(hWCourse)
             print(row)
         }
         results.close()
@@ -191,7 +190,7 @@ entities.append(hWCourse)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 44.66 minutes to type the 4466+ characters in this file.
+approximately 45.46 minutes to type the 4546+ characters in this file.
  */
 
 

@@ -45,24 +45,23 @@ func insert(entity: HWCourseList) throws -> Int {
 		}
 		let prepRes = statement.prepare(sql)
 		if(prepRes){
-	statement.bindParam(entity.id)
+			statement.bindParam(entity.id)
 
-
-let execRes = statement.execute()
-if(!execRes){
-	print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
-	let errorCode = db.errorCode()
-	if errorCode > 0 {
-	    throw RepositoryError.Insert(errorCode)
+			let execRes = statement.execute()
+			if(!execRes){
+				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
+				let errorCode = db.errorCode()
+				if errorCode > 0 {
+				    throw RepositoryError.Insert(errorCode)
+				}
+			}
+				
+			statement.close()
+	}        
+ 	return 0
 	}
-}
-	
-statement.close()
-}        
- return 0
-}
     
-    func update(entity: HWCourseList) throws -> Int {
+	func update(entity: HWCourseList) throws -> Int {
         guard let id = entity.id else {
             return 0
         }
@@ -76,17 +75,17 @@ let statement = MySQLStmt(db)
 		let prepRes = statement.prepare(sql)
 		
 		if(prepRes){		
-statement.bindParam(entity.id)
-let execRes = statement.execute()
-if(!execRes){
-	print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
-	let errorCode = db.errorCode()
-	if errorCode > 0 {
-	    throw RepositoryError.Update(errorCode)
-	}
-}
+			statement.bindParam(entity.id)
+			let execRes = statement.execute()
+			if(!execRes){
+				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
+				let errorCode = db.errorCode()
+				if errorCode > 0 {
+				    throw RepositoryError.Update(errorCode)
+				}
+			}
 	
-statement.close()
+			statement.close()
 		}
         
 		return 0
@@ -168,7 +167,7 @@ statement.close()
         while let row = results.next() {
         	let hWCourseList = HWCourseList()
 			hWCourseList.id = Int64(row[0]);
-entities.append(hWCourseList)
+			entities.append(hWCourseList)
             print(row)
         }
         results.close()
@@ -179,7 +178,7 @@ entities.append(hWCourseList)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 39.62 minutes to type the 3962+ characters in this file.
+approximately 40.25 minutes to type the 4025+ characters in this file.
  */
 
 
