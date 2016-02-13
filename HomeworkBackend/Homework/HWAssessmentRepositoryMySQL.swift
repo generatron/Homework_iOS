@@ -177,9 +177,9 @@ statement.close()
         	let hWAssessment = HWAssessment()
 	hWAssessment.dateAssigned = row[0];
 	hWAssessment.dateDue = row[1];
-	hWAssessment.id = row[2].toInt64();
+	hWAssessment.id = Int(row[2]);
 	hWAssessment.name = row[3];
-	hWAssessment.type = row[4].toInt64();
+	hWAssessment.type = Int(row[4]);
 entities.append(hWAssessment)
             print(row)
         }
@@ -191,7 +191,7 @@ entities.append(hWAssessment)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 46.62 minutes to type the 4662+ characters in this file.
+approximately 46.52 minutes to type the 4652+ characters in this file.
  */
 
 
