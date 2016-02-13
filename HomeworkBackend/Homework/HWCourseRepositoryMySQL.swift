@@ -79,7 +79,8 @@ let statement = MySQLStmt(db)
 		let prepRes = statement.prepare(sql)
 		
 		if(prepRes){		
-	statement.bindParam(entity.color.id)
+	//It's transformable, not supported at the moment
+   //statement.bindParam(entity.color.id)
 	statement.bindParam(entity.name)
 	statement.bindParam(entity.period)
 statement.bindParam(entity.id)
@@ -174,22 +175,14 @@ statement.close()
         while let row = results.next() {
         	let hWCourse = HWCourse()
 // Transformable AnyObject
-
 	hWCourse.color.id = row[0];
-
 // Long Int64
-
 			hWCourse.id = Int64(row[1]);
-			
-// String String
-
+			// String String
 			hWCourse.name = String(row[2]);
-			
-// Integer 16 Int
-
+			// Integer 16 Int
 			hWCourse.period = Int(row[3]);
-			
-entities.append(hWCourse)
+			entities.append(hWCourse)
             print(row)
         }
         results.close()
@@ -200,7 +193,7 @@ entities.append(hWCourse)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 43.99 minutes to type the 4399+ characters in this file.
+approximately 44.39 minutes to type the 4439+ characters in this file.
  */
 
 
