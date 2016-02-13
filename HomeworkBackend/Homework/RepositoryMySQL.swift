@@ -19,31 +19,29 @@ Engineered using http://www.generatron.com/
 
 [GENERATRON]
 Generator :   System Templates
-Filename:     Config.swift
-Description:  Server Configuration
+Filename:     RepositoryMySQL.swift
+Description:  Base Repository class
 Project:      Homework
-Template: /PerfectSwift/server/Config.swift.vmg
+Template: /PerfectSwift/server/RepositoryMySQL.swift.vmg
  */
+
 import PerfectLib
+import MySQL
 
-class Config {
+enum RepositoryError : ErrorType {
+    case Select(UInt32)
+    case Insert(UInt32)
+    case Update(UInt32)
+    case Delete(UInt32)
+    case CreateTable(UInt32)
+}
 
-	static let serverPort = 9000
-    static let sessionName = "session"
-    static let sessionExpires = 60
-    static let uploadDirPath = PerfectServer.staticPerfectServer.homeDir() + "webroot/uploads/"
-    static let uploadDirUrl = "/uploads/"
+class RepositoryMySQL {
+    let db: MySQL!
     
-	//SQLite Configuration
-    static let modelName = "Homework"
-    static let dbPath = PerfectServer.staticPerfectServer.homeDir() + serverSQLiteDBs + modelName
-    
-    //MySQL Configuration
-    static let HOST = "127.0.0.1"
-    static let USER = "your user here"
-    static let PASSWORD = "password here"
-    static let SCHEMA = "Homework"
-    
+    init(db: MySQL) {
+        self.db = db
+    }
     
 }
 
@@ -51,7 +49,7 @@ class Config {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 6.57 minutes to type the 657+ characters in this file.
+approximately 3.2 minutes to type the 320+ characters in this file.
  */
 
 

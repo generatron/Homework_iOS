@@ -19,39 +19,39 @@ Engineered using http://www.generatron.com/
 
 [GENERATRON]
 Generator :   System Templates
-Filename:     Config.swift
-Description:  Server Configuration
+Filename:     RepositorySQLite.swift
+Description:  Base Repository class
 Project:      Homework
-Template: /PerfectSwift/server/Config.swift.vmg
+Template: /PerfectSwift/server/RepositorySQLite.swift.vmg
  */
+
 import PerfectLib
 
-class Config {
+enum RepositoryError : ErrorType {
+    case Select(Int)
+    case Insert(Int)
+    case Update(Int)
+    case Delete(Int)
+    case CreateTable(Int)
+}
 
-	static let serverPort = 9000
-    static let sessionName = "session"
-    static let sessionExpires = 60
-    static let uploadDirPath = PerfectServer.staticPerfectServer.homeDir() + "webroot/uploads/"
-    static let uploadDirUrl = "/uploads/"
+class RepositorySQLite {
+    let db: SQLite!
     
-	//SQLite Configuration
-    static let modelName = "Homework"
-    static let dbPath = PerfectServer.staticPerfectServer.homeDir() + serverSQLiteDBs + modelName
+    init(db: SQLite) {
+        self.db = db
+    }
     
-    //MySQL Configuration
-    static let HOST = "127.0.0.1"
-    static let USER = "your user here"
-    static let PASSWORD = "password here"
-    static let SCHEMA = "Homework"
-    
-    
+    func lastInsertId() -> Int {
+        return db.lastInsertRowID()
+    }
 }
 
 
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 6.57 minutes to type the 657+ characters in this file.
+approximately 3.72 minutes to type the 372+ characters in this file.
  */
 
 
