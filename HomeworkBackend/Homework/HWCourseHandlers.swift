@@ -40,7 +40,7 @@ class HWCourseCreateHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
      let hWCourse = HWCourse() 
      //Init fields here
-     PersistenceManagerMySQL.sharedInstance.hWCourseRepository.create(hWCourse)
+     PersistenceManagerMySQL.sharedInstance.hWCourseRepository.insert(hWCourse)
     response.appendBodyString("Create handler: You accessed path \(request.requestURI())")
     response.requestCompletedCallback()
   }

@@ -40,7 +40,7 @@ class HWAssessmentCreateHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
      let hWAssessment = HWAssessment() 
      //Init fields here
-     PersistenceManagerMySQL.sharedInstance.hWAssessmentRepository.create(hWAssessment)
+     PersistenceManagerMySQL.sharedInstance.hWAssessmentRepository.insert(hWAssessment)
     response.appendBodyString("Create handler: You accessed path \(request.requestURI())")
     response.requestCompletedCallback()
   }
