@@ -30,12 +30,16 @@ import PerfectLib
 
 class HWCourse  {
         // Transformable  CoreData Transformable
+    
     var color : Transformable!
         // Long  CoreData Int64
+    
     var id : Int64!
         // String  CoreData String
+    
     var name : String!
         // Integer 16  CoreData Int
+    
     var period : Int!
         
     
@@ -52,7 +56,7 @@ class HWCourse  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 4.86 minutes to type the 486+ characters in this file.
+approximately 5.1 minutes to type the 510+ characters in this file.
  */
 
 

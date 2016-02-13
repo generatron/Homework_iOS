@@ -30,16 +30,22 @@ import PerfectLib
 
 class HWAssignment  {
         // Date  CoreData NSDate
+    
     var dateAssigned : NSDate!
         // Date  CoreData NSDate
+    
     var dateDue : NSDate!
         // Long  CoreData Int64
+    
     var id : Int64!
         // Boolean  CoreData Bool
+    
     var isCompleted : Bool!
         // String  CoreData String
+    
     var name : String!
         // Integer 16  CoreData Int
+    
     var type : Int!
         
     
@@ -58,7 +64,7 @@ class HWAssignment  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 6.67 minutes to type the 667+ characters in this file.
+approximately 7.03 minutes to type the 703+ characters in this file.
  */
 
 

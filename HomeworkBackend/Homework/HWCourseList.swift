@@ -30,6 +30,7 @@ import PerfectLib
 
 class HWCourseList  {
         // Long  CoreData Int64
+    
     var id : Int64!
         
     
@@ -43,7 +44,7 @@ class HWCourseList  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 2.22 minutes to type the 222+ characters in this file.
+approximately 2.28 minutes to type the 228+ characters in this file.
  */
 
 

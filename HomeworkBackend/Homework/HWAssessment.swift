@@ -30,14 +30,19 @@ import PerfectLib
 
 class HWAssessment  {
         // Date  CoreData NSDate
+    
     var dateAssigned : NSDate!
         // Date  CoreData NSDate
+    
     var dateDue : NSDate!
         // Long  CoreData Int64
+    
     var id : Int64!
         // String  CoreData String
+    
     var name : String!
         // Integer 16  CoreData Int
+    
     var type : Int!
         
     
@@ -55,7 +60,7 @@ class HWAssessment  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 5.69 minutes to type the 569+ characters in this file.
+approximately 5.99 minutes to type the 599+ characters in this file.
  */
 
 
