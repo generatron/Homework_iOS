@@ -167,15 +167,16 @@ statement.close()
     func list() -> [HWCourse] {
         let sql = "SELECT * FROM hWCourse "
         var entities = [HWCourse]()
+        
         let queryResult = db.query(sql)
         let results = db.storeResults()!
   
         while let row = results.next() {
         	let hWCourse = HWCourse()
-	//hWCourse.color = row[0];
-	//hWCourse.id = row[1];
-	//hWCourse.name = row[2];
-	//hWCourse.period = row[3];
+	hWCourse.color = row[0];
+	hWCourse.id = row[1].toInt64();
+	hWCourse.name = row[2];
+	hWCourse.period = row[3].toInt64();
 entities.append(hWCourse)
             print(row)
         }
@@ -187,7 +188,7 @@ entities.append(hWCourse)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 43.07 minutes to type the 4307+ characters in this file.
+approximately 43.29 minutes to type the 4329+ characters in this file.
  */
 
 

@@ -169,16 +169,17 @@ statement.close()
     func list() -> [HWAssessment] {
         let sql = "SELECT * FROM hWAssessment "
         var entities = [HWAssessment]()
+        
         let queryResult = db.query(sql)
         let results = db.storeResults()!
   
         while let row = results.next() {
         	let hWAssessment = HWAssessment()
-	//hWAssessment.dateAssigned = row[0];
-	//hWAssessment.dateDue = row[1];
-	//hWAssessment.id = row[2];
-	//hWAssessment.name = row[3];
-	//hWAssessment.type = row[4];
+	hWAssessment.dateAssigned = row[0];
+	hWAssessment.dateDue = row[1];
+	hWAssessment.id = row[2].toInt64();
+	hWAssessment.name = row[3];
+	hWAssessment.type = row[4].toInt64();
 entities.append(hWAssessment)
             print(row)
         }
@@ -190,7 +191,7 @@ entities.append(hWAssessment)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 46.42 minutes to type the 4642+ characters in this file.
+approximately 46.62 minutes to type the 4662+ characters in this file.
  */
 
 
