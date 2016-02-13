@@ -45,10 +45,20 @@ func insert(entity: HWAssessment) throws -> Int {
 		}
 		let prepRes = statement.prepare(sql)
 		if(prepRes){
+
+//Domain: false
 	statement.bindParam(entity.dateAssigned.SQLiteDateString)
+
+//Domain: false
 	statement.bindParam(entity.dateDue.SQLiteDateString)
+
+//Domain: false
 	statement.bindParam(entity.id)
+
+//Domain: false
 	statement.bindParam(entity.name)
+
+//Domain: false
 	statement.bindParam(entity.type)
 
 
@@ -196,7 +206,7 @@ entities.append(hWAssessment)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 47.65 minutes to type the 4765+ characters in this file.
+approximately 48.6 minutes to type the 4860+ characters in this file.
  */
 
 

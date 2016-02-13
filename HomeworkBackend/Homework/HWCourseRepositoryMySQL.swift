@@ -45,9 +45,17 @@ func insert(entity: HWCourse) throws -> Int {
 		}
 		let prepRes = statement.prepare(sql)
 		if(prepRes){
+
+//Domain: false
 	statement.bindParam(entity.color)
+
+//Domain: false
 	statement.bindParam(entity.id)
+
+//Domain: false
 	statement.bindParam(entity.name)
+
+//Domain: false
 	statement.bindParam(entity.period)
 
 
@@ -192,7 +200,7 @@ entities.append(hWCourse)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 43.97 minutes to type the 4397+ characters in this file.
+approximately 44.73 minutes to type the 4473+ characters in this file.
  */
 
 
