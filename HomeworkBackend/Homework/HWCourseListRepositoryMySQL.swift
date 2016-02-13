@@ -45,8 +45,6 @@ func insert(entity: HWCourseList) throws -> Int {
 		}
 		let prepRes = statement.prepare(sql)
 		if(prepRes){
-
-//Domain: false
 	statement.bindParam(entity.id)
 
 
@@ -169,7 +167,6 @@ statement.close()
   
         while let row = results.next() {
         	let hWCourseList = HWCourseList()
-// Long Int64
 	hWCourseList.id = Int64(row[0]);
 entities.append(hWCourseList)
             print(row)
@@ -182,7 +179,7 @@ entities.append(hWCourseList)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 39.94 minutes to type the 3994+ characters in this file.
+approximately 39.6 minutes to type the 3960+ characters in this file.
  */
 
 

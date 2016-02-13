@@ -29,7 +29,8 @@ Template: /PerfectSwift/server/Entity.swift.vm
 import PerfectLib
 
 class HWCourseList  {
-            var id : Int64!
+        // Long  CoreData Int64
+    var id : Int64!
         
     
     func toDictionary() -> [String: Any] {
@@ -42,7 +43,7 @@ class HWCourseList  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 1.97 minutes to type the 197+ characters in this file.
+approximately 2.22 minutes to type the 222+ characters in this file.
  */
 
 
