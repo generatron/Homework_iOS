@@ -47,19 +47,19 @@ class PersistenceManagerMySQL {
 			
 			//Variables for HWAssessment
 			hWAssessmentRepository = HWAssessmentRepositoryMySQL(db:self.mysql);
-			//try hWAssessmentRepository.createTable()
+			try hWAssessmentRepository.createTable()
 			
 			//Variables for HWAssignment
 			hWAssignmentRepository = HWAssignmentRepositoryMySQL(db:self.mysql);
-			//try hWAssignmentRepository.createTable()
+			try hWAssignmentRepository.createTable()
 			
 			//Variables for HWCourse
 			hWCourseRepository = HWCourseRepositoryMySQL(db:self.mysql);
-			//try hWCourseRepository.createTable()
+			try hWCourseRepository.createTable()
 			
 			//Variables for HWCourseList
 			hWCourseListRepository = HWCourseListRepositoryMySQL(db:self.mysql);
-			//try hWCourseListRepository.createTable()
+			try hWCourseListRepository.createTable()
 }
 }
     	} catch (let e){
@@ -73,7 +73,7 @@ class PersistenceManagerMySQL {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 14.75 minutes to type the 1475+ characters in this file.
+approximately 14.67 minutes to type the 1467+ characters in this file.
  */
 
 
