@@ -67,7 +67,7 @@ extension WebResponse {
     
     func outputJson(values: [String:JSONValue]) throws {
         addHeader("content-type", value: "application/json")
-        let encoded = try JSONEncode().encode(values)
+        let encoded = try JSONEncoder().encode(values)
         appendBodyString(encoded)
     }
 }
@@ -148,7 +148,7 @@ approximately 30.39 minutes to type the 3039+ characters in this file.
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 34.45 minutes to type the 3445+ characters in this file.
+approximately 34.46 minutes to type the 3446+ characters in this file.
  */
 
 
