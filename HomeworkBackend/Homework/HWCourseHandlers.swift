@@ -30,6 +30,7 @@ import PerfectLib
 class HWCourseListHandler: RequestHandler  {
   
   func handleRequest(request: WebRequest, response: WebResponse) {
+  	let hWCourses : [HWCourse]  = PersistenceManagerMySQL.sharedInstance.hWCourseRepository.list()
     response.appendBodyString("Index handler: You accessed path \(request.requestURI())")
     response.requestCompletedCallback()
   }
@@ -37,6 +38,9 @@ class HWCourseListHandler: RequestHandler  {
 
 class HWCourseCreateHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
+     let hWCourse = HWCourse() 
+     //Init fields here
+     PersistenceManagerMySQL.sharedInstance.hWCourseRepository.create(hWCourse)
     response.appendBodyString("Create handler: You accessed path \(request.requestURI())")
     response.requestCompletedCallback()
   }
@@ -66,7 +70,7 @@ class HWCourseDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 13.18 minutes to type the 1318+ characters in this file.
+approximately 15.56 minutes to type the 1556+ characters in this file.
  */
 
 

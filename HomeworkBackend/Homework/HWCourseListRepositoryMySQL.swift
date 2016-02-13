@@ -37,7 +37,7 @@ func createTable() throws ->  Int {
       return 0;
 }
 func insert(entity: HWCourseList) throws -> Int {
-       	let sql = "INSERT INTO hWCourseList(id) VALUES ( ?)"
+       	let sql = "INSERT INTO hWCourseList() VALUES ()"
        	
        	let statement = MySQLStmt(db)
 		defer {
@@ -165,6 +165,9 @@ statement.close()
         let results = db.storeResults()!
   
         while let row = results.next() {
+        	let hWCourseList = HWCourseList()
+	entity.id = row[0];
+entities.append(entity)
             print(row)
         }
         results.close()
@@ -175,7 +178,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 38.44 minutes to type the 3844+ characters in this file.
+approximately 39.31 minutes to type the 3931+ characters in this file.
  */
 
 
