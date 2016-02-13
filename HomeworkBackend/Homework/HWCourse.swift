@@ -29,7 +29,7 @@ Template: /PerfectSwift/server/Entity.swift.vm
 import PerfectLib
 
 class HWCourse  {
-            var color : AnyObject!
+            var color : Transformable!
             var id : Int64!
             var name : String!
             var period : Int!
@@ -48,7 +48,7 @@ class HWCourse  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 3.58 minutes to type the 358+ characters in this file.
+approximately 3.62 minutes to type the 362+ characters in this file.
  */
 
 

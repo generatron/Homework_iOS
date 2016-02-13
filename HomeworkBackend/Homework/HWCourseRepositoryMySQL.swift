@@ -29,7 +29,7 @@ Template: /PerfectSwift/server/EntityRepositoryMySQL.swift.vm
 import MySQL
 class HWCourseRepositoryMySQL : RepositoryMySQL {
 func createTable() throws ->  Int {
-   let rs = try db.query("CREATE TABLE IF NOT EXISTS HWCourse (color Transformable, id BIGINT(20) NOT NULL AUTO_INCREMENT, name VARCHAR(255), period INT(10), PRIMARY KEY (id))")
+   let rs = try db.query("CREATE TABLE IF NOT EXISTS HWCourse (id BIGINT(20) NOT NULL AUTO_INCREMENT, name VARCHAR(255), period INT(10), PRIMARY KEY (id))")
    let errorCode = db.errorCode()
         if errorCode > 0 {
             throw RepositoryError.CreateTable(errorCode)
@@ -37,7 +37,7 @@ func createTable() throws ->  Int {
       return 0;
 }
 func insert(entity: HWCourse) throws -> Int {
-       	let sql = "INSERT INTO hWCourse(color,name,period) VALUES ( ?, ?, ?)"
+       	let sql = "INSERT INTO hWCourse(name,period) VALUES ( ?, ?)"
        	
        	let statement = MySQLStmt(db)
 		defer {
@@ -46,8 +46,8 @@ func insert(entity: HWCourse) throws -> Int {
 		let prepRes = statement.prepare(sql)
 		if(prepRes){
 
-//Domain: false
-	statement.bindParam(entity.color)
+//Domain: true
+	statement.bindParam(entity.color_id)
 
 //Domain: false
 	statement.bindParam(entity.id)
@@ -78,7 +78,7 @@ statement.close()
             return 0
         }
         
-        let sql = "UPDATE hWCourse SET color= ? ,name= ? ,period= ? WHERE id = ?"
+        let sql = "UPDATE hWCourse SET name= ? ,period= ? WHERE id = ?"
 
 let statement = MySQLStmt(db)
 		defer {
@@ -87,7 +87,7 @@ let statement = MySQLStmt(db)
 		let prepRes = statement.prepare(sql)
 		
 		if(prepRes){		
-	statement.bindParam(entity.color)
+	statement.bindParam(entity.color_id)
 	statement.bindParam(entity.name)
 	statement.bindParam(entity.period)
 statement.bindParam(entity.id)
@@ -137,7 +137,7 @@ statement.close()
 	}
     
     func retrieve(id: Int) throws -> HWCourse? {
-        let sql = "SELECT color,id,name,period FROM HWCourse WHERE id = ?"
+        let sql = "SELECT id,name,period FROM HWCourse WHERE id = ?"
        	let statement = MySQLStmt(db)
 		defer {
 			statement.close()
@@ -181,8 +181,8 @@ statement.close()
   
         while let row = results.next() {
         	let hWCourse = HWCourse()
-// Transformable AnyObject
-	hWCourse.color = row[0];
+// Transformable Transformable
+	hWCourse.color_id = row[0];
 // Long Int64
 	hWCourse.id = Int64(row[1]);
 // String String
@@ -200,7 +200,7 @@ entities.append(hWCourse)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 44.73 minutes to type the 4473+ characters in this file.
+approximately 44.39 minutes to type the 4439+ characters in this file.
  */
 
 
