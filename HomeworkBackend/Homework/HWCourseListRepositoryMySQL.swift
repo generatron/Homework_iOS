@@ -140,9 +140,9 @@ statement.close()
             	let results = statement.results()
             	
             	let ok = results.forEachRow {
-            		e in {
+            		e in 
             		   print e
-            		}
+            		
 				}
 			
 				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
@@ -171,10 +171,10 @@ statement.close()
 			let results = statement.results()
 			
 			let ok = results.forEachRow {
-			e in {
-			let entity = HWCourseList()
-            		   print e
-            		}
+			 e in 
+				let entity = HWCourseList()
+                print e
+            		
 				
 			}
 			
@@ -187,7 +187,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 38.82 minutes to type the 3882+ characters in this file.
+approximately 38.79 minutes to type the 3879+ characters in this file.
  */
 
 
