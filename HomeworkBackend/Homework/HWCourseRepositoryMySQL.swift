@@ -47,7 +47,7 @@ func insert(entity: HWCourse) throws -> Int {
 		if(prepRes){
 
 //Domain: true
-	statement.bindParam(entity.color_id)
+	statement.bindParam(entity.color.id)
 
 //Domain: false
 	statement.bindParam(entity.id)
@@ -87,7 +87,7 @@ let statement = MySQLStmt(db)
 		let prepRes = statement.prepare(sql)
 		
 		if(prepRes){		
-	statement.bindParam(entity.color_id)
+	statement.bindParam(entity.color.id)
 	statement.bindParam(entity.name)
 	statement.bindParam(entity.period)
 statement.bindParam(entity.id)
@@ -182,7 +182,7 @@ statement.close()
         while let row = results.next() {
         	let hWCourse = HWCourse()
 // Transformable Transformable
-	hWCourse.color_id = row[0];
+	hWCourse.color.id = row[0];
 // Long Int64
 	hWCourse.id = Int64(row[1]);
 // String String
