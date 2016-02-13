@@ -146,10 +146,9 @@ statement.close()
             	let results = statement.results()
             	
             	let ok = results.forEachRow {
-            	e in
-				print(e.flatMap({ (a:Any?) -> Any? in
-					return a!
-				}))
+            		e in {
+            		   print e
+            		}
 				}
 			
 				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
@@ -178,11 +177,11 @@ statement.close()
 			let results = statement.results()
 			
 			let ok = results.forEachRow {
-				let entity = HWCourse()
-				e in
-				print(e.flatMap({ (a:Any?) -> Any? in
-					return a!
-				}))
+			e in {
+			let entity = HWCourse()
+            		   print e
+            		}
+				
 			}
 			
 			results.close()
@@ -194,7 +193,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 41.94 minutes to type the 4194+ characters in this file.
+approximately 41.53 minutes to type the 4153+ characters in this file.
  */
 
 
