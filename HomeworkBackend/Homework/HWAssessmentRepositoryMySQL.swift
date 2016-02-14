@@ -192,23 +192,23 @@ let statement = MySQLStmt(db)
 			statement.bindParam(id)
 			
 			let execRes = statement.execute()
-            if(!execRes){
+            if(execRes){
             	let results = statement.results()
             	
             	let ok = results.forEachRow { e in
-            		print(e.flatMap({ (a:Any?) -> Any? in
-                    return a!
-                	}))
-                	
-                	print("Another sentence")
+			hWAssessment.dateAssigned = NSDate(string: row[0]);
+			hWAssessment.dateDue = NSDate(string: row[1]);
+			hWAssessment.id = Int64(row[2]);
+			hWAssessment.name = String(row[3]);
+			hWAssessment.type = Int(row[4]);
 				}
-			
+				statement.close()
+			}else{
 				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
 				let errorCode = db.errorCode()
 				if errorCode > 0 {
 	    			throw RepositoryError.Delete(errorCode)
 				}
-				statement.close()
 			}
 				
 		}
@@ -224,7 +224,7 @@ let statement = MySQLStmt(db)
   
         while let row = results.next() {
         	let hWAssessment = HWAssessment()
-			hWAssessment.dateAssigned = NSDate(string: row[0]);
+						hWAssessment.dateAssigned = NSDate(string: row[0]);
 			hWAssessment.dateDue = NSDate(string: row[1]);
 			hWAssessment.id = Int64(row[2]);
 			hWAssessment.name = String(row[3]);
@@ -240,7 +240,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 54.38 minutes to type the 5438+ characters in this file.
+approximately 54.88 minutes to type the 5488+ characters in this file.
  */
 
 

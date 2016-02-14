@@ -136,23 +136,19 @@ let statement = MySQLStmt(db)
 			statement.bindParam(id)
 			
 			let execRes = statement.execute()
-            if(!execRes){
+            if(execRes){
             	let results = statement.results()
             	
             	let ok = results.forEachRow { e in
-            		print(e.flatMap({ (a:Any?) -> Any? in
-                    return a!
-                	}))
-                	
-                	print("Another sentence")
+			hWCourseList.id = Int64(row[0]);
 				}
-			
+				statement.close()
+			}else{
 				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
 				let errorCode = db.errorCode()
 				if errorCode > 0 {
 	    			throw RepositoryError.Delete(errorCode)
 				}
-				statement.close()
 			}
 				
 		}
@@ -168,7 +164,7 @@ let statement = MySQLStmt(db)
   
         while let row = results.next() {
         	let hWCourseList = HWCourseList()
-			hWCourseList.id = Int64(row[0]);
+						hWCourseList.id = Int64(row[0]);
 			entities.append(hWCourseList)
             print(row)
         }
@@ -180,7 +176,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 40.71 minutes to type the 4071+ characters in this file.
+approximately 39.45 minutes to type the 3945+ characters in this file.
  */
 
 
