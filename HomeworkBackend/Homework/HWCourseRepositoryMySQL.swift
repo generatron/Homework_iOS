@@ -132,15 +132,6 @@ let statement = MySQLStmt(db)
 	func delete(id: Int64) throws -> Int64 {
 	    let sql = "DELETE FROM hWCourse WHERE id = \(id)"
 	    let queryResult = db.query(sql)
-        let results = db.storeResults()!
-  		let hWCourse = HWCourse()
-        while let row = results.next() {
-						hWCourse.id = Int64(row[0]);
-			hWCourse.name = String(row[1]);
-			hWCourse.period = Int(row[2]);
-            print(row)
-        }
-        results.close()
 	    return id;
 	}
     
@@ -182,7 +173,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 39.3 minutes to type the 3930+ characters in this file.
+approximately 36.51 minutes to type the 3651+ characters in this file.
  */
 
 
