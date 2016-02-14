@@ -195,7 +195,7 @@ let statement = MySQLStmt(db)
             if(execRes){
             	let results = statement.results()
             	
-            	let ok = results.forEachRow { e in
+            	let ok = results.forEachRow { row in
 			hWAssessment.dateAssigned = NSDate(string: row[0]);
 			hWAssessment.dateDue = NSDate(string: row[1]);
 			hWAssessment.id = Int64(row[2]);
@@ -240,7 +240,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 54.88 minutes to type the 5488+ characters in this file.
+approximately 54.9 minutes to type the 5490+ characters in this file.
  */
 
 

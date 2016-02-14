@@ -175,7 +175,7 @@ let statement = MySQLStmt(db)
             if(execRes){
             	let results = statement.results()
             	
-            	let ok = results.forEachRow { e in
+            	let ok = results.forEachRow { row in
 			//It's transformable, not supported at the moment
 		   //hWCourse.color.id = row[0];
 			hWCourse.id = Int64(row[1]);
@@ -220,7 +220,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 49.28 minutes to type the 4928+ characters in this file.
+approximately 49.3 minutes to type the 4930+ characters in this file.
  */
 
 

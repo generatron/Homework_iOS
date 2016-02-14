@@ -139,7 +139,7 @@ let statement = MySQLStmt(db)
             if(execRes){
             	let results = statement.results()
             	
-            	let ok = results.forEachRow { e in
+            	let ok = results.forEachRow { row in
 			hWCourseList.id = Int64(row[0]);
 				}
 				statement.close()
@@ -176,7 +176,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 39.45 minutes to type the 3945+ characters in this file.
+approximately 39.47 minutes to type the 3947+ characters in this file.
  */
 
 
