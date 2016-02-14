@@ -47,7 +47,6 @@ func insert(entity: HWCourse) throws -> Int64 {
 		if(prepRes){
 			//It's transformable, not supported at the moment
 		   //statement.bindParam(entity.color.id)
-			statement.bindParam(entity.id)
 			statement.bindParam(entity.name)
 			statement.bindParam(entity.period)
 
@@ -193,7 +192,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 46.29 minutes to type the 4629+ characters in this file.
+approximately 45.94 minutes to type the 4594+ characters in this file.
  */
 
 

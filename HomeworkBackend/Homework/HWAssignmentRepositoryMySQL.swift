@@ -47,7 +47,6 @@ func insert(entity: HWAssignment) throws -> Int64 {
 		if(prepRes){
 			statement.bindParam(entity.dateAssigned.SQLiteDateString)
 			statement.bindParam(entity.dateDue.SQLiteDateString)
-			statement.bindParam(entity.id)
 			statement.bindParam(entity.isCompleted)
 			statement.bindParam(entity.name)
 			statement.bindParam(entity.type)
@@ -200,7 +199,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 51.41 minutes to type the 5141+ characters in this file.
+approximately 51.06 minutes to type the 5106+ characters in this file.
  */
 
 
