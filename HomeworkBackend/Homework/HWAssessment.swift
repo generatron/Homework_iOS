@@ -50,20 +50,20 @@ class HWAssessment  {
     func initFromJSONString(jsonString : String) throws -> Void {
         let decoder = JSONDecoder()
         let payload = try decoder.decode(jsonString) as! JSONDictionaryType
-		if(data["dateAssigned"] != nil){
-     		dateAssigned =  payload["dateAssigned"] as! NSDate!
+		if(payload["dateAssigned"] != nil){
+     		dateAssigned =  payload["dateAssigned"] as! NSDate
 		}
-		if(data["dateDue"] != nil){
-     		dateDue =  payload["dateDue"] as! NSDate!
+		if(payload["dateDue"] != nil){
+     		dateDue =  payload["dateDue"] as! NSDate
 		}
-		if(data["id"] != nil){
-     		id =  payload["id"] as! Int64!
+		if(payload["id"] != nil){
+     		id =  payload["id"] as! Int64
 		}
-		if(data["name"] != nil){
-     		name =  payload["name"] as! String!
+		if(payload["name"] != nil){
+     		name =  payload["name"] as! String
 		}
-		if(data["type"] != nil){
-     		type =  payload["type"] as! Int!
+		if(payload["type"] != nil){
+     		type =  payload["type"] as! Int
 		}
     }
 }
@@ -71,7 +71,7 @@ class HWAssessment  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 9.99 minutes to type the 999+ characters in this file.
+approximately 10.09 minutes to type the 1009+ characters in this file.
  */
 
 

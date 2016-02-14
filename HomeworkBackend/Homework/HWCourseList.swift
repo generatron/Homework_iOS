@@ -42,8 +42,8 @@ class HWCourseList  {
     func initFromJSONString(jsonString : String) throws -> Void {
         let decoder = JSONDecoder()
         let payload = try decoder.decode(jsonString) as! JSONDictionaryType
-		if(data["id"] != nil){
-     		id =  payload["id"] as! Int64!
+		if(payload["id"] != nil){
+     		id =  payload["id"] as! Int64
 		}
     }
 }
@@ -51,7 +51,7 @@ class HWCourseList  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 4.55 minutes to type the 455+ characters in this file.
+approximately 4.57 minutes to type the 457+ characters in this file.
  */
 
 

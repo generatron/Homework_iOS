@@ -48,17 +48,17 @@ class HWCourse  {
     func initFromJSONString(jsonString : String) throws -> Void {
         let decoder = JSONDecoder()
         let payload = try decoder.decode(jsonString) as! JSONDictionaryType
-		if(data["color"] != nil){
-     		color =  payload["color"] as! AnyObject!
+		if(payload["color"] != nil){
+     		color =  payload["color"] as! AnyObject
 		}
-		if(data["id"] != nil){
-     		id =  payload["id"] as! Int64!
+		if(payload["id"] != nil){
+     		id =  payload["id"] as! Int64
 		}
-		if(data["name"] != nil){
-     		name =  payload["name"] as! String!
+		if(payload["name"] != nil){
+     		name =  payload["name"] as! String
 		}
-		if(data["period"] != nil){
-     		period =  payload["period"] as! Int!
+		if(payload["period"] != nil){
+     		period =  payload["period"] as! Int
 		}
     }
 }
@@ -66,7 +66,7 @@ class HWCourse  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 8.32 minutes to type the 832+ characters in this file.
+approximately 8.4 minutes to type the 840+ characters in this file.
  */
 
 
