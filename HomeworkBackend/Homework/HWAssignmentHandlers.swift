@@ -83,6 +83,7 @@ class HWAssignmentUpdateHandler: RequestHandler {
     }catch{
         response.appendBodyString("Error accessing data:  \(error)")
     }
+    response.requestCompletedCallback()
   }
 }
 
@@ -103,7 +104,7 @@ class HWAssignmentDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 28.33 minutes to type the 2833+ characters in this file.
+approximately 28.74 minutes to type the 2874+ characters in this file.
  */
 
 

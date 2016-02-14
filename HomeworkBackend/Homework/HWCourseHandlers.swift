@@ -83,6 +83,7 @@ class HWCourseUpdateHandler: RequestHandler {
     }catch{
         response.appendBodyString("Error accessing data:  \(error)")
     }
+    response.requestCompletedCallback()
   }
 }
 
@@ -103,7 +104,7 @@ class HWCourseDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 27.05 minutes to type the 2705+ characters in this file.
+approximately 27.46 minutes to type the 2746+ characters in this file.
  */
 
 
