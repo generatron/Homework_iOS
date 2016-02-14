@@ -49,7 +49,7 @@ class HWAssessmentCreateHandler: RequestHandler {
      do {
     	try hWAssessment.decode(request.postBodyString);
     	let result = try PersistenceManagerMySQL.sharedInstance.hWAssessmentRepository.insert(hWAssessment)
-    	let json = hWAssessment.encode()
+    	let json = try hWAssessment.encode()
     	try response.outputJson(json)
     }catch{
         response.appendBodyString("Error accessing data:  \(error)")
@@ -82,7 +82,7 @@ class HWAssessmentDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 20.1 minutes to type the 2010+ characters in this file.
+approximately 20.14 minutes to type the 2014+ characters in this file.
  */
 
 

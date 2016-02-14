@@ -49,7 +49,7 @@ class HWCourseCreateHandler: RequestHandler {
      do {
     	try hWCourse.decode(request.postBodyString);
     	let result = try PersistenceManagerMySQL.sharedInstance.hWCourseRepository.insert(hWCourse)
-    	let json = hWCourse.encode()
+    	let json = try hWCourse.encode()
     	try response.outputJson(json)
     }catch{
         response.appendBodyString("Error accessing data:  \(error)")
@@ -82,7 +82,7 @@ class HWCourseDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 19.38 minutes to type the 1938+ characters in this file.
+approximately 19.42 minutes to type the 1942+ characters in this file.
  */
 
 
