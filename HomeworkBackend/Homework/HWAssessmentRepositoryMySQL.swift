@@ -161,8 +161,8 @@ let statement = MySQLStmt(db)
         let results = db.storeResults()!
   		let hWAssessment = HWAssessment()
         while let row = results.next() {
-						hWAssessment.dateAssigned = (row[0] as String).SQLStringDate;
-			hWAssessment.dateDue = (row[1] as String).SQLStringDate;
+			hWAssessment.dateAssigned = (row[0] as String).SQLStringDate();
+hWAssessment.dateDue = (row[1] as String).SQLStringDate();
 			hWAssessment.id = Int(row[2]);
 			hWAssessment.name = String(row[3]);
 			hWAssessment.type = Int(row[4]);
@@ -181,8 +181,8 @@ let statement = MySQLStmt(db)
   
         while let row = results.next() {
         	let hWAssessment = HWAssessment()
-						hWAssessment.dateAssigned = (row[0] as String).SQLStringDate;
-			hWAssessment.dateDue = (row[1] as String).SQLStringDate;
+			hWAssessment.dateAssigned = (row[0] as String).SQLStringDate();
+hWAssessment.dateDue = (row[1] as String).SQLStringDate();
 			hWAssessment.id = Int(row[2]);
 			hWAssessment.name = String(row[3]);
 			hWAssessment.type = Int(row[4]);
@@ -197,7 +197,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 44.36 minutes to type the 4436+ characters in this file.
+approximately 44.32 minutes to type the 4432+ characters in this file.
  */
 
 
