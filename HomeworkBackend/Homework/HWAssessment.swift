@@ -86,9 +86,9 @@ class HWAssessment  {
     static func encodeList(elements : Array<HWAssessment>) throws -> String {
         var payload : Array<JSONValue> = [];
         do {
-        elements.forEach { entity.getVariableName() -> () in
+        elements.forEach { hWAssessment -> () in
             do {
-                payload.append(entity.getVariableName().toDictionary());
+                payload.append($entity.getVariableName().toDictionary());
             }catch{
                 
             }
@@ -106,7 +106,7 @@ class HWAssessment  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 19.06 minutes to type the 1906+ characters in this file.
+approximately 18.95 minutes to type the 1895+ characters in this file.
  */
 
 

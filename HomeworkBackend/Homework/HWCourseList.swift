@@ -58,9 +58,9 @@ class HWCourseList  {
     static func encodeList(elements : Array<HWCourseList>) throws -> String {
         var payload : Array<JSONValue> = [];
         do {
-        elements.forEach { entity.getVariableName() -> () in
+        elements.forEach { hWCourseList -> () in
             do {
-                payload.append(entity.getVariableName().toDictionary());
+                payload.append($entity.getVariableName().toDictionary());
             }catch{
                 
             }
@@ -78,7 +78,7 @@ class HWCourseList  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 12.27 minutes to type the 1227+ characters in this file.
+approximately 12.16 minutes to type the 1216+ characters in this file.
  */
 
 
