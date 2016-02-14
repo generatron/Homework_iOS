@@ -60,7 +60,7 @@ class HWCourseCreateHandler: RequestHandler {
 
 class HWCourseRetrieveHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
-   let id = Int(request.urlVariables["id"]!)
+   let id = Int64(request.urlVariables["id"]!)
     do{
         let hWCourse : HWCourse  = try PersistenceManagerMySQL.sharedInstance.hWCourseRepository.retrieve(id!)!
         let json = try hWCourse.encode()
@@ -103,7 +103,7 @@ class HWCourseDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 27.07 minutes to type the 2707+ characters in this file.
+approximately 27.09 minutes to type the 2709+ characters in this file.
  */
 
 
