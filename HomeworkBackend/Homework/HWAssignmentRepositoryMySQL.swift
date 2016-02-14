@@ -36,7 +36,7 @@ func createTable() throws ->  Int {
       }
       return 0;
 }
-func insert(entity: HWAssignment) throws -> Int {
+func insert(entity: HWAssignment) throws -> Int64 {
        	let sql = "INSERT INTO HWAssignment(dateAssigned,dateDue,isCompleted,name,type) VALUES ( ?, ?, ?, ?, ?)"
        	
        	let statement = MySQLStmt(db)
@@ -53,7 +53,10 @@ func insert(entity: HWAssignment) throws -> Int {
 			statement.bindParam(entity.type)
 
 			let execRes = statement.execute()
-			if(!execRes){
+			if(execRes){
+				entity.id = db.insertId() as! Int64;
+				return entity.id
+			}else{
 				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
 				let errorCode = db.errorCode()
 				if errorCode > 0 {
@@ -197,7 +200,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 50.58 minutes to type the 5058+ characters in this file.
+approximately 51.34 minutes to type the 5134+ characters in this file.
  */
 
 

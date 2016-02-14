@@ -37,12 +37,12 @@ class HWAssessment  {
     
     
     func toDictionary() -> [String: Any] {
-                return [
-    "dateAssigned" : dateAssigned
-    ,"dateDue" : dateDue
-    ,"id" : id
-    ,"name" : name
-    ,"type" : type
+        return [
+"dateAssigned" : dateAssigned
+		,"dateDue" : dateDue
+		,"id" : id
+		,"name" : name
+		,"type" : type
         ]
     }
     
@@ -71,7 +71,7 @@ class HWAssessment  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 10.09 minutes to type the 1009+ characters in this file.
+approximately 9.89 minutes to type the 989+ characters in this file.
  */
 
 

@@ -36,11 +36,11 @@ class HWCourse  {
     
     
     func toDictionary() -> [String: Any] {
-                return [
-    "color" : color
-    ,"id" : id
-    ,"name" : name
-    ,"period" : period
+        return [
+"color" : color
+		,"id" : id
+		,"name" : name
+		,"period" : period
         ]
     }
     
@@ -66,7 +66,7 @@ class HWCourse  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 8.4 minutes to type the 840+ characters in this file.
+approximately 8.22 minutes to type the 822+ characters in this file.
  */
 
 
