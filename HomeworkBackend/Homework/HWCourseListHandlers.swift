@@ -60,21 +60,42 @@ class HWCourseListCreateHandler: RequestHandler {
 
 class HWCourseListRetrieveHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
-    response.appendBodyString("Retrieve handler: You accessed path \(request.requestURI())")
+   let id = Int(request.urlVariables["id"]!)
+    do{
+        let hWCourseList : HWCourseList  = try PersistenceManagerMySQL.sharedInstance.hWCourseListRepository.retrieve(id!)!
+        let json = try hWCourseList.encode()
+        try response.outputJson(json)
+    }catch{
+        response.setStatus (500, message: "Could not retrieve HWCourse \(id) data")
+    }
     response.requestCompletedCallback()
   }
 }
 
 class HWCourseListUpdateHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
-    response.appendBodyString("Retrieve handler: You accessed path \(request.requestURI())")
-    response.requestCompletedCallback()
+    do {
+     	let hWCourseList = HWCourseList() 
+    	try hWCourseList.decode(request.postBodyString);
+    	let result = try PersistenceManagerMySQL.sharedInstance.hWCourseListRepository.update(hWCourseList)
+    	let json = try hWCourseList.encode()
+    	try response.outputJson(json)
+    }catch{
+        response.appendBodyString("Error accessing data:  \(error)")
+    }
   }
 }
 
 class HWCourseListDeleteHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
-    response.appendBodyString("Retrieve handler: You accessed path \(request.requestURI())")
+    let id = Int(request.urlVariables["id"]!)
+    do{
+        let hWCourseList : HWCourseList  = try PersistenceManagerMySQL.sharedInstance.hWCourseListRepository.delete(id!)!
+        let json = try hWCourseList.encode()
+        try response.outputJson(json)
+    }catch{
+        response.setStatus (500, message: "Could not delete HWCourse \(id) data")
+    }
     response.requestCompletedCallback()
   }
 }
@@ -82,7 +103,7 @@ class HWCourseListDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 20.14 minutes to type the 2014+ characters in this file.
+approximately 28.1 minutes to type the 2810+ characters in this file.
  */
 
 

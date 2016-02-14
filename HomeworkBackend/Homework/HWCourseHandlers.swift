@@ -60,21 +60,42 @@ class HWCourseCreateHandler: RequestHandler {
 
 class HWCourseRetrieveHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
-    response.appendBodyString("Retrieve handler: You accessed path \(request.requestURI())")
+   let id = Int(request.urlVariables["id"]!)
+    do{
+        let hWCourse : HWCourse  = try PersistenceManagerMySQL.sharedInstance.hWCourseRepository.retrieve(id!)!
+        let json = try hWCourse.encode()
+        try response.outputJson(json)
+    }catch{
+        response.setStatus (500, message: "Could not retrieve HWCourse \(id) data")
+    }
     response.requestCompletedCallback()
   }
 }
 
 class HWCourseUpdateHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
-    response.appendBodyString("Retrieve handler: You accessed path \(request.requestURI())")
-    response.requestCompletedCallback()
+    do {
+     	let hWCourse = HWCourse() 
+    	try hWCourse.decode(request.postBodyString);
+    	let result = try PersistenceManagerMySQL.sharedInstance.hWCourseRepository.update(hWCourse)
+    	let json = try hWCourse.encode()
+    	try response.outputJson(json)
+    }catch{
+        response.appendBodyString("Error accessing data:  \(error)")
+    }
   }
 }
 
 class HWCourseDeleteHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
-    response.appendBodyString("Retrieve handler: You accessed path \(request.requestURI())")
+    let id = Int(request.urlVariables["id"]!)
+    do{
+        let hWCourse : HWCourse  = try PersistenceManagerMySQL.sharedInstance.hWCourseRepository.delete(id!)!
+        let json = try hWCourse.encode()
+        try response.outputJson(json)
+    }catch{
+        response.setStatus (500, message: "Could not delete HWCourse \(id) data")
+    }
     response.requestCompletedCallback()
   }
 }
@@ -82,7 +103,7 @@ class HWCourseDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 19.42 minutes to type the 1942+ characters in this file.
+approximately 26.82 minutes to type the 2682+ characters in this file.
  */
 
 
