@@ -130,7 +130,7 @@ let statement = MySQLStmt(db)
 			statement.close()
 		}
 		let prepRes = statement.prepare(sql)
-		let entity = HWCourseList()
+		let hWCourseList = HWCourseList()
 		if(prepRes){
 			//HARDCODED might not exist, assuming it does, need to retrieve PK
 			statement.bindParam(id)
@@ -152,7 +152,7 @@ let statement = MySQLStmt(db)
 			}
 				
 		}
-	    return entity;
+	    return hWCourseList;
     }
     
     func list() -> [HWCourseList] {
@@ -176,7 +176,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 39.47 minutes to type the 3947+ characters in this file.
+approximately 39.59 minutes to type the 3959+ characters in this file.
  */
 
 
