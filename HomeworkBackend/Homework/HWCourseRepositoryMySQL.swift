@@ -93,22 +93,24 @@ let statement = MySQLStmt(db)
 		let prepRes = statement.prepare(sql)
 		
 		if(prepRes){		
-if(entity.color != nil){
+
 			//It's transformable, not supported at the moment
    			//statement.bindParam(entity.color.id)
-		}else{
-			statement.bindParam()
-		}
-if(entity.name != nil){
+		
+
+		if(entity.name != nil){
 			statement.bindParam(entity.name)
 		}else{
 			statement.bindParam()
 		}
-if(entity.period != nil){
+		
+
+		if(entity.period != nil){
 			statement.bindParam(entity.period)
 		}else{
 			statement.bindParam()
 		}
+		
 			statement.bindParam(entity.id)
 			let execRes = statement.execute()
 			if(!execRes){
@@ -216,7 +218,7 @@ if(entity.period != nil){
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 50.02 minutes to type the 5002+ characters in this file.
+approximately 49.57 minutes to type the 4957+ characters in this file.
  */
 
 
