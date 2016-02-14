@@ -92,7 +92,7 @@ class HWCourseListDeleteHandler: RequestHandler {
     do{
         let result = try PersistenceManagerMySQL.sharedInstance.hWCourseListRepository.delete(id!)!
         //let json = try hWCourseList.encode()
-        try response.outputJson("{"id":\(id),"message":"deleted"}")
+        try response.outputJson("{\"id\":\(id),\"message\":\"deleted\"}")
     }catch{
         response.setStatus (500, message: "Could not delete HWCourseList \(id) data")
     }
@@ -103,7 +103,7 @@ class HWCourseListDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 28.3 minutes to type the 2830+ characters in this file.
+approximately 28.36 minutes to type the 2836+ characters in this file.
  */
 
 

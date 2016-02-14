@@ -92,7 +92,7 @@ class HWAssignmentDeleteHandler: RequestHandler {
     do{
         let result = try PersistenceManagerMySQL.sharedInstance.hWAssignmentRepository.delete(id!)!
         //let json = try hWAssignment.encode()
-        try response.outputJson("{"id":\(id),"message":"deleted"}")
+        try response.outputJson("{\"id\":\(id),\"message\":\"deleted\"}")
     }catch{
         response.setStatus (500, message: "Could not delete HWAssignment \(id) data")
     }
@@ -103,7 +103,7 @@ class HWAssignmentDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 28.3 minutes to type the 2830+ characters in this file.
+approximately 28.36 minutes to type the 2836+ characters in this file.
  */
 
 
