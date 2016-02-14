@@ -111,6 +111,12 @@ extension String {
         free(mem.memory.data)
         return ret
     }
+    
+    func SQLStringDate() -> NSDate {
+        let dateFormat = NSDateFormatter ()
+        dateFormat.dateFormat = "YYYY-MM-dd"
+        return dateFormat.dateFromString(self)!
+    }
 }
 
 extension String.UTF8View {
@@ -129,16 +135,10 @@ extension String.UTF8View {
 }
 
 extension NSDate {
-    var SQLiteDateString : String {
+    var SQLDateString : String {
         let dateFormat = NSDateFormatter()
         dateFormat.dateFormat = "YYYY-MM-dd"
         return dateFormat.stringFromDate(self);
-    }
-    
-    func SQLiteStringDate(date:String) -> NSDate {
-        let dateFormat = NSDateFormatter ()
-        dateFormat.dateFormat = "YYYY-MM-dd"
-        return dateFormat.dateFromString(date)!
     }
 }
 
@@ -149,7 +149,7 @@ extension NSDate {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 34.66 minutes to type the 3466+ characters in this file.
+approximately 34.49 minutes to type the 3449+ characters in this file.
  */
 
 

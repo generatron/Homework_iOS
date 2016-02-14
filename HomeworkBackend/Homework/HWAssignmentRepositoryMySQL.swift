@@ -47,14 +47,14 @@ func insert(entity: HWAssignment) throws -> Int {
 		if(prepRes){
 
 		if(entity.dateAssigned != nil){
-			statement.bindParam(entity.dateAssigned.SQLiteDateString)
+			statement.bindParam(entity.dateAssigned.SQLDateString)
 		}else{
 			statement.bindParam()
 		}
 		
 
 		if(entity.dateDue != nil){
-			statement.bindParam(entity.dateDue.SQLiteDateString)
+			statement.bindParam(entity.dateDue.SQLDateString)
 		}else{
 			statement.bindParam()
 		}
@@ -114,14 +114,14 @@ let statement = MySQLStmt(db)
 		if(prepRes){		
 
 		if(entity.dateAssigned != nil){
-			statement.bindParam(entity.dateAssigned.SQLiteDateString)
+			statement.bindParam(entity.dateAssigned.SQLDateString)
 		}else{
 			statement.bindParam()
 		}
 		
 
 		if(entity.dateDue != nil){
-			statement.bindParam(entity.dateDue.SQLiteDateString)
+			statement.bindParam(entity.dateDue.SQLDateString)
 		}else{
 			statement.bindParam()
 		}
@@ -221,7 +221,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 49.84 minutes to type the 4984+ characters in this file.
+approximately 49.72 minutes to type the 4972+ characters in this file.
  */
 
 
