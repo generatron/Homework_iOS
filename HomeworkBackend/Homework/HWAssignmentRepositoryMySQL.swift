@@ -163,37 +163,33 @@ let statement = MySQLStmt(db)
 		return 0
     }
     
-	func delete(entity: HWAssignment) throws -> Int {
+	func delete(id: Int64) throws -> Int64 {
 	    guard let id = entity.id else {
 	        return 0
 	    }
 	    
-	    let sql = "DELETE FROM hWAssignment WHERE id = ?"
-	    let statement = MySQLStmt(db)
-		defer {
-			statement.close()
-		}
-		let prepRes = statement.prepare(sql)
-		
-		if(prepRes){
-			//HARDCODED might not exist, assuming it does, need to retrieve PK
-			statement.bindParam(entity.id)
-			
-			let execRes = statement.execute()
-	        if(!execRes){
-				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
-				let errorCode = db.errorCode()
-				if errorCode > 0 {
-	    			throw RepositoryError.Delete(errorCode)
-				}
-				statement.close()
+	    let sql = "DELETE FROM hWAssignment WHERE id = \(id)"
+	    let queryResult = db.query(sql)
+        let results = db.storeResults()!
+  		let hWAssignment = HWAssignment()
+        while let row = results.next() {
+						hWAssignment.dateAssigned = NSDate(string: row[0]);
+			hWAssignment.dateDue = NSDate(string: row[1]);
+			hWAssignment.id = Int64(row[2]);
+			if(row[3] == "1"){
+			   	hWAssignment.isCompleted = Bool(true);
+			}else{
+				hWAssignment.isCompleted = Bool(false);
 			}
-				
-		}
-		return 0
+			hWAssignment.name = String(row[4]);
+			hWAssignment.type = Int(row[5]);
+            print(row)
+        }
+        results.close()
+	    return id;
 	}
     
-    func retrieve(id: Int) throws -> HWAssignment? {
+    func retrieve(id: Int64) throws -> HWAssignment? {
         let sql = "SELECT dateAssigned,dateDue,id,isCompleted,name,type FROM HWAssignment WHERE id =  \(id)"
 		let queryResult = db.query(sql)
         let results = db.storeResults()!
@@ -245,7 +241,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 55.58 minutes to type the 5558+ characters in this file.
+approximately 55.56 minutes to type the 5556+ characters in this file.
  */
 
 

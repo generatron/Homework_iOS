@@ -129,37 +129,28 @@ let statement = MySQLStmt(db)
 		return 0
     }
     
-	func delete(entity: HWCourse) throws -> Int {
+	func delete(id: Int64) throws -> Int64 {
 	    guard let id = entity.id else {
 	        return 0
 	    }
 	    
-	    let sql = "DELETE FROM hWCourse WHERE id = ?"
-	    let statement = MySQLStmt(db)
-		defer {
-			statement.close()
-		}
-		let prepRes = statement.prepare(sql)
-		
-		if(prepRes){
-			//HARDCODED might not exist, assuming it does, need to retrieve PK
-			statement.bindParam(entity.id)
-			
-			let execRes = statement.execute()
-	        if(!execRes){
-				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
-				let errorCode = db.errorCode()
-				if errorCode > 0 {
-	    			throw RepositoryError.Delete(errorCode)
-				}
-				statement.close()
-			}
-				
-		}
-		return 0
+	    let sql = "DELETE FROM hWCourse WHERE id = \(id)"
+	    let queryResult = db.query(sql)
+        let results = db.storeResults()!
+  		let hWCourse = HWCourse()
+        while let row = results.next() {
+						//It's transformable, not supported at the moment
+		   //hWCourse.color.id = row[0];
+			hWCourse.id = Int64(row[1]);
+			hWCourse.name = String(row[2]);
+			hWCourse.period = Int(row[3]);
+            print(row)
+        }
+        results.close()
+	    return id;
 	}
     
-    func retrieve(id: Int) throws -> HWCourse? {
+    func retrieve(id: Int64) throws -> HWCourse? {
         let sql = "SELECT id,name,period FROM HWCourse WHERE id =  \(id)"
 		let queryResult = db.query(sql)
         let results = db.storeResults()!
@@ -201,7 +192,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 44.26 minutes to type the 4426+ characters in this file.
+approximately 42.66 minutes to type the 4266+ characters in this file.
  */
 
 

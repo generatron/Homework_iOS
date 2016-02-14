@@ -149,37 +149,28 @@ let statement = MySQLStmt(db)
 		return 0
     }
     
-	func delete(entity: HWAssessment) throws -> Int {
+	func delete(id: Int64) throws -> Int64 {
 	    guard let id = entity.id else {
 	        return 0
 	    }
 	    
-	    let sql = "DELETE FROM hWAssessment WHERE id = ?"
-	    let statement = MySQLStmt(db)
-		defer {
-			statement.close()
-		}
-		let prepRes = statement.prepare(sql)
-		
-		if(prepRes){
-			//HARDCODED might not exist, assuming it does, need to retrieve PK
-			statement.bindParam(entity.id)
-			
-			let execRes = statement.execute()
-	        if(!execRes){
-				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
-				let errorCode = db.errorCode()
-				if errorCode > 0 {
-	    			throw RepositoryError.Delete(errorCode)
-				}
-				statement.close()
-			}
-				
-		}
-		return 0
+	    let sql = "DELETE FROM hWAssessment WHERE id = \(id)"
+	    let queryResult = db.query(sql)
+        let results = db.storeResults()!
+  		let hWAssessment = HWAssessment()
+        while let row = results.next() {
+						hWAssessment.dateAssigned = NSDate(string: row[0]);
+			hWAssessment.dateDue = NSDate(string: row[1]);
+			hWAssessment.id = Int64(row[2]);
+			hWAssessment.name = String(row[3]);
+			hWAssessment.type = Int(row[4]);
+            print(row)
+        }
+        results.close()
+	    return id;
 	}
     
-    func retrieve(id: Int) throws -> HWAssessment? {
+    func retrieve(id: Int64) throws -> HWAssessment? {
         let sql = "SELECT dateAssigned,dateDue,id,name,type FROM HWAssessment WHERE id =  \(id)"
 		let queryResult = db.query(sql)
         let results = db.storeResults()!
@@ -221,7 +212,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 49.94 minutes to type the 4994+ characters in this file.
+approximately 48.65 minutes to type the 4865+ characters in this file.
  */
 
 
