@@ -33,7 +33,7 @@ class HWCourseList  {
     
     
     func toDictionary() -> Dictionary<String, JSONValue> {
-		let dict =  Dictionary<String, JSONValue>()
+		var dict =  Dictionary<String, JSONValue>()
 		if(id != nil){
 			dict["id"] = id
 		}

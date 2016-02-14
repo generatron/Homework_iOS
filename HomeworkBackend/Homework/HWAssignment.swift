@@ -38,7 +38,7 @@ class HWAssignment  {
     
     
     func toDictionary() -> Dictionary<String, JSONValue> {
-		let dict =  Dictionary<String, JSONValue>()
+		var dict =  Dictionary<String, JSONValue>()
 		if(dateAssigned != nil){
 			dict["dateAssigned"] = dateAssigned
 		}

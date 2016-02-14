@@ -36,7 +36,7 @@ class HWCourse  {
     
     
     func toDictionary() -> Dictionary<String, JSONValue> {
-		let dict =  Dictionary<String, JSONValue>()
+		var dict =  Dictionary<String, JSONValue>()
 		if(color != nil){
 			dict["color"] = color
 		}
