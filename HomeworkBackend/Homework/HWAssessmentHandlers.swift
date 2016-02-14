@@ -66,7 +66,7 @@ class HWAssessmentRetrieveHandler: RequestHandler {
         let json = try hWAssessment.encode()
         try response.outputJson(json)
     }catch{
-        response.setStatus (500, message: "Could not retrieve HWCourse \(id) data")
+        response.setStatus (500, message: "Could not retrieve HWAssessment \(id) data")
     }
     response.requestCompletedCallback()
   }
@@ -94,7 +94,7 @@ class HWAssessmentDeleteHandler: RequestHandler {
         let json = try hWAssessment.encode()
         try response.outputJson(json)
     }catch{
-        response.setStatus (500, message: "Could not delete HWCourse \(id) data")
+        response.setStatus (500, message: "Could not delete HWAssessment \(id) data")
     }
     response.requestCompletedCallback()
   }
@@ -103,7 +103,7 @@ class HWAssessmentDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 28.1 minutes to type the 2810+ characters in this file.
+approximately 28.18 minutes to type the 2818+ characters in this file.
  */
 
 
