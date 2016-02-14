@@ -36,7 +36,7 @@ func createTable() throws ->  Int {
       }
       return 0;
 }
-func insert(entity: HWAssessment) throws -> Int64 {
+func insert(entity: HWAssessment) throws -> Int {
        	let sql = "INSERT INTO HWAssessment(dateAssigned,dateDue,name,type) VALUES ( ?, ?, ?, ?)"
        	
        	let statement = MySQLStmt(db)
@@ -76,7 +76,7 @@ func insert(entity: HWAssessment) throws -> Int64 {
 
 			let execRes = statement.execute()
 			if(execRes){
-				entity.id = Int64(statement.insertId()) ;
+				entity.id = Int(statement.insertId()) ;
 				return entity.id
 			}else{
 				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
@@ -149,13 +149,13 @@ let statement = MySQLStmt(db)
 		return 0
     }
     
-	func delete(id: Int64) throws -> Int64 {
+	func delete(id: Int) throws -> Int {
 	    let sql = "DELETE FROM hWAssessment WHERE id = \(id)"
 	    let queryResult = db.query(sql)
 	    return id;
 	}
     
-    func retrieve(id: Int64) throws -> HWAssessment? {
+    func retrieve(id: Int) throws -> HWAssessment? {
         let sql = "SELECT dateAssigned,dateDue,id,name,type FROM HWAssessment WHERE id = \(id)"
 		let queryResult = db.query(sql)
         let results = db.storeResults()!
@@ -197,7 +197,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 44.22 minutes to type the 4422+ characters in this file.
+approximately 44.12 minutes to type the 4412+ characters in this file.
  */
 
 

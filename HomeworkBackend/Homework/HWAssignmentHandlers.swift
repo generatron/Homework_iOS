@@ -60,7 +60,7 @@ class HWAssignmentCreateHandler: RequestHandler {
 
 class HWAssignmentRetrieveHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
-   let id = Int64(request.urlVariables["id"]!)
+   let id = Int(request.urlVariables["id"]!)
     do{
         let hWAssignment : HWAssignment  = try PersistenceManagerMySQL.sharedInstance.hWAssignmentRepository.retrieve(id!)!
         let json = try hWAssignment.encode()
@@ -88,7 +88,7 @@ class HWAssignmentUpdateHandler: RequestHandler {
 
 class HWAssignmentDeleteHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
-    let id = Int64(request.urlVariables["id"]!)
+    let id = Int(request.urlVariables["id"]!)
     do{
         let result = try PersistenceManagerMySQL.sharedInstance.hWAssignmentRepository.delete(id!)
         //let json = try hWAssignment.encode()
@@ -103,7 +103,7 @@ class HWAssignmentDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 28.37 minutes to type the 2837+ characters in this file.
+approximately 28.33 minutes to type the 2833+ characters in this file.
  */
 
 

@@ -36,7 +36,7 @@ func createTable() throws ->  Int {
       }
       return 0;
 }
-func insert(entity: HWCourseList) throws -> Int64 {
+func insert(entity: HWCourseList) throws -> Int {
        	let sql = "INSERT INTO HWCourseList() VALUES ()"
        	
        	let statement = MySQLStmt(db)
@@ -48,7 +48,7 @@ func insert(entity: HWCourseList) throws -> Int64 {
 
 			let execRes = statement.execute()
 			if(execRes){
-				entity.id = Int64(statement.insertId()) ;
+				entity.id = Int(statement.insertId()) ;
 				return entity.id
 			}else{
 				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
@@ -93,13 +93,13 @@ let statement = MySQLStmt(db)
 		return 0
     }
     
-	func delete(id: Int64) throws -> Int64 {
+	func delete(id: Int) throws -> Int {
 	    let sql = "DELETE FROM hWCourseList WHERE id = \(id)"
 	    let queryResult = db.query(sql)
 	    return id;
 	}
     
-    func retrieve(id: Int64) throws -> HWCourseList? {
+    func retrieve(id: Int) throws -> HWCourseList? {
         let sql = "SELECT id FROM HWCourseList WHERE id = \(id)"
 		let queryResult = db.query(sql)
         let results = db.storeResults()!
@@ -133,7 +133,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 28.48 minutes to type the 2848+ characters in this file.
+approximately 28.38 minutes to type the 2838+ characters in this file.
  */
 
 
