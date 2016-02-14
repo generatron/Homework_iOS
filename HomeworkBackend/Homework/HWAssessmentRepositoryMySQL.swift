@@ -156,7 +156,7 @@ let statement = MySQLStmt(db)
 	}
     
     func retrieve(id: Int64) throws -> HWAssessment? {
-        let sql = "SELECT dateAssigned,dateDue,id,name,type FROM HWAssessment WHERE id =  \(id)"
+        let sql = "SELECT dateAssigned,dateDue,id,name,type FROM HWAssessment WHERE id = \(id)"
 		let queryResult = db.query(sql)
         let results = db.storeResults()!
   		let hWAssessment = HWAssessment()
@@ -173,7 +173,7 @@ let statement = MySQLStmt(db)
     }
     
     func list() -> [HWAssessment] {
-        let sql = "SELECT * FROM hWAssessment "
+        let sql = "SELECT dateAssigned,dateDue,id,name,type FROM HWAssessment "
         var entities = [HWAssessment]()
         
         let queryResult = db.query(sql)
@@ -197,7 +197,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 43.91 minutes to type the 4391+ characters in this file.
+approximately 44.22 minutes to type the 4422+ characters in this file.
  */
 
 

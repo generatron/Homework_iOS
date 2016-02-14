@@ -136,7 +136,7 @@ let statement = MySQLStmt(db)
 	}
     
     func retrieve(id: Int64) throws -> HWCourse? {
-        let sql = "SELECT id,name,period FROM HWCourse WHERE id =  \(id)"
+        let sql = "SELECT id,name,period FROM HWCourse WHERE id = \(id)"
 		let queryResult = db.query(sql)
         let results = db.storeResults()!
   		let hWCourse = HWCourse()
@@ -151,7 +151,7 @@ let statement = MySQLStmt(db)
     }
     
     func list() -> [HWCourse] {
-        let sql = "SELECT * FROM hWCourse "
+        let sql = "SELECT id,name,period FROM HWCourse "
         var entities = [HWCourse]()
         
         let queryResult = db.query(sql)
@@ -173,7 +173,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 36.51 minutes to type the 3651+ characters in this file.
+approximately 36.63 minutes to type the 3663+ characters in this file.
  */
 
 

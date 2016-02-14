@@ -130,7 +130,7 @@ statement.close()
 	}
     
     func retrieve(id: Int) throws -> HWCourse? {
-        let sql = "SELECT id,name,period FROM HWCourse WHERE id = "
+        let sql = "SELECT id,name,period FROM HWCourse"
        	let statement = MySQLStmt(db)
 		defer {
 			statement.close()
@@ -185,7 +185,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 42.15 minutes to type the 4215+ characters in this file.
+approximately 42.03 minutes to type the 4203+ characters in this file.
  */
 
 

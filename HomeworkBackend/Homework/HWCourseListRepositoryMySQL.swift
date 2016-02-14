@@ -100,7 +100,7 @@ let statement = MySQLStmt(db)
 	}
     
     func retrieve(id: Int64) throws -> HWCourseList? {
-        let sql = "SELECT id FROM HWCourseList WHERE id =  \(id)"
+        let sql = "SELECT id FROM HWCourseList WHERE id = \(id)"
 		let queryResult = db.query(sql)
         let results = db.storeResults()!
   		let hWCourseList = HWCourseList()
@@ -113,7 +113,7 @@ let statement = MySQLStmt(db)
     }
     
     func list() -> [HWCourseList] {
-        let sql = "SELECT * FROM hWCourseList "
+        let sql = "SELECT id FROM HWCourseList "
         var entities = [HWCourseList]()
         
         let queryResult = db.query(sql)

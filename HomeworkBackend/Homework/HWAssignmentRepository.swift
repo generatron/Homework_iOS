@@ -134,7 +134,7 @@ statement.close()
 	}
     
     func retrieve(id: Int) throws -> HWAssignment? {
-        let sql = "SELECT dateAssigned,dateDue,id,isCompleted,name,type FROM HWAssignment WHERE id = "
+        let sql = "SELECT dateAssigned,dateDue,id,isCompleted,name,type FROM HWAssignment"
        	let statement = MySQLStmt(db)
 		defer {
 			statement.close()
@@ -191,7 +191,7 @@ statement.close()
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 47.51 minutes to type the 4751+ characters in this file.
+approximately 47.39 minutes to type the 4739+ characters in this file.
  */
 
 
