@@ -29,12 +29,12 @@ Template: /PerfectSwift/server/Entity.swift.vm
 import PerfectLib
 
 class HWAssessment  {
-            var dateAssigned : NSDate!
-            var dateDue : NSDate!
-            var id : Int64!
-            var name : String!
-            var type : Int!
-        
+    var dateAssigned : NSDate!
+    var dateDue : NSDate!
+    var id : Int64!
+    var name : String!
+    var type : Int!
+    
     
     func toDictionary() -> [String: Any] {
                 return [
@@ -45,12 +45,33 @@ class HWAssessment  {
     ,"type" : type
         ]
     }
+    
+    
+    func initFromJSONString(jsonString : String) throws -> Void {
+        let decoder = JSONDecoder()
+        let payload = try decoder.decode(jsonString) as! JSONDictionaryType
+		if(data["dateAssigned"] != nil){
+     		dateAssigned =  payload["dateAssigned"] as! NSDate!
+		}
+		if(data["dateDue"] != nil){
+     		dateDue =  payload["dateDue"] as! NSDate!
+		}
+		if(data["id"] != nil){
+     		id =  payload["id"] as! Int64!
+		}
+		if(data["name"] != nil){
+     		name =  payload["name"] as! String!
+		}
+		if(data["type"] != nil){
+     		type =  payload["type"] as! Int!
+		}
+    }
 }
 
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 4.35 minutes to type the 435+ characters in this file.
+approximately 9.99 minutes to type the 999+ characters in this file.
  */
 
 

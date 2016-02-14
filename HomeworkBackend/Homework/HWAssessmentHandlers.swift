@@ -48,9 +48,13 @@ class HWAssessmentListHandler: RequestHandler  {
 class HWAssessmentCreateHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
      let hWAssessment = HWAssessment() 
-     //Init fields here
-     let result = try! PersistenceManagerMySQL.sharedInstance.hWAssessmentRepository.insert(hWAssessment)
-    response.appendBodyString("Create handler: You accessed path \(request.requestURI())")
+     do {
+    	try hWAssessment.initFromString(request.postBodyString);
+    	let result = try PersistenceManagerMySQL.sharedInstance.HWAssessmentRepository.insert(hWAssessment)
+    	response.appendBodyString("Created HWAssessment")
+    }catch{
+        response.appendBodyString("Error accessing data:  \(error)")
+    }
     response.requestCompletedCallback()
   }
 }
@@ -79,7 +83,7 @@ class HWAssessmentDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 20.69 minutes to type the 2069+ characters in this file.
+approximately 21.71 minutes to type the 2171+ characters in this file.
  */
 
 

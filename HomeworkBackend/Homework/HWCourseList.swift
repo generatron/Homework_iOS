@@ -29,20 +29,29 @@ Template: /PerfectSwift/server/Entity.swift.vm
 import PerfectLib
 
 class HWCourseList  {
-            var id : Int64!
-        
+    var id : Int64!
+    
     
     func toDictionary() -> [String: Any] {
                 return [
     "id" : id
         ]
     }
+    
+    
+    func initFromJSONString(jsonString : String) throws -> Void {
+        let decoder = JSONDecoder()
+        let payload = try decoder.decode(jsonString) as! JSONDictionaryType
+		if(data["id"] != nil){
+     		id =  payload["id"] as! Int64!
+		}
+    }
 }
 
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 1.97 minutes to type the 197+ characters in this file.
+approximately 4.55 minutes to type the 455+ characters in this file.
  */
 
 

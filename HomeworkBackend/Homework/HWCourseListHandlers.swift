@@ -48,9 +48,13 @@ class HWCourseListListHandler: RequestHandler  {
 class HWCourseListCreateHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
      let hWCourseList = HWCourseList() 
-     //Init fields here
-     let result = try! PersistenceManagerMySQL.sharedInstance.hWCourseListRepository.insert(hWCourseList)
-    response.appendBodyString("Create handler: You accessed path \(request.requestURI())")
+     do {
+    	try hWCourseList.initFromString(request.postBodyString);
+    	let result = try PersistenceManagerMySQL.sharedInstance.HWCourseListRepository.insert(hWCourseList)
+    	response.appendBodyString("Created HWCourseList")
+    }catch{
+        response.appendBodyString("Error accessing data:  \(error)")
+    }
     response.requestCompletedCallback()
   }
 }
@@ -79,7 +83,7 @@ class HWCourseListDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 20.69 minutes to type the 2069+ characters in this file.
+approximately 21.71 minutes to type the 2171+ characters in this file.
  */
 
 

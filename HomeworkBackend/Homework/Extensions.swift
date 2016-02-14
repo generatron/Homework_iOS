@@ -136,11 +136,6 @@ extension NSDate {
     }
 }
 
-/*
-[STATS]
-It would take a person typing  @ 100.0 cpm, 
-approximately 30.39 minutes to type the 3039+ characters in this file.
- */
 
 
 
@@ -148,7 +143,7 @@ approximately 30.39 minutes to type the 3039+ characters in this file.
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 34.46 minutes to type the 3446+ characters in this file.
+approximately 33.15 minutes to type the 3315+ characters in this file.
  */
 
 
