@@ -76,7 +76,7 @@ func insert(entity: HWAssessment) throws -> Int64 {
 
 			let execRes = statement.execute()
 			if(execRes){
-				entity.id = statement.insertId() as! Int64;
+				entity.id = Int64(statement.insertId()) ;
 				return entity.id
 			}else{
 				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
@@ -240,7 +240,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 54.36 minutes to type the 5436+ characters in this file.
+approximately 54.34 minutes to type the 5434+ characters in this file.
  */
 
 
