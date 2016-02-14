@@ -81,7 +81,7 @@ class HWCourse  {
         do {
         elements.forEach { hWCourse -> () in
             do {
-                payload.append($entity.getVariableName().toDictionary());
+                payload.append(hWCourse.toDictionary());
             }catch{
                 
             }
@@ -99,7 +99,7 @@ class HWCourse  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 16.81 minutes to type the 1681+ characters in this file.
+approximately 16.64 minutes to type the 1664+ characters in this file.
  */
 
 

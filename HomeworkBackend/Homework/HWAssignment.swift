@@ -95,7 +95,7 @@ class HWAssignment  {
         do {
         elements.forEach { hWAssignment -> () in
             do {
-                payload.append($entity.getVariableName().toDictionary());
+                payload.append(hWAssignment.toDictionary());
             }catch{
                 
             }
@@ -113,7 +113,7 @@ class HWAssignment  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 20.92 minutes to type the 2092+ characters in this file.
+approximately 20.79 minutes to type the 2079+ characters in this file.
  */
 
 
