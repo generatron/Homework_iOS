@@ -47,14 +47,14 @@ func insert(entity: HWAssignment) throws -> Int {
 		if(prepRes){
 
 		if(entity.dateAssigned != nil){
-			statement.bindParam(entity.dateAssigned.SQLDateString)
+			statement.bindParam(entity.dateAssigned.SQLDateString())
 		}else{
 			statement.bindParam()
 		}
 		
 
 		if(entity.dateDue != nil){
-			statement.bindParam(entity.dateDue.SQLDateString)
+			statement.bindParam(entity.dateDue.SQLDateString())
 		}else{
 			statement.bindParam()
 		}
@@ -114,14 +114,14 @@ let statement = MySQLStmt(db)
 		if(prepRes){		
 
 		if(entity.dateAssigned != nil){
-			statement.bindParam(entity.dateAssigned.SQLDateString)
+			statement.bindParam(entity.dateAssigned.SQLDateString())
 		}else{
 			statement.bindParam()
 		}
 		
 
 		if(entity.dateDue != nil){
-			statement.bindParam(entity.dateDue.SQLDateString)
+			statement.bindParam(entity.dateDue.SQLDateString())
 		}else{
 			statement.bindParam()
 		}
@@ -175,8 +175,8 @@ let statement = MySQLStmt(db)
         let results = db.storeResults()!
   		let hWAssignment = HWAssignment()
         while let row = results.next() {
-						hWAssignment.dateAssigned = NSDate(string: row[0]);
-			hWAssignment.dateDue = NSDate(string: row[1]);
+						hWAssignment.dateAssigned = (row[0] as String).SQLStringDate();
+			hWAssignment.dateDue = (row[1] as String).SQLStringDate();
 			hWAssignment.id = Int(row[2]);
 			if(row[3] == "1"){
 			   	hWAssignment.isCompleted = Bool(true);
@@ -200,8 +200,8 @@ let statement = MySQLStmt(db)
   
         while let row = results.next() {
         	let hWAssignment = HWAssignment()
-						hWAssignment.dateAssigned = NSDate(string: row[0]);
-			hWAssignment.dateDue = NSDate(string: row[1]);
+						hWAssignment.dateAssigned = (row[0] as String).SQLStringDate();
+			hWAssignment.dateDue = (row[1] as String).SQLStringDate();
 			hWAssignment.id = Int(row[2]);
 			if(row[3] == "1"){
 			   	hWAssignment.isCompleted = Bool(true);
@@ -221,7 +221,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 49.72 minutes to type the 4972+ characters in this file.
+approximately 50.28 minutes to type the 5028+ characters in this file.
  */
 
 
