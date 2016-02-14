@@ -150,7 +150,6 @@ let statement = MySQLStmt(db)
     }
     
 	func delete(id: Int64) throws -> Int64 {
-	    
 	    let sql = "DELETE FROM hWAssessment WHERE id = \(id)"
 	    let queryResult = db.query(sql)
         let results = db.storeResults()!
@@ -209,7 +208,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 48.0 minutes to type the 4800+ characters in this file.
+approximately 47.93 minutes to type the 4793+ characters in this file.
  */
 
 
