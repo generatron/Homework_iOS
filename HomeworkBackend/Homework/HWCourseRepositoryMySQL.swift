@@ -141,7 +141,7 @@ let statement = MySQLStmt(db)
         let results = db.storeResults()!
   		let hWCourse = HWCourse()
         while let row = results.next() {
-						hWCourse.id = Int64(row[0]);
+						hWCourse.id = Int(row[0]);
 			hWCourse.name = String(row[1]);
 			hWCourse.period = Int(row[2]);
             print(row)
@@ -159,7 +159,7 @@ let statement = MySQLStmt(db)
   
         while let row = results.next() {
         	let hWCourse = HWCourse()
-						hWCourse.id = Int64(row[0]);
+						hWCourse.id = Int(row[0]);
 			hWCourse.name = String(row[1]);
 			hWCourse.period = Int(row[2]);
 			entities.append(hWCourse)
@@ -173,7 +173,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 36.53 minutes to type the 3653+ characters in this file.
+approximately 36.49 minutes to type the 3649+ characters in this file.
  */
 
 

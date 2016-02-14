@@ -29,7 +29,7 @@ Template: /PerfectSwift/server/Entity.swift.vm
 import PerfectLib
 
 class HWCourseList  {
-    var id : Int64!
+    var id : Int!
     
     
     func toDictionary() -> Dictionary<String, JSONValue> {
@@ -45,7 +45,7 @@ class HWCourseList  {
         let decoder = JSONDecoder()
         let payload = try decoder.decode(jsonString) as! JSONDictionaryType
 		if(payload["id"] != nil){
-     		id =  payload["id"] as! Int64
+     		id =  payload["id"] as! Int
 		}
     }
     
@@ -78,7 +78,7 @@ class HWCourseList  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 12.03 minutes to type the 1203+ characters in this file.
+approximately 11.99 minutes to type the 1199+ characters in this file.
  */
 
 

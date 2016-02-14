@@ -177,7 +177,7 @@ let statement = MySQLStmt(db)
         while let row = results.next() {
 						hWAssignment.dateAssigned = NSDate(string: row[0]);
 			hWAssignment.dateDue = NSDate(string: row[1]);
-			hWAssignment.id = Int64(row[2]);
+			hWAssignment.id = Int(row[2]);
 			if(row[3] == "1"){
 			   	hWAssignment.isCompleted = Bool(true);
 			}else{
@@ -202,7 +202,7 @@ let statement = MySQLStmt(db)
         	let hWAssignment = HWAssignment()
 						hWAssignment.dateAssigned = NSDate(string: row[0]);
 			hWAssignment.dateDue = NSDate(string: row[1]);
-			hWAssignment.id = Int64(row[2]);
+			hWAssignment.id = Int(row[2]);
 			if(row[3] == "1"){
 			   	hWAssignment.isCompleted = Bool(true);
 			}else{
@@ -221,7 +221,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 49.88 minutes to type the 4988+ characters in this file.
+approximately 49.84 minutes to type the 4984+ characters in this file.
  */
 
 

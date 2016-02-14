@@ -30,7 +30,7 @@ import PerfectLib
 
 class HWCourse  {
     var color : AnyObject!
-    var id : Int64!
+    var id : Int!
     var name : String!
     var period : Int!
     
@@ -60,7 +60,7 @@ class HWCourse  {
      		color =  payload["color"] as! AnyObject
 		}
 		if(payload["id"] != nil){
-     		id =  payload["id"] as! Int64
+     		id =  payload["id"] as! Int
 		}
 		if(payload["name"] != nil){
      		name =  payload["name"] as! String
@@ -99,7 +99,7 @@ class HWCourse  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 16.64 minutes to type the 1664+ characters in this file.
+approximately 16.6 minutes to type the 1660+ characters in this file.
  */
 
 

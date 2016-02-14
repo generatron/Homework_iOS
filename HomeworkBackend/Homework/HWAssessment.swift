@@ -31,7 +31,7 @@ import PerfectLib
 class HWAssessment  {
     var dateAssigned : NSDate!
     var dateDue : NSDate!
-    var id : Int64!
+    var id : Int!
     var name : String!
     var type : Int!
     
@@ -67,7 +67,7 @@ class HWAssessment  {
      		dateDue =  payload["dateDue"] as! NSDate
 		}
 		if(payload["id"] != nil){
-     		id =  payload["id"] as! Int64
+     		id =  payload["id"] as! Int
 		}
 		if(payload["name"] != nil){
      		name =  payload["name"] as! String
@@ -106,7 +106,7 @@ class HWAssessment  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 18.82 minutes to type the 1882+ characters in this file.
+approximately 18.78 minutes to type the 1878+ characters in this file.
  */
 
 

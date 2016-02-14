@@ -163,7 +163,7 @@ let statement = MySQLStmt(db)
         while let row = results.next() {
 						hWAssessment.dateAssigned = NSDate(string: row[0]);
 			hWAssessment.dateDue = NSDate(string: row[1]);
-			hWAssessment.id = Int64(row[2]);
+			hWAssessment.id = Int(row[2]);
 			hWAssessment.name = String(row[3]);
 			hWAssessment.type = Int(row[4]);
             print(row)
@@ -183,7 +183,7 @@ let statement = MySQLStmt(db)
         	let hWAssessment = HWAssessment()
 						hWAssessment.dateAssigned = NSDate(string: row[0]);
 			hWAssessment.dateDue = NSDate(string: row[1]);
-			hWAssessment.id = Int64(row[2]);
+			hWAssessment.id = Int(row[2]);
 			hWAssessment.name = String(row[3]);
 			hWAssessment.type = Int(row[4]);
 			entities.append(hWAssessment)
@@ -197,7 +197,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 44.12 minutes to type the 4412+ characters in this file.
+approximately 44.08 minutes to type the 4408+ characters in this file.
  */
 
 

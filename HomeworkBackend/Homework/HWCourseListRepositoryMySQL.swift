@@ -105,7 +105,7 @@ let statement = MySQLStmt(db)
         let results = db.storeResults()!
   		let hWCourseList = HWCourseList()
         while let row = results.next() {
-						hWCourseList.id = Int64(row[0]);
+						hWCourseList.id = Int(row[0]);
             print(row)
         }
         results.close()
@@ -121,7 +121,7 @@ let statement = MySQLStmt(db)
   
         while let row = results.next() {
         	let hWCourseList = HWCourseList()
-						hWCourseList.id = Int64(row[0]);
+						hWCourseList.id = Int(row[0]);
 			entities.append(hWCourseList)
             print(row)
         }
@@ -133,7 +133,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 28.38 minutes to type the 2838+ characters in this file.
+approximately 28.34 minutes to type the 2834+ characters in this file.
  */
 
 
