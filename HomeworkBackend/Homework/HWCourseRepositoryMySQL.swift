@@ -45,22 +45,24 @@ func insert(entity: HWCourse) throws -> Int64 {
 		}
 		let prepRes = statement.prepare(sql)
 		if(prepRes){
-if(entity.color != nil){		
+
 			//It's transformable, not supported at the moment
-		   //statement.bindParam(entity.color.id)
-		}else{
-			statement.bindParam()
-		}
-if(entity.name != nil){		
+   			//statement.bindParam(entity.color.id)
+		
+
+		if(entity.name != nil){
 			statement.bindParam(entity.name)
 		}else{
 			statement.bindParam()
 		}
-if(entity.period != nil){		
+		
+
+		if(entity.period != nil){
 			statement.bindParam(entity.period)
 		}else{
 			statement.bindParam()
 		}
+		
 
 			let execRes = statement.execute()
 			if(execRes){
@@ -218,7 +220,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 49.57 minutes to type the 4957+ characters in this file.
+approximately 49.07 minutes to type the 4907+ characters in this file.
  */
 
 
