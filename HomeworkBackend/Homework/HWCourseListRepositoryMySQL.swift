@@ -124,34 +124,17 @@ let statement = MySQLStmt(db)
 	}
     
     func retrieve(id: Int) throws -> HWCourseList? {
-        let sql = "SELECT id FROM HWCourseList WHERE id = ?"
-       	let statement = MySQLStmt(db)
-		defer {
-			statement.close()
-		}
-		let prepRes = statement.prepare(sql)
-		let hWCourseList = HWCourseList()
-		if(prepRes){
-			//HARDCODED might not exist, assuming it does, need to retrieve PK
-			statement.bindParam(id)
-			
-			let execRes = statement.execute()
-            if(execRes){
-            	let results = statement.results()
-            	
-            	let ok = results.forEachRow { row in
-			hWCourseList.id = Int64(row[0]);
-				}
-				statement.close()
-			}else{
-				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
-				let errorCode = db.errorCode()
-				if errorCode > 0 {
-	    			throw RepositoryError.Delete(errorCode)
-				}
-			}
-				
-		}
+        let sql = "SELECT id FROM HWCourseList WHERE id = "+id
+		let queryResult = db.query(sql)
+        let results = db.storeResults()!
+  
+        while let row = results.next() {
+        	let hWCourseList = HWCourseList()
+						hWCourseList.id = Int64(row[0]);
+			entities.append(hWCourseList)
+            print(row)
+        }
+        results.close()
 	    return hWCourseList;
     }
     
@@ -176,7 +159,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 39.59 minutes to type the 3959+ characters in this file.
+approximately 34.91 minutes to type the 3491+ characters in this file.
  */
 
 

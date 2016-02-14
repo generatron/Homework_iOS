@@ -194,23 +194,13 @@ let statement = MySQLStmt(db)
 	}
     
     func retrieve(id: Int) throws -> HWAssignment? {
-        let sql = "SELECT dateAssigned,dateDue,id,isCompleted,name,type FROM HWAssignment WHERE id = ?"
-       	let statement = MySQLStmt(db)
-		defer {
-			statement.close()
-		}
-		let prepRes = statement.prepare(sql)
-		let hWAssignment = HWAssignment()
-		if(prepRes){
-			//HARDCODED might not exist, assuming it does, need to retrieve PK
-			statement.bindParam(id)
-			
-			let execRes = statement.execute()
-            if(execRes){
-            	let results = statement.results()
-            	
-            	let ok = results.forEachRow { row in
-			hWAssignment.dateAssigned = NSDate(string: row[0]);
+        let sql = "SELECT dateAssigned,dateDue,id,isCompleted,name,type FROM HWAssignment WHERE id = "+id
+		let queryResult = db.query(sql)
+        let results = db.storeResults()!
+  
+        while let row = results.next() {
+        	let hWAssignment = HWAssignment()
+						hWAssignment.dateAssigned = NSDate(string: row[0]);
 			hWAssignment.dateDue = NSDate(string: row[1]);
 			hWAssignment.id = Int64(row[2]);
 			if(row[3] == "1"){
@@ -220,17 +210,10 @@ let statement = MySQLStmt(db)
 			}
 			hWAssignment.name = String(row[4]);
 			hWAssignment.type = Int(row[5]);
-				}
-				statement.close()
-			}else{
-				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
-				let errorCode = db.errorCode()
-				if errorCode > 0 {
-	    			throw RepositoryError.Delete(errorCode)
-				}
-			}
-				
-		}
+			entities.append(hWAssignment)
+            print(row)
+        }
+        results.close()
 	    return hWAssignment;
     }
     
@@ -264,7 +247,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 60.660004 minutes to type the 6066+ characters in this file.
+approximately 55.98 minutes to type the 5598+ characters in this file.
  */
 
 

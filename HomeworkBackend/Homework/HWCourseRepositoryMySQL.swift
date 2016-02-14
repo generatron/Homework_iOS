@@ -160,38 +160,21 @@ let statement = MySQLStmt(db)
 	}
     
     func retrieve(id: Int) throws -> HWCourse? {
-        let sql = "SELECT id,name,period FROM HWCourse WHERE id = ?"
-       	let statement = MySQLStmt(db)
-		defer {
-			statement.close()
-		}
-		let prepRes = statement.prepare(sql)
-		let hWCourse = HWCourse()
-		if(prepRes){
-			//HARDCODED might not exist, assuming it does, need to retrieve PK
-			statement.bindParam(id)
-			
-			let execRes = statement.execute()
-            if(execRes){
-            	let results = statement.results()
-            	
-            	let ok = results.forEachRow { row in
-			//It's transformable, not supported at the moment
+        let sql = "SELECT id,name,period FROM HWCourse WHERE id = "+id
+		let queryResult = db.query(sql)
+        let results = db.storeResults()!
+  
+        while let row = results.next() {
+        	let hWCourse = HWCourse()
+						//It's transformable, not supported at the moment
 		   //hWCourse.color.id = row[0];
 			hWCourse.id = Int64(row[1]);
 			hWCourse.name = String(row[2]);
 			hWCourse.period = Int(row[3]);
-				}
-				statement.close()
-			}else{
-				print("\(statement.errorCode()) \(statement.errorMessage()) - \(db.errorCode()) \(db.errorMessage())")
-				let errorCode = db.errorCode()
-				if errorCode > 0 {
-	    			throw RepositoryError.Delete(errorCode)
-				}
-			}
-				
-		}
+			entities.append(hWCourse)
+            print(row)
+        }
+        results.close()
 	    return hWCourse;
     }
     
@@ -220,7 +203,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 49.34 minutes to type the 4934+ characters in this file.
+approximately 44.62 minutes to type the 4462+ characters in this file.
  */
 
 
