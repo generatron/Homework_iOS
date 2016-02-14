@@ -59,17 +59,14 @@ class HWCourseList  {
         var payload : Array<JSONValue> = [];
         do {
         elements.forEach { hWCourseList -> () in
-            do {
                 payload.append(hWCourseList.toDictionary());
-            }catch{
-                
-            }
+           
         }
         let encoder = JSONEncoder()
         let json = try encoder.encode(payload)
         return json
         }catch{
-            //?
+            print(error)
         }
         return ""
     }
@@ -78,7 +75,7 @@ class HWCourseList  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 11.99 minutes to type the 1199+ characters in this file.
+approximately 11.49 minutes to type the 1149+ characters in this file.
  */
 
 

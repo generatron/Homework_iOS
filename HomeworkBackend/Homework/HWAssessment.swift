@@ -87,17 +87,14 @@ class HWAssessment  {
         var payload : Array<JSONValue> = [];
         do {
         elements.forEach { hWAssessment -> () in
-            do {
                 payload.append(hWAssessment.toDictionary());
-            }catch{
-                
-            }
+           
         }
         let encoder = JSONEncoder()
         let json = try encoder.encode(payload)
         return json
         }catch{
-            //?
+            print(error)
         }
         return ""
     }
@@ -106,7 +103,7 @@ class HWAssessment  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 18.78 minutes to type the 1878+ characters in this file.
+approximately 18.28 minutes to type the 1828+ characters in this file.
  */
 
 
