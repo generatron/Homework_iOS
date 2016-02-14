@@ -90,9 +90,9 @@ class HWCourseDeleteHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
     let id = Int(request.urlVariables["id"]!)
     do{
-        let hWCourse : HWCourse  = try PersistenceManagerMySQL.sharedInstance.hWCourseRepository.delete(id!)!
-        let json = try hWCourse.encode()
-        try response.outputJson(json)
+        let result = try PersistenceManagerMySQL.sharedInstance.hWCourseRepository.delete(id!)!
+        //let json = try hWCourse.encode()
+        try response.outputJson("")
     }catch{
         response.setStatus (500, message: "Could not delete HWCourse \(id) data")
     }
@@ -103,7 +103,7 @@ class HWCourseDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 26.82 minutes to type the 2682+ characters in this file.
+approximately 26.68 minutes to type the 2668+ characters in this file.
  */
 
 

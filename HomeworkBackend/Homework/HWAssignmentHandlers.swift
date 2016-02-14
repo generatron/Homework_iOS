@@ -90,9 +90,9 @@ class HWAssignmentDeleteHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
     let id = Int(request.urlVariables["id"]!)
     do{
-        let hWAssignment : HWAssignment  = try PersistenceManagerMySQL.sharedInstance.hWAssignmentRepository.delete(id!)!
-        let json = try hWAssignment.encode()
-        try response.outputJson(json)
+        let result = try PersistenceManagerMySQL.sharedInstance.hWAssignmentRepository.delete(id!)!
+        //let json = try hWAssignment.encode()
+        try response.outputJson("")
     }catch{
         response.setStatus (500, message: "Could not delete HWAssignment \(id) data")
     }
@@ -103,7 +103,7 @@ class HWAssignmentDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 28.18 minutes to type the 2818+ characters in this file.
+approximately 27.96 minutes to type the 2796+ characters in this file.
  */
 
 
