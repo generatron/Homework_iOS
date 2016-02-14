@@ -37,16 +37,16 @@ class HWCourse  {
     
     func toDictionary() -> Dictionary<String, JSONValue> {
 		let dict =  Dictionary<String, JSONValue>()
-		if(color != nil)
+		if(color != nil){
 			dict["color"] = color
 		}
-		if(id != nil)
+		if(id != nil){
 			dict["id"] = id
 		}
-		if(name != nil)
+		if(name != nil){
 			dict["name"] = name
 		}
-		if(period != nil)
+		if(period != nil){
 			dict["period"] = period
 		}
 		return dict        
@@ -95,7 +95,7 @@ class HWCourse  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 16.06 minutes to type the 1606+ characters in this file.
+approximately 16.1 minutes to type the 1610+ characters in this file.
  */
 
 

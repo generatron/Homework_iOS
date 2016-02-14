@@ -38,19 +38,19 @@ class HWAssessment  {
     
     func toDictionary() -> Dictionary<String, JSONValue> {
 		let dict =  Dictionary<String, JSONValue>()
-		if(dateAssigned != nil)
+		if(dateAssigned != nil){
 			dict["dateAssigned"] = dateAssigned
 		}
-		if(dateDue != nil)
+		if(dateDue != nil){
 			dict["dateDue"] = dateDue
 		}
-		if(id != nil)
+		if(id != nil){
 			dict["id"] = id
 		}
-		if(name != nil)
+		if(name != nil){
 			dict["name"] = name
 		}
-		if(type != nil)
+		if(type != nil){
 			dict["type"] = type
 		}
 		return dict        
@@ -102,7 +102,7 @@ class HWAssessment  {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 18.23 minutes to type the 1823+ characters in this file.
+approximately 18.28 minutes to type the 1828+ characters in this file.
  */
 
 
