@@ -180,18 +180,16 @@ let statement = MySQLStmt(db)
 	}
     
     func retrieve(id: Int) throws -> HWAssessment? {
-        let sql = "SELECT dateAssigned,dateDue,id,name,type FROM HWAssessment WHERE id = "+id
+        let sql = "SELECT dateAssigned,dateDue,id,name,type FROM HWAssessment WHERE id =  \(id)"
 		let queryResult = db.query(sql)
         let results = db.storeResults()!
-  
+  		let hWAssessment = HWAssessment()
         while let row = results.next() {
-        	let hWAssessment = HWAssessment()
 						hWAssessment.dateAssigned = NSDate(string: row[0]);
 			hWAssessment.dateDue = NSDate(string: row[1]);
 			hWAssessment.id = Int64(row[2]);
 			hWAssessment.name = String(row[3]);
 			hWAssessment.type = Int(row[4]);
-			entities.append(hWAssessment)
             print(row)
         }
         results.close()
@@ -223,7 +221,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 50.34 minutes to type the 5034+ characters in this file.
+approximately 49.94 minutes to type the 4994+ characters in this file.
  */
 
 

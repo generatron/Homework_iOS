@@ -160,18 +160,16 @@ let statement = MySQLStmt(db)
 	}
     
     func retrieve(id: Int) throws -> HWCourse? {
-        let sql = "SELECT id,name,period FROM HWCourse WHERE id = "+id
+        let sql = "SELECT id,name,period FROM HWCourse WHERE id =  \(id)"
 		let queryResult = db.query(sql)
         let results = db.storeResults()!
-  
+  		let hWCourse = HWCourse()
         while let row = results.next() {
-        	let hWCourse = HWCourse()
 						//It's transformable, not supported at the moment
 		   //hWCourse.color.id = row[0];
 			hWCourse.id = Int64(row[1]);
 			hWCourse.name = String(row[2]);
 			hWCourse.period = Int(row[3]);
-			entities.append(hWCourse)
             print(row)
         }
         results.close()
@@ -203,7 +201,7 @@ let statement = MySQLStmt(db)
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 44.62 minutes to type the 4462+ characters in this file.
+approximately 44.26 minutes to type the 4426+ characters in this file.
  */
 
 
