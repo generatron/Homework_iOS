@@ -49,8 +49,8 @@ class HWAssignmentCreateHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
      let hWAssignment = HWAssignment() 
      do {
-    	try hWAssignment.initFromString(request.postBodyString);
-    	let result = try PersistenceManagerMySQL.sharedInstance.HWAssignmentRepository.insert(hWAssignment)
+    	try hWAssignment.initFromJSONString(request.postBodyString);
+    	let result = try PersistenceManagerMySQL.sharedInstance.hWAssignmentRepository.insert(hWAssignment)
     	response.appendBodyString("Created HWAssignment")
     }catch{
         response.appendBodyString("Error accessing data:  \(error)")
@@ -83,7 +83,7 @@ class HWAssignmentDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 21.71 minutes to type the 2171+ characters in this file.
+approximately 21.75 minutes to type the 2175+ characters in this file.
  */
 
 

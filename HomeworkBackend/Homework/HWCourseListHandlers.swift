@@ -49,8 +49,8 @@ class HWCourseListCreateHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
      let hWCourseList = HWCourseList() 
      do {
-    	try hWCourseList.initFromString(request.postBodyString);
-    	let result = try PersistenceManagerMySQL.sharedInstance.HWCourseListRepository.insert(hWCourseList)
+    	try hWCourseList.initFromJSONString(request.postBodyString);
+    	let result = try PersistenceManagerMySQL.sharedInstance.hWCourseListRepository.insert(hWCourseList)
     	response.appendBodyString("Created HWCourseList")
     }catch{
         response.appendBodyString("Error accessing data:  \(error)")
@@ -83,7 +83,7 @@ class HWCourseListDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 21.71 minutes to type the 2171+ characters in this file.
+approximately 21.75 minutes to type the 2175+ characters in this file.
  */
 
 
