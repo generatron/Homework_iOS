@@ -49,7 +49,7 @@ class HWAssessmentCreateHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
      let hWAssessment = HWAssessment() 
      do {
-    	try hWAssessment.initFromJSONString(request.postBodyString);
+    	try hWAssessment.decode(request.postBodyString);
     	let result = try PersistenceManagerMySQL.sharedInstance.hWAssessmentRepository.insert(hWAssessment)
     	response.appendBodyString("Created HWAssessment")
     }catch{
@@ -83,7 +83,7 @@ class HWAssessmentDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 21.75 minutes to type the 2175+ characters in this file.
+approximately 21.63 minutes to type the 2163+ characters in this file.
  */
 
 

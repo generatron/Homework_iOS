@@ -32,26 +32,49 @@ class HWCourseList  {
     var id : Int64!
     
     
-    func toDictionary() -> [String: Any] {
-        return [
-"id" : id
-        ]
-    }
+    func toDictionary() -> Dictionary<String, JSONValue> {
+		let dict =  Dictionary<String, JSONValue>()
+		if(id != nil)
+			dict["id"] = id
+		}
+		return dict        
+	}
     
     
-    func initFromJSONString(jsonString : String) throws -> Void {
+    func decode(jsonString : String) throws -> Void {
         let decoder = JSONDecoder()
         let payload = try decoder.decode(jsonString) as! JSONDictionaryType
 		if(payload["id"] != nil){
      		id =  payload["id"] as! Int64
 		}
     }
+    
+	func encode() throws -> String {
+        let encoder = JSONEncoder()
+        let payload = try encoder.encode(toDictionary())
+        return payload
+    }
+    
+    static func encodeList(elements : Array<HWCourseList>) throws -> String {
+        var payload : [AnyObject]!;
+        elements.forEach { hWCourseList -> () in
+            do {
+                let json = try hWCourseList.encode()
+                payload.append(json);
+            }catch{
+                
+            }
+        }
+        let encoder = JSONEncoder()
+        let json = try encoder.encode(elements)
+        return json 
+    }
 }
 
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 4.45 minutes to type the 445+ characters in this file.
+approximately 11.48 minutes to type the 1148+ characters in this file.
  */
 
 

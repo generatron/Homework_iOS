@@ -35,17 +35,25 @@ class HWCourse  {
     var period : Int!
     
     
-    func toDictionary() -> [String: Any] {
-        return [
-"color" : color
-		,"id" : id
-		,"name" : name
-		,"period" : period
-        ]
-    }
+    func toDictionary() -> Dictionary<String, JSONValue> {
+		let dict =  Dictionary<String, JSONValue>()
+		if(color != nil)
+			dict["color"] = color
+		}
+		if(id != nil)
+			dict["id"] = id
+		}
+		if(name != nil)
+			dict["name"] = name
+		}
+		if(period != nil)
+			dict["period"] = period
+		}
+		return dict        
+	}
     
     
-    func initFromJSONString(jsonString : String) throws -> Void {
+    func decode(jsonString : String) throws -> Void {
         let decoder = JSONDecoder()
         let payload = try decoder.decode(jsonString) as! JSONDictionaryType
 		if(payload["color"] != nil){
@@ -61,12 +69,33 @@ class HWCourse  {
      		period =  payload["period"] as! Int
 		}
     }
+    
+	func encode() throws -> String {
+        let encoder = JSONEncoder()
+        let payload = try encoder.encode(toDictionary())
+        return payload
+    }
+    
+    static func encodeList(elements : Array<HWCourse>) throws -> String {
+        var payload : [AnyObject]!;
+        elements.forEach { hWCourse -> () in
+            do {
+                let json = try hWCourse.encode()
+                payload.append(json);
+            }catch{
+                
+            }
+        }
+        let encoder = JSONEncoder()
+        let json = try encoder.encode(elements)
+        return json 
+    }
 }
 
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 8.22 minutes to type the 822+ characters in this file.
+approximately 16.06 minutes to type the 1606+ characters in this file.
  */
 
 

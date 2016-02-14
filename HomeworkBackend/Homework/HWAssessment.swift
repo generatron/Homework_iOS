@@ -36,18 +36,28 @@ class HWAssessment  {
     var type : Int!
     
     
-    func toDictionary() -> [String: Any] {
-        return [
-"dateAssigned" : dateAssigned
-		,"dateDue" : dateDue
-		,"id" : id
-		,"name" : name
-		,"type" : type
-        ]
-    }
+    func toDictionary() -> Dictionary<String, JSONValue> {
+		let dict =  Dictionary<String, JSONValue>()
+		if(dateAssigned != nil)
+			dict["dateAssigned"] = dateAssigned
+		}
+		if(dateDue != nil)
+			dict["dateDue"] = dateDue
+		}
+		if(id != nil)
+			dict["id"] = id
+		}
+		if(name != nil)
+			dict["name"] = name
+		}
+		if(type != nil)
+			dict["type"] = type
+		}
+		return dict        
+	}
     
     
-    func initFromJSONString(jsonString : String) throws -> Void {
+    func decode(jsonString : String) throws -> Void {
         let decoder = JSONDecoder()
         let payload = try decoder.decode(jsonString) as! JSONDictionaryType
 		if(payload["dateAssigned"] != nil){
@@ -66,12 +76,33 @@ class HWAssessment  {
      		type =  payload["type"] as! Int
 		}
     }
+    
+	func encode() throws -> String {
+        let encoder = JSONEncoder()
+        let payload = try encoder.encode(toDictionary())
+        return payload
+    }
+    
+    static func encodeList(elements : Array<HWAssessment>) throws -> String {
+        var payload : [AnyObject]!;
+        elements.forEach { hWAssessment -> () in
+            do {
+                let json = try hWAssessment.encode()
+                payload.append(json);
+            }catch{
+                
+            }
+        }
+        let encoder = JSONEncoder()
+        let json = try encoder.encode(elements)
+        return json 
+    }
 }
 
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 9.89 minutes to type the 989+ characters in this file.
+approximately 18.23 minutes to type the 1823+ characters in this file.
  */
 
 

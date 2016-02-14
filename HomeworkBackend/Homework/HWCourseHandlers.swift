@@ -49,7 +49,7 @@ class HWCourseCreateHandler: RequestHandler {
   func handleRequest(request: WebRequest, response: WebResponse) {
      let hWCourse = HWCourse() 
      do {
-    	try hWCourse.initFromJSONString(request.postBodyString);
+    	try hWCourse.decode(request.postBodyString);
     	let result = try PersistenceManagerMySQL.sharedInstance.hWCourseRepository.insert(hWCourse)
     	response.appendBodyString("Created HWCourse")
     }catch{
@@ -83,7 +83,7 @@ class HWCourseDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 21.07 minutes to type the 2107+ characters in this file.
+approximately 20.95 minutes to type the 2095+ characters in this file.
  */
 
 

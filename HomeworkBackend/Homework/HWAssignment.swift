@@ -37,19 +37,31 @@ class HWAssignment  {
     var type : Int!
     
     
-    func toDictionary() -> [String: Any] {
-        return [
-"dateAssigned" : dateAssigned
-		,"dateDue" : dateDue
-		,"id" : id
-		,"isCompleted" : isCompleted
-		,"name" : name
-		,"type" : type
-        ]
-    }
+    func toDictionary() -> Dictionary<String, JSONValue> {
+		let dict =  Dictionary<String, JSONValue>()
+		if(dateAssigned != nil)
+			dict["dateAssigned"] = dateAssigned
+		}
+		if(dateDue != nil)
+			dict["dateDue"] = dateDue
+		}
+		if(id != nil)
+			dict["id"] = id
+		}
+		if(isCompleted != nil)
+			dict["isCompleted"] = isCompleted
+		}
+		if(name != nil)
+			dict["name"] = name
+		}
+		if(type != nil)
+			dict["type"] = type
+		}
+		return dict        
+	}
     
     
-    func initFromJSONString(jsonString : String) throws -> Void {
+    func decode(jsonString : String) throws -> Void {
         let decoder = JSONDecoder()
         let payload = try decoder.decode(jsonString) as! JSONDictionaryType
 		if(payload["dateAssigned"] != nil){
@@ -71,12 +83,33 @@ class HWAssignment  {
      		type =  payload["type"] as! Int
 		}
     }
+    
+	func encode() throws -> String {
+        let encoder = JSONEncoder()
+        let payload = try encoder.encode(toDictionary())
+        return payload
+    }
+    
+    static func encodeList(elements : Array<HWAssignment>) throws -> String {
+        var payload : [AnyObject]!;
+        elements.forEach { hWAssignment -> () in
+            do {
+                let json = try hWAssignment.encode()
+                payload.append(json);
+            }catch{
+                
+            }
+        }
+        let encoder = JSONEncoder()
+        let json = try encoder.encode(elements)
+        return json 
+    }
 }
 
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 11.48 minutes to type the 1148+ characters in this file.
+approximately 20.19 minutes to type the 2019+ characters in this file.
  */
 
 
