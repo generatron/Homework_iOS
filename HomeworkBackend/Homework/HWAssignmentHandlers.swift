@@ -33,10 +33,8 @@ class HWAssignmentListHandler: RequestHandler  {
   	let hWAssignments : [HWAssignment]  = PersistenceManagerMySQL.sharedInstance.hWAssignmentRepository.list()
   	print (NSJSONSerialization.isValidJSONObject (hWAssignments ))
   	do{
-  	let dataFinal = try NSJSONSerialization.dataWithJSONObject (hWAssignments, options: NSJSONWritingOptions (rawValue: 0))
-  	let string = NSString (data: dataFinal, encoding: NSUTF8StringEncoding)
-  	let tee: String = string as String!
-  	response.appendBodyString (tee)
+        let json = try HWAssignment.encodeList(hWAssignments );
+        try response.outputJson(json)
   	}catch{
   	  response.setStatus (500, message: "Could not list HWAssignment data")
   	}
@@ -51,7 +49,8 @@ class HWAssignmentCreateHandler: RequestHandler {
      do {
     	try hWAssignment.decode(request.postBodyString);
     	let result = try PersistenceManagerMySQL.sharedInstance.hWAssignmentRepository.insert(hWAssignment)
-    	response.appendBodyString("Created HWAssignment")
+    	let json = hWAssignment.encode()
+    	try response.outputJson(json)
     }catch{
         response.appendBodyString("Error accessing data:  \(error)")
     }
@@ -83,7 +82,7 @@ class HWAssignmentDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 21.63 minutes to type the 2163+ characters in this file.
+approximately 20.1 minutes to type the 2010+ characters in this file.
  */
 
 

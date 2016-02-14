@@ -33,10 +33,8 @@ class HWCourseListHandler: RequestHandler  {
   	let hWCourses : [HWCourse]  = PersistenceManagerMySQL.sharedInstance.hWCourseRepository.list()
   	print (NSJSONSerialization.isValidJSONObject (hWCourses ))
   	do{
-  	let dataFinal = try NSJSONSerialization.dataWithJSONObject (hWCourses, options: NSJSONWritingOptions (rawValue: 0))
-  	let string = NSString (data: dataFinal, encoding: NSUTF8StringEncoding)
-  	let tee: String = string as String!
-  	response.appendBodyString (tee)
+        let json = try HWCourse.encodeList(hWCourses );
+        try response.outputJson(json)
   	}catch{
   	  response.setStatus (500, message: "Could not list HWCourse data")
   	}
@@ -51,7 +49,8 @@ class HWCourseCreateHandler: RequestHandler {
      do {
     	try hWCourse.decode(request.postBodyString);
     	let result = try PersistenceManagerMySQL.sharedInstance.hWCourseRepository.insert(hWCourse)
-    	response.appendBodyString("Created HWCourse")
+    	let json = hWCourse.encode()
+    	try response.outputJson(json)
     }catch{
         response.appendBodyString("Error accessing data:  \(error)")
     }
@@ -83,7 +82,7 @@ class HWCourseDeleteHandler: RequestHandler {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 20.95 minutes to type the 2095+ characters in this file.
+approximately 19.38 minutes to type the 1938+ characters in this file.
  */
 
 

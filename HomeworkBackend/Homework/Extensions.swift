@@ -70,6 +70,12 @@ extension WebResponse {
         let encoded = try JSONEncoder().encode(values)
         appendBodyString(encoded)
     }
+    
+    func outputJson(data: String) throws {
+        addHeader("content-type", value: "application/json")
+        appendBodyString(data)
+    }
+    
 }
 
 extension WebRequest {
@@ -143,7 +149,7 @@ extension NSDate {
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 33.15 minutes to type the 3315+ characters in this file.
+approximately 34.66 minutes to type the 3466+ characters in this file.
  */
 
 

@@ -77,25 +77,29 @@ class HWCourse  {
     }
     
     static func encodeList(elements : Array<HWCourse>) throws -> String {
-        var payload : [AnyObject]!;
-        elements.forEach { hWCourse -> () in
+        var payload : Array<JSONValue> = [];
+        do {
+        elements.forEach { entity.getVariableName() -> () in
             do {
-                let json = try hWCourse.encode()
-                payload.append(json);
+                payload.append(entity.getVariableName().toDictionary());
             }catch{
                 
             }
         }
         let encoder = JSONEncoder()
-        let json = try encoder.encode(elements)
-        return json 
+        let json = try encoder.encode(payload)
+        return json
+        }catch{
+            //?
+        }
+        return ""
     }
 }
 
 /* 
 [STATS]
 It would take a person typing  @ 100.0 cpm, 
-approximately 16.1 minutes to type the 1610+ characters in this file.
+approximately 16.96 minutes to type the 1696+ characters in this file.
  */
 
 
