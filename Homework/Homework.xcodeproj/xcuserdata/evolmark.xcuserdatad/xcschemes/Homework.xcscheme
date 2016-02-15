@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CFDC93351C6D99CD00EEF047"
-               BuildableName = "HomeworkBackend.framework"
-               BlueprintName = "HomeworkBackend"
-               ReferencedContainer = "container:HomeworkBackend.xcodeproj">
+               BlueprintIdentifier = "F9FFE9CF1C276C0A004A5CE3"
+               BuildableName = "Homework.app"
+               BlueprintName = "Homework"
+               ReferencedContainer = "container:Homework.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,20 +32,30 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CFDC93431C6D99CD00EEF047"
-               BuildableName = "HomeworkBackendTests.xctest"
-               BlueprintName = "HomeworkBackendTests"
-               ReferencedContainer = "container:HomeworkBackend.xcodeproj">
+               BlueprintIdentifier = "F9FFE9EB1C276C0A004A5CE3"
+               BuildableName = "HomeworkTests.xctest"
+               BlueprintName = "HomeworkTests"
+               ReferencedContainer = "container:Homework.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F9FFE9F61C276C0A004A5CE3"
+               BuildableName = "HomeworkUITests.xctest"
+               BlueprintName = "HomeworkUITests"
+               ReferencedContainer = "container:Homework.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F88B06801BDD48DD001FD0CD"
-            BuildableName = "PerfectServer HTTP.app"
-            BlueprintName = "PerfectServer HTTP App"
-            ReferencedContainer = "container:../../../PerfectSwift/Perfect/PerfectServer/PerfectServer.xcodeproj">
+            BlueprintIdentifier = "F9FFE9CF1C276C0A004A5CE3"
+            BuildableName = "Homework.app"
+            BlueprintName = "Homework"
+            ReferencedContainer = "container:Homework.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,10 +75,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F88B06801BDD48DD001FD0CD"
-            BuildableName = "PerfectServer HTTP.app"
-            BlueprintName = "PerfectServer HTTP App"
-            ReferencedContainer = "container:../../../PerfectSwift/Perfect/PerfectServer/PerfectServer.xcodeproj">
+            BlueprintIdentifier = "F9FFE9CF1C276C0A004A5CE3"
+            BuildableName = "Homework.app"
+            BlueprintName = "Homework"
+            ReferencedContainer = "container:Homework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,15 +90,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CFDC93351C6D99CD00EEF047"
-            BuildableName = "HomeworkBackend.framework"
-            BlueprintName = "HomeworkBackend"
-            ReferencedContainer = "container:HomeworkBackend.xcodeproj">
+            BlueprintIdentifier = "F9FFE9CF1C276C0A004A5CE3"
+            BuildableName = "Homework.app"
+            BlueprintName = "Homework"
+            ReferencedContainer = "container:Homework.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
