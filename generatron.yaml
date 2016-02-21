@@ -1,6 +1,6 @@
 git :
  - bundleName : "PerfectSwift(.)*"
-   gitUrl : "git@github.com:ejohnsonw/HomeworkBackend.git"
+   gitUrl : "git@github.com:generatron/HomeworkBackend.git"
 output:
  ignores:
   - name :  "(.)*Server.swift"
